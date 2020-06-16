@@ -1,16 +1,30 @@
 @import 'src/styles/vars';
 
+body {
+  font-family: sans-serif;
+  background-color: $main-color;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  /* ce style va s'appliquer pour toutes les vues plus grandes que 768px (cf vars) */
+  body {
+    background-position: 50% 50%;
+  }
+}
+
+
 .app {
   width: 500px;
   margin: 0 auto;
   text-align: center;
-
   max-width: 900px;
   height: 100vh; 
   display: flex;
   flex-direction: column;
   align-items: center;
-
   width: 80%;
 }
 
