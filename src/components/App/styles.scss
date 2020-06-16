@@ -1,0 +1,22 @@
+@import 'src/styles/vars';
+
+.app {
+  width: 500px;
+  margin: 0 auto;
+  text-align: center;
+
+  max-width: 900px;
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 80%;
+}
+
+.app img {
+  max-width: 150px;
+}
+
+
+

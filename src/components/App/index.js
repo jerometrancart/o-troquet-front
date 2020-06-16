@@ -2,7 +2,12 @@
 import React, { useEffect } from 'react';
 
 // == Import
-import './styles.css';
+import Header from 'src/components/Header';
+import Welcome from 'src/components/Welcome';
+import Login from 'src/components/Login';
+import Signin from 'src/components/Signin';
+import Footer from 'src/components/Footer';
+import './styles.scss';
 
 
 /*
@@ -35,7 +40,17 @@ const App = () => (
 
 
 
-  <div className="app">App</div>
+  
+  <div className="app">
+    <Header />
+    <Welcome />
+    <Login />
+    <Signin />
+    <Footer />
+  </div>
+
+
+
 );
 
 // == Export
