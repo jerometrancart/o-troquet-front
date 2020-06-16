@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Header from 'src/components/Header';
 import Welcome from 'src/components/Welcome';
 import Login from 'src/components/Login';
+import GamesListPage from 'src/components/GamesListPage';
 import Footer from 'src/components/Footer';
 import './styles.scss';
 
@@ -52,6 +53,7 @@ const App = ({ homePage, gamesListPage, gameBoardPage }) => (
       <Header />
       <Welcome />
       {homePage && <Login />}
+      {gamesListPage && <GamesListPage />}
       <Footer />
     </div>
 );
@@ -63,9 +65,9 @@ App.propTypes = {
 };
 
 App.defaultProps = {
-  homePage: true,
+  homePage: false,
   gamesListPage: true,
-  gameBoardPage: true,
+  gameBoardPage: false,
 };
 
 // == Export
