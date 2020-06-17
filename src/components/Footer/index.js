@@ -17,7 +17,7 @@ Footer.propTypes = {
   loggedAsAdmin: PropTypes.bool,
 };
 Footer.defaultProps = {
-  loggedAsAdmin: true,
+  loggedAsAdmin: false,
 };
 
 export default Footer;

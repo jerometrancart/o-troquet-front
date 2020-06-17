@@ -8,6 +8,7 @@ import Welcome from 'src/components/Welcome';
 import Login from 'src/components/Login';
 import GamesListPage from 'src/components/GamesListPage';
 import Footer from 'src/components/Footer';
+import SideBar from 'src/components/Nav/SideBar.js';
 import './styles.scss';
 
 
@@ -53,7 +54,9 @@ const App = ({ homePage, gamesListPage, gameBoardPage }) => (
   */
 
     <div className="app">
+      
       <Header />
+      <SideBar pageWrapId={"page-wrap"} outerContainerId={"App"} />
       <Welcome />
       {homePage && <Login />}
       {gamesListPage && <GamesListPage />}
