@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Image } from 'semantic-ui-react';
-
+import Dice from 'src/assets/images/Dice.png';
+import Blackjack from 'src/assets/images/blackjack.png'
 
 import './style.scss';
 
@@ -13,24 +14,37 @@ const GamesListPage = () => (
       </Button>
     </div>
     <div className="gamesVisuals">
-    <Image.Group size='medium'>
-      <Image
-        // src="/home/etudiant/Bureau/html/APOTHÉOSE/obar - front/src/assets/images/perspective-dice-six-faces-six.svg"
-        src="obar - front/src/assets/images/perspective-dice-six-faces-six.svg"
-        as="a"
-        href="https://www.regles-de-jeux.com/regle-du-421/"
-        rounded
-        alt="421 game"
-      />
-      <Image
-        src="/src/assets/images/suits.svg"
-        as="a"
-        href="https://www.casinoonlinefrancais.info/blackjack/regles-du-jeu.html"
-        rounded
-        alt="Blackjack game"
-      />
+      <Image.Group size="small">
+        <Image
+          src={Dice}
+          as="a"
+          href="https://www.regles-de-jeux.com/regle-du-421/"
+          rounded
+          alt="421 game"
+        />
+        <Image
+          src={Blackjack}
+          as="a"
+          href="https://www.casinoonlinefrancais.info/blackjack/regles-du-jeu.html"
+          rounded
+          alt="Blackjack game"
+        />
+        <Image
+          src="https://via.placeholder.com/150.png/ccc/000/?text=Work+in+progress"
+          as="a"
+          href="https://www.placeholder.com"
+          rounded
+          alt="Work in progress"
+        />
+        <Image
+          src="https://via.placeholder.com/150.png/ccc/000/?text=Work+in+progress"
+          as="a"
+          href="https://www.placeholder.com"
+          rounded
+          alt="Work in progress"
+        />
       </Image.Group>
-      
+        
       
 
 

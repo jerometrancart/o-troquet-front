@@ -47,7 +47,7 @@ const App = ({ homePage, gamesListPage, gameBoardPage }) => (
 
     // application de l'image tirée au sort sur le fond de l'appli (balise body)
     document.body.style.backgroundImage = "url("+backgroundImage[random]+")";
-  }, []),
+  }),
 
     <div className="app">
       <Header />
