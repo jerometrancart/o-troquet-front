@@ -17,13 +17,14 @@ body {
 
 
 .app {
-  margin: 0 auto;
   text-align: center;
+  width: 80%;
   max-width: 1000px;
   height: 100vh; 
   display: flex;
   flex-direction: column;
-  width: 100%;
+  align-items: center;
+  margin: 0 auto;
 }
 
 

@@ -21,6 +21,8 @@ https://codepen.io/omascaros/pen/CBapm
 // == Composant
 const App = ({ homePage, gamesListPage, gameBoardPage }) => (
   // hook d'effet : s'applique après le chargement de l'application
+
+  /*
   useEffect(() => {
     // création d'un tableau contenant des belles images de bar
     const backgroundImage = new Array ();
@@ -48,6 +50,7 @@ const App = ({ homePage, gamesListPage, gameBoardPage }) => (
     // application de l'image tirée au sort sur le fond de l'appli (balise body)
     document.body.style.backgroundImage = "url("+backgroundImage[random]+")";
   }),
+  */
 
     <div className="app">
       <Header />

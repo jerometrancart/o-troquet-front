@@ -1,16 +1,70 @@
 @import 'src/styles/vars';
 
-.modes, .ui.small.images {
+.modes {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 4rem;
+  width: 100%;
+}
+.ui.rounded.image>img {
+  border-radius: 20px;
+}
+
+.coupleImages {
+width: 50%;
+}
+
+.gamesVisuals {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.ui.small.images {
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin-top: 4rem;
-  width: 100%;
 }
 
+a.ui.rounded.image {
+  margin: 2rem;
+}
 img {
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
   width: 150px;
   height: 150px;
+}
+
+@media (max-width: $breakpoint-tablet) {
+  /* ce style va s'appliquer pour toutes les vues plus grandes que 1050px (cf vars) */
+  .playModes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .gamesVisuals {
+    margin-left: auto;
+  }
+  .ui.small.images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4rem;
+   /* width: 100%;*/
+  }
+  .coupleImages {
+    width: 100%;
+    }
+  .ui.rounded.image>img {
+    border-radius: 20px;
+   
+  }
+  
+  
+    
+
 }
