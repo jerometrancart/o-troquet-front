@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Header from 'src/components/Header';
 import Welcome from 'src/components/Welcome';
 import Login from 'src/components/Login';
+import GamesListPage from 'src/components/GamesListPage';
 import Footer from 'src/components/Footer';
 import './styles.scss';
 
@@ -20,6 +21,8 @@ https://codepen.io/omascaros/pen/CBapm
 // == Composant
 const App = ({ homePage, gamesListPage, gameBoardPage }) => (
   // hook d'effet : s'applique après le chargement de l'application
+
+  /*
   useEffect(() => {
     // création d'un tableau contenant des belles images de bar
     const backgroundImage = new Array ();
@@ -46,12 +49,14 @@ const App = ({ homePage, gamesListPage, gameBoardPage }) => (
 
     // application de l'image tirée au sort sur le fond de l'appli (balise body)
     document.body.style.backgroundImage = "url("+backgroundImage[random]+")";
-  }, []),
+  }),
+  */
 
     <div className="app">
       <Header />
       <Welcome />
       {homePage && <Login />}
+      {gamesListPage && <GamesListPage />}
       <Footer />
     </div>
 );
@@ -63,9 +68,9 @@ App.propTypes = {
 };
 
 App.defaultProps = {
-  homePage: true,
+  homePage: false,
   gamesListPage: true,
-  gameBoardPage: true,
+  gameBoardPage: false,
 };
 
 // == Export

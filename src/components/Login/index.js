@@ -51,7 +51,7 @@ Login.propTypes = {
 
 Login.defaultProps = {
   signinPage: false,
-  loginPage: true,
+  loginPage: false,
 };
 
 export default Login;
