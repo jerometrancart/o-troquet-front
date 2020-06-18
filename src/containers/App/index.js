@@ -1,23 +1,21 @@
 import { connect } from 'react-redux';
 
-import Login from 'src/components/Login';
-
-// Action Creators
-import { login, logout } from '../../actions/user.js';
+import App from 'src/components/App';
+import { check } from 'src/actions/user';
 
 const mapStateToProps = (state) => ({
   isLogged: state.isLogged,
+  isAdmin: state.isAdmin,
+  path: state.path,
 });
+
 const mapDispatchToProps = (dispatch) => ({
-  login: () => {
-    dispatch(login());
-  },
-  logout: () => {
-    dispatch(logout());
+  checkIsLogged: () => {
+    dispatch(check());
   },
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Login);
+)(App);

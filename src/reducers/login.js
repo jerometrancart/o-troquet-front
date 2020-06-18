@@ -1,8 +1,8 @@
-import { LOGIN, LOGOUT } from '../actions';
+import { LOGIN, LOGOUT } from 'src/actions/user';
 
 export const initialState = {
   isLogged: false,
-  route: '/',
+  path: '/',
 };
 
 const login = (state = initialState, action = {}) => {
@@ -11,12 +11,13 @@ const login = (state = initialState, action = {}) => {
       return {
         ...state,
         isLogged: true,
-        route: '/gameselect',
+        path: '/gameselect',
       };
     case LOGOUT:
       return {
         ...state,
         isLogged: false,
+        path: '/',
       };
     default:
       return state;

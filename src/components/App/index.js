@@ -7,7 +7,7 @@ import { Route, useLocation, Switch } from 'react-router-dom';
 import Header from 'src/components/Header';
 import Welcome from 'src/components/Welcome';
 import Login from 'src/containers/Login';
-import GamesListPage from 'src/components/GamesListPage';
+import GamesListPage from 'src/containers/GamesListPage';
 import GameboardPage from 'src/components/GameboardPage';
 import Footer from 'src/components/Footer';
 import SideBar from 'src/components/Nav/SideBar.js';
@@ -25,11 +25,11 @@ https://codepen.io/omascaros/pen/CBapm
 
 
 // == Composant
-const App = ({ isLogged, isAdmin, sideBar }) => {
+const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
   // hook d'effet : s'applique après le chargement de l'application
 
   const location = useLocation();
-
+  useEffect(checkIsLogged, []);
   useEffect(() => {
     // création d'un tableau contenant des belles images de bar
     const backgroundImage = new Array ();
@@ -109,6 +109,7 @@ const App = ({ isLogged, isAdmin, sideBar }) => {
 App.propTypes = {
   isLogged: PropTypes.bool,
   isAdmin: PropTypes.bool,
+  path: PropTypes.string.isRequired,
 };
 
 App.defaultProps = {

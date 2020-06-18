@@ -7,7 +7,7 @@ import 'semantic-ui-css/semantic.min.css';
 
 // == Import : local
 // Composants
-import App from 'src/components/App';
+import App from 'src/containers/App';
 // import './styles/index.scss';
 
 // Store
