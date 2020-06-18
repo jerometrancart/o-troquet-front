@@ -1,10 +1,9 @@
 import { createStore, combineReducers } from 'redux';
-import {reducer as BurgerMenu } from 'redux-burger-menu';
-import counter from './counter';
-
+import { reducer as BurgerMenu } from 'redux-burger-menu';
+import login from './login';
 
 export default combineReducers({
-  counter,
+  login,
 });
 
 

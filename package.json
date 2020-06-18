@@ -59,6 +59,7 @@
     "react-burger-menu": "^2.6.15",
     "react-dom": "*",
     "react-redux": "*",
+    "react-router-dom": "^5.2.0",
     "redux": "*",
     "redux-burger-menu": "^0.2.8",
     "semantic-ui-css": "^2.4.1",
