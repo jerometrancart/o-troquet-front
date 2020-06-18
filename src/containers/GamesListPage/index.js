@@ -6,7 +6,7 @@ import GamesListPage from 'src/components/GamesListPage';
 import { login, logout } from '../../actions';
 
 const mapStateToProps = (state) => ({
-  isLogged: state.isLogged,
+  isLogged: state.login.isLogged,
 });
 const mapDispatchToProps = {};
 

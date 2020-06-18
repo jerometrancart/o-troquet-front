@@ -1,7 +1,7 @@
 // == Import npm
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Route, useLocation, Switch } from 'react-router-dom';
+import { Route, useLocation, Switch, Redirect } from 'react-router-dom';
 
 // == Import
 import Header from 'src/components/Header';
@@ -69,19 +69,39 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
             && (
               <>
                 <Welcome />
-                <Login />
+                <Login
+                  isLogged={isLogged}
+                />
               </>
+            )}
+          {isLogged
+            && (
+            <Redirect to="/gameselect" />
             )}
         </Route>
         <Route exact path="/gameselect">
-          <GamesListPage
-            isLogged={isLogged}
-          />
+          {isLogged
+            && (
+              <GamesListPage
+                isLogged={isLogged}
+              />
+            )}
+          {!isLogged
+            && (
+            <Redirect to="/" />
+            )}
         </Route>
         <Route exact path="/gameboard/fourtwoone">
-          <GameboardPage
-            isLogged={isLogged}
-          />
+          {isLogged
+            && (
+              <GameboardPage
+                isLogged={isLogged}
+              />
+            )}
+          {!isLogged
+            && (
+            <Redirect to="/" />
+            )}
         </Route>
         <Route exact path="/legal">
           <Legal />
@@ -110,6 +130,7 @@ App.propTypes = {
   isLogged: PropTypes.bool,
   isAdmin: PropTypes.bool,
   path: PropTypes.string.isRequired,
+  checkIsLogged: PropTypes.func.isRequired,
 };
 
 App.defaultProps = {

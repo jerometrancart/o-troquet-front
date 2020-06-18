@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Image } from 'semantic-ui-react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // import resources
@@ -16,8 +16,10 @@ const GamesListPage = ({ isLogged }) => {
   return (
     <div className="playModes">
       <div className="modes">
-        <Button color="blue" className="center aligned">Quick play
-        </Button>
+        <Link to="/gameboard/fourtwoone">
+          <Button color="blue" className="center aligned">Quick play
+          </Button>
+        </Link>
         <Button color="blue" className="center aligned">Invite friends
         </Button>
       </div>
@@ -27,7 +29,7 @@ const GamesListPage = ({ isLogged }) => {
             <Image
               src={Dice}
               as="a"
-              href="https://www.regles-de-jeux.com/regle-du-421/"
+              href="/gameboard/fourtwoone"
               rounded
               alt="421 game"
             />

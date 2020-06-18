@@ -5,10 +5,12 @@ import { CHANGE_VALUE, LOGIN, FINISH_LOADING, CONNECT, LOGOUT } from "src/action
 // import { } from 'src/actions';
 
 export const initialState = {
-  email: '',
+  username: '',
   password: '',
   isLogged: false,
+  isAdmin: false,
   loading: false,
+  path: '/',
 };
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -32,7 +34,7 @@ const reducer = (state = initialState, action = {}) => {
     case CONNECT:
       return {
         ...state,
-        logged: true,
+        isLogged: true,
       };
     case LOGOUT:
       return {

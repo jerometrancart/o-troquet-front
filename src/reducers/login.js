@@ -1,11 +1,14 @@
-import { LOGIN, LOGOUT } from 'src/actions/user';
+import { LOGIN, LOGOUT, CHANGE_VALUE } from 'src/actions/user';
 
 export const initialState = {
   isLogged: false,
+  isAdmin: false,
   path: '/',
+  username: '',
+  password: '',
 };
 
-const login = (state = initialState, action = {}) => {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case LOGIN:
       return {
@@ -19,9 +22,14 @@ const login = (state = initialState, action = {}) => {
         isLogged: false,
         path: '/',
       };
+    case CHANGE_VALUE:
+      return {
+        ...state,
+        [action.name]: action.value,
+      };
     default:
       return state;
   }
 };
 
-export default login;
+export default reducer;
