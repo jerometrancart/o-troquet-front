@@ -1,5 +1,6 @@
-import { LOGIN, changeValue } from 'src/actions/user';
+import { LOGIN, authSuccess } from 'src/actions/user';
 import axios from 'axios';
+import jwt from 'jwt-decode';
 
 const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/';
 
@@ -26,11 +27,10 @@ const auth = (store) => (next) => (action) => {
       })
         .then((response) => {
           console.log('response', response.data);
-          // j'ai le pseudo fourni par l'api
-          // mon intention : ranger ce pseudo dans le state
-          // je vais dispatcher une action
-          const actionToSavePseudo = changeValue('pseudo', response.data);
-          store.dispatch(actionToSavePseudo);
+          const { token } = response.data;
+          const user = jwt(token); // decode your token here
+          localStorage.setItem('token', token);
+          store.dispatch(authSuccess(token, user));
         })
         .catch((error) => {
           console.error(error);
