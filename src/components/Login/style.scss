@@ -11,11 +11,13 @@
 */
 
 .ui.grid.center.aligned {
-  background-color: rgba(255, 255, 255, 0.466);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
   padding: 20px;
   max-width: 500px;
   margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .oauth {
@@ -23,6 +25,37 @@
   justify-content: space-evenly;
   margin-bottom: 2rem;
 }
+
+.signin, .forgotten {
+  margin-top: 2rem;
+  font-size: small;
+}
+.ui.blue.button.center.aligned {
+  margin-top: 1.5rem;
+}
+
+
+/*
+.login-form {
+  width: 50%;
+}
+*/
+/*.login-form-element {
+  display: flex;
+  align-items: center;
+}
+*/
+.login-form-message {
+  text-align: right;
+  margin: .3em 1em;
+}
+.login-form-logged {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+
 
 /*
 .ui.form .field {
@@ -33,7 +66,5 @@
   margin-bottom: 2rem;
 }
 
-.ui.blue.button {
-  margin-bottom: 2rem;
-}
+
 */

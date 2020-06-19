@@ -1,23 +1,46 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const Footer = ({ loggedAsAdmin }) => (
-  <footer>Mentions légales + Qui sommes-nous?
+import './style.scss';
 
-    {loggedAsAdmin && (
-      <Button color="blue" className="center aligned">Administration
-      </Button>
+const Footer = ({ isAdmin }) => (
+  <footer className="footer">
+    <Link
+      className="legalLink"
+      to="/legal"
+    >
+      Mentions légales
+    </Link>
+    <Link
+      className="teamLink"
+      to="/theteam"
+    >
+      Qui sommes-nous?
+    </Link>
+
+    {isAdmin && (
+      <Link
+        to="/admin"
+      >
+        <Button
+          color="blue"
+          className="center aligned"
+        >
+          Administration
+        </Button>
+      </Link>
     )}
 
   </footer>
 );
 
 Footer.propTypes = {
-  loggedAsAdmin: PropTypes.bool,
+  isAdmin: PropTypes.bool,
 };
 Footer.defaultProps = {
-  loggedAsAdmin: true,
+  isAdmin: false,
 };
 
 export default Footer;

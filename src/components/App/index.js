@@ -1,13 +1,19 @@
 // == Import npm
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Route, useLocation, Switch, Redirect } from 'react-router-dom';
 
 // == Import
 import Header from 'src/components/Header';
 import Welcome from 'src/components/Welcome';
-import Login from 'src/components/Login';
-import GamesListPage from 'src/components/GamesListPage';
+import Login from 'src/containers/Login';
+import GamesListPage from 'src/containers/GamesListPage';
+import GameboardPage from 'src/components/GameboardPage';
 import Footer from 'src/components/Footer';
+import SideBar from 'src/components/Nav/SideBar.js';
+import AdminPage from 'src/components/AdminPage';
+import Legal from 'src/components/Legal';
+import Team from 'src/components/Team';
 import './styles.scss';
 
 
@@ -19,10 +25,11 @@ https://codepen.io/omascaros/pen/CBapm
 
 
 // == Composant
-const App = ({ homePage, gamesListPage, gameBoardPage }) => (
+const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
   // hook d'effet : s'applique après le chargement de l'application
 
-  /*
+  const location = useLocation();
+  useEffect(checkIsLogged, []);
   useEffect(() => {
     // création d'un tableau contenant des belles images de bar
     const backgroundImage = new Array ();
@@ -48,29 +55,87 @@ const App = ({ homePage, gamesListPage, gameBoardPage }) => (
     const random = Math.floor(Math.random() * backgroundImage.length);
 
     // application de l'image tirée au sort sur le fond de l'appli (balise body)
-    document.body.style.backgroundImage = "url("+backgroundImage[random]+")";
-  }),
-  */
+    document.body.style.backgroundImage = 'url(' + backgroundImage[random] + ')';
+  }, [location]);
 
+  return (
     <div className="app">
       <Header />
-      <Welcome />
-      {homePage && <Login />}
-      {gamesListPage && <GamesListPage />}
-      <Footer />
+      {sideBar
+      && <SideBar pageWrapId="page-wrap" outerContainerId="App" />}
+      <Switch>
+        <Route exact path="/">
+          {!isLogged
+            && (
+              <>
+                <Welcome />
+                <Login
+                  isLogged={isLogged}
+                />
+              </>
+            )}
+          {isLogged
+            && (
+            <Redirect to="/gameselect" />
+            )}
+        </Route>
+        <Route exact path="/gameselect">
+          {isLogged
+            && (
+              <GamesListPage
+                isLogged={isLogged}
+              />
+            )}
+          {!isLogged
+            && (
+            <Redirect to="/" />
+            )}
+        </Route>
+        <Route exact path="/gameboard/fourtwoone">
+          {isLogged
+            && (
+              <GameboardPage
+                isLogged={isLogged}
+              />
+            )}
+          {!isLogged
+            && (
+            <Redirect to="/" />
+            )}
+        </Route>
+        <Route exact path="/legal">
+          <Legal />
+        </Route>
+        <Route exact path="/theteam">
+          <Team />
+        </Route>
+        <Route exact path="/admin">
+          <AdminPage
+            isLogged={isLogged}
+            isAdmin={isAdmin}
+          />
+        </Route>
+        <Route>
+          <p>404 fais gaffe dude</p>
+        </Route>
+      </Switch>
+      <Footer
+        isAdmin={isAdmin}
+      />
     </div>
-);
+  );
+};
 
 App.propTypes = {
-  homePage: PropTypes.bool,
-  gamesListPage: PropTypes.bool,
-  gameBoardPage: PropTypes.bool,
+  isLogged: PropTypes.bool,
+  isAdmin: PropTypes.bool,
+  path: PropTypes.string.isRequired,
+  checkIsLogged: PropTypes.func.isRequired,
 };
 
 App.defaultProps = {
-  homePage: false,
-  gamesListPage: true,
-  gameBoardPage: false,
+  isLogged: false,
+  isAdmin: false,
 };
 
 // == Export

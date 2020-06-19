@@ -30,10 +30,17 @@ width: 50%;
 a.ui.rounded.image {
   margin: 2rem;
 }
+a.ui.rounded.image:nth-child(2) img{
+  padding: 5px;
+}
+
 img {
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
   width: 150px;
+  height: 150px;
+}
+.ui.small.images img {
   height: 150px;
 }
 

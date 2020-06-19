@@ -1,15 +1,1 @@
-export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
-export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
-export const RANDOMIZE_BACKGROUND_IMAGE = 'RANDOMIZE_BACKGROUND_IMAGE';
 
-export const increment = () => ({
-  type: INCREMENT_COUNTER,
-});
-
-export const decrement = () => ({
-  type: DECREMENT_COUNTER,
-});
-
-export const randomizeBackgroundImage = () => ({
-  type: RANDOMIZE_BACKGROUND_IMAGE,
-});
