@@ -10,9 +10,11 @@ import Blackjack from 'src/assets/images/blackjack.png';
 import './style.scss';
 
 const GamesListPage = ({ isLogged }) => {
+  /*
   if (!isLogged) {
     return <Redirect to="/" />;
   }
+  */
   return (
     <div className="playModes">
       <div className="modes">
@@ -20,8 +22,10 @@ const GamesListPage = ({ isLogged }) => {
           <Button color="blue" className="center aligned">Quick play
           </Button>
         </Link>
-        <Button color="blue" className="center aligned">Invite friends
-        </Button>
+        <Link>
+          <Button color="blue" className="center aligned">Invite friends
+          </Button>
+        </Link>
       </div>
       <div className="gamesVisuals">
         <Image.Group size="small">

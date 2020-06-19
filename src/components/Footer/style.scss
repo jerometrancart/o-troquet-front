@@ -1,0 +1,12 @@
+@import 'src/styles/vars';
+
+.footer {
+  width: 100%;
+  height: $footer-height;
+  display: flex;
+  justify-content: space-around;
+  background-color: $main-color;
+}
+.link {
+  margin-top: $gutter;
+}

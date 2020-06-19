@@ -1,7 +1,7 @@
 export const CHANGE_VALUE = 'CHANGE_VALUE';
 export const LOGIN = 'LOGIN';
 export const FINISH_LOADING = 'FINISH_LOADING';
-export const CONNECT = 'CONNECT';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const LOGOUT = 'LOGOUT';
 export const CHECK = 'CHECK';
 
@@ -19,8 +19,10 @@ export const finishLoading = () => ({
   type: FINISH_LOADING,
 });
 
-export const connect = () => ({
-  type: CONNECT,
+export const authSuccess = (token, user) => ({
+  type: AUTH_SUCCESS,
+  token,
+  user,
 });
 
 export const logout = () => ({

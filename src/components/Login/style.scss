@@ -1,15 +1,5 @@
 @import 'src/styles/vars';
 
-/*.form-login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: $main-color;
-  color: white;
-
-}
-*/
-
 .ui.grid.center.aligned {
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
@@ -34,37 +24,34 @@
   margin-top: 1.5rem;
 }
 
-
-/*
-.login-form {
-  width: 50%;
-}
-*/
-/*.login-form-element {
-  display: flex;
-  align-items: center;
-}
-*/
 .login-form-message {
   text-align: right;
   margin: .3em 1em;
 }
+
 .login-form-logged {
   display: flex;
   align-items: center;
   justify-content: flex-end;
 }
 
-
-
-/*
-.ui.form .field {
-  margin-bottom: 4rem;
+@media (max-width: $breakpoint-tablet) {
+  /* ce style va s'appliquer pour toutes les vues plus petites que 1050px (cf vars) */
+  
+  
+  @media (max-width: $breakpoint-phone) {
+    /* ce style va s'appliquer pour toutes les vues plus petites que 510px (cf vars) */
+    .ui.grid.center.aligned {
+      margin: 1rem auto;
+    }
+    .signin, .forgotten {
+      margin-top: 0.5rem;
+    }
+    .oauth {
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 430px) {
+      
+    }
+  }
 }
-
-.ui.form .field>label {
-  margin-bottom: 2rem;
-}
-
-
-*/

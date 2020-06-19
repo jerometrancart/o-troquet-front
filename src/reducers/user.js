@@ -1,6 +1,6 @@
 // ici je crée un second reducer qui gère toutes les infos liées au user
 
-import { CHANGE_VALUE, LOGIN, FINISH_LOADING, CONNECT, LOGOUT } from "src/actions/user";
+import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT } from "src/actions/user";
 
 // import { } from 'src/actions';
 
@@ -31,7 +31,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         loading: false,
       };
-    case CONNECT:
+    case AUTH_SUCCESS:
       return {
         ...state,
         isLogged: true,

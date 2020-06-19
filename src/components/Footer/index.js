@@ -8,13 +8,13 @@ import './style.scss';
 const Footer = ({ isAdmin }) => (
   <footer className="footer">
     <Link
-      className="legalLink"
+      className="legal link"
       to="/legal"
     >
       Mentions légales
     </Link>
     <Link
-      className="teamLink"
+      className="team link"
       to="/theteam"
     >
       Qui sommes-nous?

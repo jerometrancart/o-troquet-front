@@ -50,44 +50,12 @@ const Login = ({ isLogged, login, logout }) => {
         <Link to="/">Mot de passe oublié
         </Link>
       </p>
-      <p className="signin">Vous n'avez pas de compte ?&nbsp;
-        <Link to="/signin">Inscrivez-vous ^^
-        </Link>
+      <p className="signin">Vous n'avez pas de compte ?
       </p>
+      <Link to="/signin">Inscrivez-vous ^^
+      </Link>
     </Grid>
-    /*
-    <Grid className="center aligned">
-      <Form
-        className="form-login"
-        onSubmit={handleLogin}
-      >
-        <h2 className="form-title">Je me connecte </h2>
-        <Oauth />
-        <div className="oauth">
-          <Button circular color="facebook" icon="facebook" />
-          <Button circular color="google plus" icon="google plus g" />
-        </div>
-        <Form.Field required>
-          <label>Pseudo</label>
-          <Field placeholder="Pseudo" type="text" name="username" />
-        </Form.Field>
-        <Form.Field required>
-          <label>Mot de passe</label>
-          <Field type="password" placeholder="Mot de passe" name="password" />
-        </Form.Field>
-        <Button color="blue" type="submit" className="center aligned">Connexion
-        </Button>
-      </Form>
-      <p className="forgotten">
-        <Link to="/">Mot de passe oublié
-        </Link>
-      </p>
-      <p className="signin">Vous n'avez pas de compte ?&nbsp;
-        <Link to="/signin">Inscrivez-vous ^^
-        </Link>
-      </p>
-    </Grid>
-    */
+   
   );
 };
 

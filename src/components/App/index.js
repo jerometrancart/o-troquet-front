@@ -7,14 +7,14 @@ import { Route, useLocation, Switch, Redirect } from 'react-router-dom';
 import Header from 'src/components/Header';
 import Welcome from 'src/components/Welcome';
 import Login from 'src/containers/Login';
-import GamesListPage from 'src/containers/GamesListPage';
+import GamesListPage from 'src/components/GamesListPage';
 import GameboardPage from 'src/components/GameboardPage';
 import Footer from 'src/components/Footer';
 import SideBar from 'src/components/Nav/SideBar.js';
 import AdminPage from 'src/components/AdminPage';
 import Legal from 'src/components/Legal';
 import Team from 'src/components/Team';
-import './styles.scss';
+import './style.scss';
 
 
 /*
@@ -56,69 +56,71 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
 
     // application de l'image tirée au sort sur le fond de l'appli (balise body)
     document.body.style.backgroundImage = 'url(' + backgroundImage[random] + ')';
-  }, [location]);
+  }, []);
 
   return (
-    <div className="app">
-      <Header />
-      {sideBar
-      && <SideBar pageWrapId="page-wrap" outerContainerId="App" />}
-      <Switch>
-        <Route exact path="/">
-          {!isLogged
-            && (
-              <>
-                <Welcome />
-                <Login
+    <div className="main">
+      <div className="app">
+        <Header />
+        {sideBar
+        && <SideBar pageWrapId="page-wrap" outerContainerId="App" />}
+        <Switch>
+          <Route exact path="/">
+            {!isLogged
+              && (
+                <>
+                  <Welcome />
+                  <Login
+                    isLogged={isLogged}
+                  />
+                </>
+              )}
+            {isLogged
+              && (
+              <Redirect to="/gameselect" />
+              )}
+          </Route>
+          <Route exact path="/gameselect">
+           {isLogged
+              && ( 
+                <GamesListPage
                   isLogged={isLogged}
                 />
-              </>
-            )}
-          {isLogged
-            && (
-            <Redirect to="/gameselect" />
-            )}
-        </Route>
-        <Route exact path="/gameselect">
-          {isLogged
-            && (
-              <GamesListPage
-                isLogged={isLogged}
-              />
-            )}
-          {!isLogged
-            && (
-            <Redirect to="/" />
-            )}
-        </Route>
-        <Route exact path="/gameboard/fourtwoone">
-          {isLogged
-            && (
-              <GameboardPage
-                isLogged={isLogged}
-              />
-            )}
-          {!isLogged
-            && (
-            <Redirect to="/" />
-            )}
-        </Route>
-        <Route exact path="/legal">
-          <Legal />
-        </Route>
-        <Route exact path="/theteam">
-          <Team />
-        </Route>
-        <Route exact path="/admin">
-          <AdminPage
-            isLogged={isLogged}
-            isAdmin={isAdmin}
-          />
-        </Route>
-        <Route>
-          <p>404 fais gaffe dude</p>
-        </Route>
-      </Switch>
+               )} 
+           {!isLogged
+              && ( 
+               <Redirect to="/" /> 
+              )} 
+          </Route>
+          <Route exact path="/gameboard/fourtwoone">
+            {isLogged
+              && (
+                <GameboardPage
+                  isLogged={isLogged}
+                />
+              )}
+            {!isLogged
+              && (
+              <Redirect to="/" />
+              )}
+          </Route>
+          <Route exact path="/legal">
+            <Legal />
+          </Route>
+          <Route exact path="/theteam">
+            <Team />
+          </Route>
+          <Route exact path="/admin">
+            <AdminPage
+              isLogged={isLogged}
+              isAdmin={isAdmin}
+            />
+          </Route>
+          <Route>
+            <p>404 fais gaffe dude</p>
+          </Route>
+        </Switch>
+      </div>
       <Footer
         isAdmin={isAdmin}
       />
