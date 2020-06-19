@@ -27,6 +27,36 @@ const Login = ({ isLogged, login, logout }) => {
   };
   return (
     <Grid className="center aligned">
+      <form autoComplete="off" className="login-form-element" onSubmit={handleLogin}>
+        <h2 className="form-title">Je me connecte </h2>
+        <Oauth />
+        <div className="oauth">
+          <Button circular color="facebook" icon="facebook" />
+          <Button circular color="google plus" icon="google plus g" />
+        </div>
+        <Field
+          name="username"
+          placeholder="Pseudo"
+        />
+        <Field
+          name="password"
+          type="password"
+          placeholder="Mot de passe"
+        />
+        <Button color="blue" type="submit" className="center aligned">Connexion
+        </Button>
+      </form>
+      <p className="forgotten">
+        <Link to="/">Mot de passe oublié
+        </Link>
+      </p>
+      <p className="signin">Vous n'avez pas de compte ?&nbsp;
+        <Link to="/signin">Inscrivez-vous ^^
+        </Link>
+      </p>
+    </Grid>
+    /*
+    <Grid className="center aligned">
       <Form
         className="form-login"
         onSubmit={handleLogin}
@@ -48,11 +78,16 @@ const Login = ({ isLogged, login, logout }) => {
         <Button color="blue" type="submit" className="center aligned">Connexion
         </Button>
       </Form>
+      <p className="forgotten">
+        <Link to="/">Mot de passe oublié
+        </Link>
+      </p>
       <p className="signin">Vous n'avez pas de compte ?&nbsp;
         <Link to="/signin">Inscrivez-vous ^^
         </Link>
       </p>
     </Grid>
+    */
   );
 };
 

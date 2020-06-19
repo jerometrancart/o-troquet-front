@@ -1,26 +1,41 @@
+
+// == Import : npm
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// == Import : local
 import './style.scss';
 
+// == Composant
 const Field = ({
   value,
   changeValue,
   type,
   placeholder,
   name,
-}) => (
-  <input
-    name={name}
-    value={value}
-    className="field"
-    type={type}
-    placeholder={placeholder}
-    onChange={(event) => {
-      changeValue(event.target.value);
-    }}
-  />
-);
+}) => {
+  const inputId = `field-${name}`;
+  return (
+    <div className={value.length > 0 ? 'field field--has-content' : 'field'}>
+      <input
+        name={name}
+        value={value}
+        className="field-input"
+        type={type}
+        placeholder={placeholder}
+        onChange={(event) => {
+          changeValue(event.target.value);
+        }}
+      />
+      <label
+        htmlFor={inputId}
+        className="field-label"
+      >
+        {placeholder}
+      </label>
+    </div>
+  );
+};
 
 Field.propTypes = {
   type: PropTypes.string,
