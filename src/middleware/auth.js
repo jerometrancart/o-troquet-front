@@ -23,10 +23,6 @@ const auth = (store) => (next) => (action) => {
       axios.post(`http://${authenticationURI}login_check`, {
         username: state.user.username,
         password: state.user.password,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
       })
         .then((response) => {
           console.log('response', response.data);
@@ -41,14 +37,30 @@ const auth = (store) => (next) => (action) => {
         });
 
  /* =========    FIN REQUETE AXIOS    ============= */
+/*
+
+
+ {
+  headers: {
+    'Content-Type': 'application/json',
+  },
+}
+*/
 
 
 
 /*       axios.post(`http://${authenticationURI}login_check`, data, {
         headers: { 'Content-Type': 'application/json' },
       })
-       username : dami@gedd.com
+       username : Sdarlz
        password: 729Cbk192!
+
+       username : jerome
+       password: bobkor3
+
+       username : damien
+       password: bobkor3
+
         .then((response) => {
           console.log('response', response.data);
           // j'ai le pseudo fourni par l'api
