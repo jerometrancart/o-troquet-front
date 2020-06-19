@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import Forbidden from 'src/components/Forbidden';
 
-
 import './style.scss';
 
 const AdminPage = ({ isAdmin, isLogged }) => {
