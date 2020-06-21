@@ -3,25 +3,10 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const Die = ({ dieId }) => {
-  const toggleBlockedClasses = ((evt) => {
-    const targetedDie = evt.currentTarget;
-    targetedDie.classList.toggle('blocked');
-  });
-
-  const toggleBlock = (() => {
-    const dice = [...document.querySelectorAll('.die-list')];
-
-    // const dice = evt.arget;
-    dice.forEach((die) => {
-      die.addEventListener('click', toggleBlockedClasses);
-    });
-
-  });
-
+const Die = ({ dieId, toggleBlock }) => {
   return (
-    <div className="die" id={dieId} onClick={toggleBlock}>
-      <ol className="die-list even-roll" data-roll="1">
+    <div className="die" id={dieId}>
+      <ol className="die-list even-roll" data-roll="1" onClick={(evt) => toggleBlock(evt)}>
         <li className="die-item" data-side="1">
           <span className="dot" />
         </li>
@@ -63,6 +48,7 @@ const Die = ({ dieId }) => {
 Die.propTypes = {
   children: PropTypes.node,
   dieId: PropTypes.string.isRequired,
+  toggleBlock: PropTypes.func.isRequired,
 };
 
 Die.defaultProps = {

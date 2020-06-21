@@ -5,15 +5,16 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import rootReducer from '../reducers';
 import logMiddleware from '../middleware/logMiddleware';
 import auth from '../middleware/auth';
+import fourtwentyoneControls from '../middleware/games/fourtwentyone';
 
 // == Enhancers
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancers = composeEnhancers(
   applyMiddleware(
-    logMiddleware,
     auth,
-    // secondMiddleware,
+    logMiddleware,
+    fourtwentyoneControls,
   ),
 );
 

@@ -19,7 +19,7 @@ const GamesListPage = ({ isLogged }) => {
   return (
     <div className="playModes">
       <div className="modes">
-        <Link to="/gameboard/fourtwoone">
+        <Link to="/gameboard/fourtwentyone">
           <Button color="blue" className="center aligned">Quick play
           </Button>
         </Link>
@@ -31,7 +31,7 @@ const GamesListPage = ({ isLogged }) => {
       <div className="gamesVisuals">
         <Image.Group size="small">
           <div className="coupleImages">
-            <Link to="/gameboard/fourtwoone">
+            <Link to="/gameboard/fourtwentyone">
               <Image
                 src={Dice}
                 rounded

@@ -8,7 +8,7 @@ import Header from 'src/components/Header';
 import Welcome from 'src/components/Welcome';
 import Login from 'src/containers/Login';
 import GamesListPage from 'src/containers/GamesListPage';
-import GameboardPage from 'src/containers/GameboardPage';
+import GameboardPage from 'src/containers/GameboardPage/Fourtwentyone';
 import Footer from 'src/components/Footer';
 import SideBar from 'src/components/Nav/SideBar.js';
 import AdminPage from 'src/components/AdminPage';
@@ -92,7 +92,7 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
                 <Redirect to="/" />
                 )}
           </Route>
-          <Route exact path="/gameboard/fourtwoone">
+          <Route exact path="/gameboard/fourtwentyone">
             {isLogged
               && (
                 <GameboardPage

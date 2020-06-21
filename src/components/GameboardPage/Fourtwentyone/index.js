@@ -2,18 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 // import resources
+import Controls from 'src/containers/GameboardPage/Fourtwentyone/controls';
+import Die from 'src/containers/GameboardPage/Fourtwentyone/die';
 import Board from './board';
 import Dice from './dice';
-import Die from './die';
 import Scoreboard from './scoreboard';
-import Infos from './infos.js';
+import Infos from './infos';
 import Players from './players';
-import Controls from './controls';
 import Chatrooms from './chatrooms';
 
 import './style.scss';
 
-const GameboardPage = ({ isLogged }) => {
+const GameboardPage = ({ isLogged, rollDice, toggleBlock }) => {
   /*
   if (!isLogged) {
     return <Redirect to="/" />;
@@ -25,9 +25,9 @@ const GameboardPage = ({ isLogged }) => {
       <div className="gameBoard">
         <Board>
           <Dice>
-            <Die dieId="first-die" />
-            <Die dieId="second-die" />
-            <Die dieId="third-die" />
+            <Die dieId="first-die" toggleBlock={toggleBlock} />
+            <Die dieId="second-die" toggleBlock={toggleBlock} />
+            <Die dieId="third-die" toggleBlock={toggleBlock} />
           </Dice>
         </Board>
         <div className="right panel">
@@ -35,7 +35,7 @@ const GameboardPage = ({ isLogged }) => {
             <Infos />
             <Players />
           </Scoreboard>
-          <Controls />
+          <Controls rollDice={rollDice} />
           <Chatrooms />
         </div>
       </div>
@@ -45,6 +45,7 @@ const GameboardPage = ({ isLogged }) => {
 
 GameboardPage.propTypes = {
   isLogged: PropTypes.bool.isRequired,
+  rollDice: PropTypes.func.isRequired,
 };
 
 export default GameboardPage;

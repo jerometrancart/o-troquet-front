@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const Controls = ({ children }) => {
+const Controls = ({ children, rollDice, nextPlayer }) => {
+/*
   const toggleClasses = ((die) => {
     die.classList.toggle('odd-roll');
     die.classList.toggle('even-roll');
@@ -23,17 +24,24 @@ const Controls = ({ children }) => {
     });
   });
 
+  const nextPlayer = (() => {
+    console.log('Next player\'s turn');
+  });
+*/
+
   return (
     <div className="controls">
       Controls
       {children}
       <button type="button" id="roll-button" onClick={rollDice}>Roll Dice</button>
+      <button type="button" id="next-player-button" onClick={nextPlayer}>Next player</button>
     </div>
   );
 };
 
 Controls.propTypes = {
   children: PropTypes.node,
+  rollDice: PropTypes.func.isRequired,
 };
 
 Controls.defaultProps = {

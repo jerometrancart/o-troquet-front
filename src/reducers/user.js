@@ -43,6 +43,7 @@ const reducer = (state = initialState, action = {}) => {
         isLogged: false,
         email: '',
         password: '',
+        userToken: '',
         user: '',
       };
     case CHECK:
