@@ -5,7 +5,6 @@ import './style.scss';
 
 const Board = ({ children }) => (
   <div className="board">
-    Board
     {children}
   </div>
 

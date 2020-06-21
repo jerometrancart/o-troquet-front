@@ -5,7 +5,6 @@ import Field from 'src/components/Login/Field';
 import { changeValue } from 'src/actions/user';
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
   return ({
     value: state.user[ownProps.name],
   });

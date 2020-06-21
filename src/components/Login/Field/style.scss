@@ -1,3 +1,5 @@
+@import 'src/styles/vars';
+
 .field {
   margin: .3em;
   position: relative;
@@ -46,5 +48,31 @@
   100% {
     transform: translateY(0em);
     opacity: 1;
+  }
+}
+
+
+@media (max-width: $breakpoint-tablet) {
+  /* ce style va s'appliquer pour toutes les vues plus petites que 1050px (cf vars) */
+  
+  
+  @media (max-width: $breakpoint-phone) {
+    /* ce style va s'appliquer pour toutes les vues plus petites que 510px (cf vars) */
+    .ui.grid.center.aligned {
+      margin: 1rem auto;
+    }
+    .signin, .forgotten {
+      margin-top: 0.5rem;
+    }
+    .oauth {
+      margin-bottom: 1rem;
+    }
+    .field-input {
+      margin-top: 1rem;
+    }
+   .field-label {
+    top: .9rem
+   }
+
   }
 }

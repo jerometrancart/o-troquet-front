@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 const Chatrooms = ({ children }) => (
-  <div className="board">
+  <div className="chatrooms">
     Chatrooms
     {children}
   </div>
@@ -17,7 +17,7 @@ Chatrooms.propTypes = {
 
 Chatrooms.defaultProps = {
   children: (
-    <div className="dice">Chatrooms children</div>
+    <div className="chatrooms--children">Chatrooms children</div>
   ),
 };
 

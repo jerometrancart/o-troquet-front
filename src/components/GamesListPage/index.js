@@ -5,14 +5,17 @@ import PropTypes from 'prop-types';
 
 // import resources
 import Dice from 'src/assets/images/421 black.png';
-import Blackjack from 'src/assets/images/blackjack.png';
+import Blackjack from 'src/assets/images/blackjack-wip.png';
+import Soon from 'src/assets/images/soon.png';
 
 import './style.scss';
 
 const GamesListPage = ({ isLogged }) => {
+  /*
   if (!isLogged) {
     return <Redirect to="/" />;
   }
+  */
   return (
     <div className="playModes">
       <div className="modes">
@@ -20,41 +23,37 @@ const GamesListPage = ({ isLogged }) => {
           <Button color="blue" className="center aligned">Quick play
           </Button>
         </Link>
-        <Button color="blue" className="center aligned">Invite friends
-        </Button>
+        <Link to="/">
+          <Button color="blue" className="center aligned">Invite friends
+          </Button>
+        </Link>
       </div>
       <div className="gamesVisuals">
         <Image.Group size="small">
           <div className="coupleImages">
-            <Image
-              src={Dice}
-              as="a"
-              href="/gameboard/fourtwoone"
-              rounded
-              alt="421 game"
-            />
+            <Link to="/gameboard/fourtwoone">
+              <Image
+                src={Dice}
+                rounded
+                alt="421 game"
+              />
+            </Link>
             <Image
               src={Blackjack}
-              as="a"
-              href="https://www.casinoonlinefrancais.info/blackjack/regles-du-jeu.html"
               rounded
-              alt="Blackjack game"
+              alt="Blackjack game - work in progress"
             />
           </div>
           <div className="coupleImages">
             <Image
-              src="https://via.placeholder.com/150.png/ccc/000/?text=Work+in+progress"
-              as="a"
-              href="https://www.placeholder.com"
+              src={Soon}
               rounded
-              alt="Work in progress"
+              alt="Soon"
             />
             <Image
-              src="https://via.placeholder.com/150.png/ccc/000/?text=Work+in+progress"
-              as="a"
-              href="https://www.placeholder.com"
+              src={Soon}
               rounded
-              alt="Work in progress"
+              alt="Soon"
             />
           </div>
         </Image.Group>
