@@ -1,5 +1,4 @@
 // ici je crée un second reducer qui gère toutes les infos liées au user
-
 import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK } from "src/actions/user";
 
 // import { } from 'src/actions';
@@ -11,6 +10,7 @@ export const initialState = {
   isAdmin: false,
   loading: false,
   path: '/',
+  userToken: '',
 };
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -24,6 +24,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         loading: true,
+
       };
     case FINISH_LOADING:
       return {
@@ -34,6 +35,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isLogged: true,
+        userToken: action.user,
       };
     case LOGOUT:
       return {
@@ -41,6 +43,7 @@ const reducer = (state = initialState, action = {}) => {
         isLogged: false,
         email: '',
         password: '',
+        user: '',
       };
     case CHECK:
       return {

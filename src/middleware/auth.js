@@ -1,4 +1,5 @@
 import { LOGIN, changeValue, authSuccess, CHECK, connect } from 'src/actions/user';
+
 import axios from 'axios';
 import jwt from 'jwt-decode';
 
@@ -34,6 +35,7 @@ const auth = (store) => (next) => (action) => {
           // je vais dispatcher une action
           const actionToSaveToken = changeValue('token', response.data.token);
           store.dispatch(actionToSaveToken);
+
           store.dispatch(authSuccess(token, user));
         })
         .catch((error) => {
