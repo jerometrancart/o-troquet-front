@@ -39,6 +39,13 @@ img {
   border-radius: 20px;
   width: 150px;
   height: 150px;
+  &.ui.rounded.image {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    width: 150px;
+    height: 150px;
+    margin: $gutter;
+  }
 }
 .ui.small.images img {
   height: 150px;
@@ -106,6 +113,19 @@ img {
     .ui.rounded.image>img {
       border-radius: 20px;
      
+    }
+    img {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      width: 150px;
+      height: 150px;
+      &.ui.rounded.image {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        width: 100px;
+        height: 100px;
+        margin: calc(#{$gutter}*.5);
+      }
     }
   }
 }

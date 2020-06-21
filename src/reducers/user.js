@@ -1,6 +1,6 @@
 // ici je crée un second reducer qui gère toutes les infos liées au user
 
-import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT } from "src/actions/user";
+import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK } from "src/actions/user";
 
 // import { } from 'src/actions';
 
@@ -15,7 +15,6 @@ export const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case CHANGE_VALUE:
-      console.log(action);
       return {
         ...state,
         [action.name]: action.value,
@@ -39,9 +38,14 @@ const reducer = (state = initialState, action = {}) => {
     case LOGOUT:
       return {
         ...state,
-        logged: false,
+        isLogged: false,
         email: '',
         password: '',
+      };
+    case CHECK:
+      return {
+        ...state,
+        isLogged: true,
       };
     default:
       return state;

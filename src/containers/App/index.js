@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
 import App from 'src/components/App';
+import { authSuccess } from 'src/actions/user';
 import { check } from 'src/actions/user';
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     isLogged: state.user.isLogged,
     isAdmin: state.user.isAdmin,

@@ -8,25 +8,45 @@ body {
   background-position: 50% 50%;
 }
 
-@media (min-width: $breakpoint-tablet) {
-  /* ce style va s'appliquer pour toutes les vues plus grandes que 768px (cf vars) */
-  body {
-    background-repeat: no-repeat;
-  }
+.main {
+  height: 100vh;
 }
-
 
 .app {
   text-align: center;
   width: 80%;
   max-width: 1000px;
-  height: calc(100vh-#{$footer-height});
-  min-height: calc(#{$header-height});
+  height: calc(100vh-#{$header-height}-#{$footer-height});
+  min-height: calc(#{$header-height}+#{$footer-height}+280px);
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
 }
 
+@media (min-width: $breakpoint-tablet) {
+  /* ce style va s'appliquer pour toutes les vues plus grandes que 1050px (cf vars) */
+  body {
+    background-repeat: no-repeat;
+  }
+}
 
+@media (max-width: $breakpoint-tablet) {
+  /* ce style va s'appliquer pour toutes les vues plus petites que 1050px (cf vars) */
+  .app {
+    height: calc(100vh-#{$header-height}*.85-#{$footer-height});
+    }
+  
+  @media (max-width: $breakpoint-phone) {
+    /* ce style va s'appliquer pour toutes les vues plus petites que 510px (cf vars) */
+    .app {
+      height: calc(100vh-#{$header-height}*.7-#{$footer-height});
+      min-height: 490px;
+    }
+    .main {
+      height :0;
+      min-height: calc(#{$header-height}*.7+#{$footer-height}+280px);
+    }
+  }
+}
 

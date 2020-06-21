@@ -1,14 +1,11 @@
-import React from 'react';
+import React, { useEffect }from 'react';
 import PropTypes from 'prop-types';
-
-import './style.scss';
+import './dice.scss';
 
 const Dice = ({ children }) => (
-  <div className="board">
-    Dice
+  <div className="dice">
     {children}
   </div>
-
 );
 
 Dice.propTypes = {
@@ -17,7 +14,7 @@ Dice.propTypes = {
 
 Dice.defaultProps = {
   children: (
-    <div className="dice">Dice children</div>
+    <div className="dice--children">Dice children</div>
   ),
 };
 

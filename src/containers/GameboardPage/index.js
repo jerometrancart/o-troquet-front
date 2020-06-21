@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import GamesListPage from 'src/components/GamesListPage';
+import GameboardPage from 'src/components/GameboardPage';
 
 // Action Creators
 import { login, logout } from '../../actions';
@@ -13,4 +13,4 @@ const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(GamesListPage);
+)(GameboardPage);

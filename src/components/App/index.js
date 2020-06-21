@@ -7,8 +7,8 @@ import { Route, useLocation, Switch, Redirect } from 'react-router-dom';
 import Header from 'src/components/Header';
 import Welcome from 'src/components/Welcome';
 import Login from 'src/containers/Login';
-import GamesListPage from 'src/components/GamesListPage';
-import GameboardPage from 'src/components/GameboardPage';
+import GamesListPage from 'src/containers/GamesListPage';
+import GameboardPage from 'src/containers/GameboardPage';
 import Footer from 'src/components/Footer';
 import SideBar from 'src/components/Nav/SideBar.js';
 import AdminPage from 'src/components/AdminPage';
@@ -60,10 +60,10 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
 
   return (
     <div className="main">
+      <Header />
+      {sideBar
+      && <SideBar pageWrapId="page-wrap" outerContainerId="App" />}
       <div className="app">
-        <Header />
-        {sideBar
-        && <SideBar pageWrapId="page-wrap" outerContainerId="App" />}
         <Switch>
           <Route exact path="/">
             {!isLogged
@@ -81,16 +81,16 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
               )}
           </Route>
           <Route exact path="/gameselect">
-           {isLogged
-              && ( 
-                <GamesListPage
-                  isLogged={isLogged}
-                />
-               )} 
-           {!isLogged
-              && ( 
-               <Redirect to="/" /> 
-              )} 
+            {isLogged
+                && (
+                  <GamesListPage
+                    isLogged={isLogged}
+                  />
+                )}
+            {!isLogged
+                && (
+                <Redirect to="/" />
+                )}
           </Route>
           <Route exact path="/gameboard/fourtwoone">
             {isLogged

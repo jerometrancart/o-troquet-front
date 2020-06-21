@@ -1,2 +1,20 @@
 @import 'src/styles/vars';
 
+.header {
+  background-color: $main-color;
+  height: $header-height;
+  text-align: center;
+}
+
+@media (max-width: $breakpoint-tablet) {
+  /* ce style va s'appliquer pour toutes les vues plus petites que 1050px (cf vars) */
+  .header {
+    height: calc(#{$header-height*.85})
+  }
+  @media (max-width: $breakpoint-phone) {
+    /* ce style va s'appliquer pour toutes les vues plus petites que 510px (cf vars) */
+    .header {
+      height: calc(#{$header-height}*.7);
+    }
+  }
+}

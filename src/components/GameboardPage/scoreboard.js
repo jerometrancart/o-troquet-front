@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 const Scoreboard = ({ children }) => (
-  <div className="board">
+  <div className="scoreboard">
     Scoreboard
     {children}
   </div>
@@ -17,7 +17,7 @@ Scoreboard.propTypes = {
 
 Scoreboard.defaultProps = {
   children: (
-    <div className="dice">Scoreboard children</div>
+    <div className="scoreboard--children">Scoreboard children</div>
   ),
 };
 
