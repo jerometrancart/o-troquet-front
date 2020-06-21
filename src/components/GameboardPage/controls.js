@@ -16,7 +16,7 @@ const Controls = ({ children }) => {
   });
 
   const rollDice = (() => {
-    const dice = [...document.querySelectorAll('.die-list')];
+    const dice = [...document.querySelectorAll('.die-list:not(.blocked)')];
     dice.forEach((die) => {
       toggleClasses(die);
       die.dataset.roll = getRandomNumber(1, 6);
