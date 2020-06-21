@@ -1,6 +1,21 @@
 $main-color : #3d0c11;
-$board-color: #16302B;
-$table-color: #291600;
+/* $board-color: #16302B; */
+$board-color: #7B8A8E;
+/* $table-color: #291600; */
+$table-color: #1c1d21;
+
+/* Dé bloqué : même couleur, luminosité -50% ... et si la couleur de base de la face du dé est noire ? */
+/* Dé bloqué => rouge rosé */
+$blocked-dice-color: #CC2839;
+
+/* Dé noir / points blancs */
+$dice-color: #09090B;
+$dot-color: #fefefe;
+
+/* Dé blanc / points noirs */
+/*$dice-color: #fefefe; */
+/*$dot-color: #676767; */
+
 
 $breakpoint-tablet: 1050px;
 $breakpoint-phone: 510px;

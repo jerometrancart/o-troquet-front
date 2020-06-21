@@ -5,8 +5,8 @@ import './style.scss';
 
 const Controls = ({ children }) => {
   const toggleClasses = ((die) => {
-    die.classList.toggle("odd-roll");
-    die.classList.toggle("even-roll");
+    die.classList.toggle('odd-roll');
+    die.classList.toggle('even-roll');
   });
 
   const getRandomNumber = ((min, max) => {
@@ -16,7 +16,7 @@ const Controls = ({ children }) => {
   });
 
   const rollDice = (() => {
-    const dice = [...document.querySelectorAll(".die-list")];
+    const dice = [...document.querySelectorAll('.die-list')];
     dice.forEach((die) => {
       toggleClasses(die);
       die.dataset.roll = getRandomNumber(1, 6);
@@ -29,7 +29,6 @@ const Controls = ({ children }) => {
       {children}
       <button type="button" id="roll-button" onClick={rollDice}>Roll Dice</button>
     </div>
-
   );
 };
 

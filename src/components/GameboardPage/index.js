@@ -6,6 +6,8 @@ import Board from './board';
 import Dice from './dice';
 import Die from './die';
 import Scoreboard from './scoreboard';
+import Infos from './infos.js';
+import Players from './players';
 import Controls from './controls';
 import Chatrooms from './chatrooms';
 
@@ -23,13 +25,16 @@ const GameboardPage = ({ isLogged }) => {
       <div className="gameBoard">
         <Board>
           <Dice>
-            <Die />
-            <Die />
-            <Die />
+            <Die dieId="first-die" />
+            <Die dieId="second-die" />
+            <Die dieId="third-die" />
           </Dice>
         </Board>
         <div className="right panel">
-          <Scoreboard />
+          <Scoreboard>
+            <Infos />
+            <Players />
+          </Scoreboard>
           <Controls />
           <Chatrooms />
         </div>

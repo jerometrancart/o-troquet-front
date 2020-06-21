@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Infos from './infos.js';
+import Players from './players';
+
 import './style.scss';
 
 const Scoreboard = ({ children }) => (
