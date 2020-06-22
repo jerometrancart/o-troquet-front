@@ -54,8 +54,8 @@ const Login = ({ isLogged, login, logout }) => {
       </p>
       <p className="signin">Vous n'avez pas de compte ?
       </p>
-      <Button onClick={toggleSigninModal}>Inscrivez-vous ^^
-      </Button>
+      <a href="#" onClick={toggleSigninModal}>Inscrivez-vous ^^
+      </a>
       <Modali.Modal {...signinModal}>
         <Signin />
       </Modali.Modal>
