@@ -3,10 +3,10 @@ import { LOGIN, changeValue, authSuccess, CHECK, connect } from 'src/actions/use
 import axios from 'axios';
 import jwt from 'jwt-decode';
 
-// const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/login_check';
+const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/login_check';
 // http://ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/v1/users
 // POST
-const authenticationURI = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/login_check';
+// const authenticationURI = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/login_check';
 const authenticationURIAdministration = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/login';
 
 const auth = (store) => (next) => (action) => {
@@ -24,7 +24,9 @@ const auth = (store) => (next) => (action) => {
       axios.post(`http://${authenticationURI}`, {
         username: state.user.username,
         password: state.user.password,
-      })
+      },
+      { withCredentials: true },
+      )
         .then((response) => {
           console.log('response', response.data);
           const { token } = response.data;
@@ -50,17 +52,21 @@ const auth = (store) => (next) => (action) => {
     'Content-Type': 'application/json',
   },
 }
-       username : jerome
-       password: bobkor3
 
-       username : damien
-       password: root
+      username: Sdarlz
+      password: 729Cbk192!
+      
+      username: jerome
+      password: bobkor3
 
-      "username": "jerome",
-      "email":"jerome@gdmail.com",
-      "password":"bobkor3",
-      "roles": ["ROLE_ADMIN"],
-      "avatar": 123
+      username : damien
+      password: root
+
+      username: jerome,
+      email: jerome@gdmail.com,
+      password:bobkor3,
+      roles: ["ROLE_ADMIN"],
+      avatar: 123
 
 */
 
@@ -97,9 +103,32 @@ const auth = (store) => (next) => (action) => {
       console.log(action);
       if (state.user.isLogged) {
         console.log('user connected');
-        store.dispatch(connect());
+        const actionToSaveToken = changeValue('token', response.data.token);
+        store.dispatch(actionToSaveToken);
+        store.dispatch(authSuccess());
         next(action);
       }
+      axios.post(`http://${authenticationURI}`, {
+        token: localStorage.token,
+      },
+      { withCredentials: true },
+      )
+        .then((response) => {
+          console.log('response', response.data);
+          const { token } = response.data;
+          const user = jwt(token); // decode your token here
+          localStorage.setItem('token', token);
+          // j'ai le token fourni par l'api
+          // mon intention : ranger ce pseudo dans le state
+          // je vais dispatcher une action
+          const actionToSaveToken = changeValue('token', response.data.token);
+          store.dispatch(actionToSaveToken);
+
+          store.dispatch(authSuccess(token, user));
+        })
+        .catch((error) => {
+          console.error(error);
+        });
       break;
     }
     default:

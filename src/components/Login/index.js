@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form, Grid } from "semantic-ui-react";
 import { Link, useHistory, Redirect } from 'react-router-dom';
+import Modali, { useModali } from 'modali';
 
 // import composants
 import Oauth from 'src/components/Oauth';
@@ -14,6 +15,7 @@ import './style.scss';
 
 const Login = ({ isLogged, login, logout }) => {
   const history = useHistory();
+  const [signinModal, toggleSigninModal] = useModali();
   if (isLogged) {
     // history.push('/gameselect');
     return (
@@ -52,10 +54,12 @@ const Login = ({ isLogged, login, logout }) => {
       </p>
       <p className="signin">Vous n'avez pas de compte ?
       </p>
-      <Link to="/signin">Inscrivez-vous ^^
-      </Link>
+      <Button onClick={toggleSigninModal}>Inscrivez-vous ^^
+      </Button>
+      <Modali.Modal {...signinModal}>
+        <Signin />
+      </Modali.Modal>
     </Grid>
-   
   );
 };
 
@@ -63,6 +67,7 @@ Login.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
+  toggleSigninModal: PropTypes.func.isRequired,
 };
 /*
 Login.defaultProps = {

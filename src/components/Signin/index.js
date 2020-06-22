@@ -4,35 +4,35 @@ import Field from 'src/containers/Login/Field';
 import './style.scss';
 
 const Signin = () => (
-  <Grid className="center aligned">
-    <Form>
-      <div className="oauth">
-        <Button circular color="facebook" icon="facebook" />
-        <Button circular color="google plus" icon="google plus g" />
-      </div>
-      <Field
+    <Grid className="center aligned">
+      <Form>
+        <div className="oauth">
+          <Button circular color="facebook" icon="facebook" />
+          <Button circular color="google plus" icon="google plus g" />
+        </div>
+        <Field
           name="username"
           placeholder="Pseudo"
-      />
-      <Field
+        />
+        <Field
           name="email"
           placeholder="E-mail"
-      />
-      <Field
+        />
+        <Field
           type="password"
           name="password"
           placeholder="Mot de passe"
-      />
-      <Field
+        />
+        <Field
           type="password"
           name="password-verify"
           placeholder="Vérification du mot de passe"
-      />
-      <Button color="blue" type="submit" className="center aligned">
-        Créer un compte
-    </Button>
-    </Form>
-  </Grid>
+        />
+        <Button color="blue" type="submit" className="center aligned">
+          Créer un compte
+        </Button>
+      </Form>
+    </Grid>
 );
 
 export default Signin;

@@ -117,12 +117,12 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
               isAdmin={isAdmin}
             />
           </Route>
-          <Route exact path="/signin">
+          {/* <Route exact path="/signin">
             <Signin
               isLogged={isLogged}
               isAdmin={isAdmin}
             />
-          </Route>
+          </Route> */}
           <Route>
             <p className="error">404 fais gaffe dude</p>
           </Route>
