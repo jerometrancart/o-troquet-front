@@ -1,12 +1,12 @@
-import { LOGIN, changeValue, authSuccess, CHECK, connect } from 'src/actions/user';
+import { LOGIN, changeValue, authSuccess, CHECK, connect, REGISTER } from 'src/actions/user';
 
 import axios from 'axios';
 import jwt from 'jwt-decode';
 
-const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/login_check';
+// const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/';
 // http://ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/v1/users
 // POST
-// const authenticationURI = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/login_check';
+const authenticationURI = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/';
 const authenticationURIAdministration = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/login';
 
 const auth = (store) => (next) => (action) => {
@@ -21,22 +21,24 @@ const auth = (store) => (next) => (action) => {
 
 /* =========  REQUETE AXIOS   ==============  */
 
-      axios.post(`http://${authenticationURI}`, {
+      axios.post(`http://${authenticationURI}login_check`, {
         username: state.user.username,
         password: state.user.password,
       },
-      { withCredentials: true },
+      // { withCredentials: true },
       )
         .then((response) => {
           console.log('response', response.data);
           const { token } = response.data;
           const user = jwt(token); // decode your token here
-          localStorage.setItem('token', token);
+          localStorage.setItem('tokenOTroquet', token);
           // j'ai le token fourni par l'api
           // mon intention : ranger ce pseudo dans le state
           // je vais dispatcher une action
-          const actionToSaveToken = changeValue('token', response.data.token);
+          const actionToSaveToken = changeValue('tokenOTroquet', response.data.token);
+          const actionToSavePseudo = changeValue('pseudo', response.data.username);
           store.dispatch(actionToSaveToken);
+          store.dispatch(actionToSavePseudo);
 
           store.dispatch(authSuccess(token, user));
         })
@@ -62,12 +64,23 @@ const auth = (store) => (next) => (action) => {
       username : damien
       password: root
 
+      
+    username: Damien38,
+    password: 729Cbk192!,
+    email: belingheridamien@gmail.com
+
+      damien@gmail.com
+      bobkor3
+
+
       username: jerome,
       email: jerome@gdmail.com,
       password:bobkor3,
       roles: ["ROLE_ADMIN"],
       avatar: 123
-
+http://ec2-35-153-19-27.compute-1.amazonaws.com/phpmyadmin/
+damien
+729Cbk192!
 */
 
 
@@ -101,34 +114,47 @@ const auth = (store) => (next) => (action) => {
     }
     case CHECK: {
       console.log(action);
-      if (state.user.isLogged) {
-        console.log('user connected');
-        const actionToSaveToken = changeValue('token', response.data.token);
-        store.dispatch(actionToSaveToken);
-        store.dispatch(authSuccess());
-        next(action);
+      if (localStorage.tokenOTroquet) {
+        const user = jwt(localStorage.tokenOTroquet); // decode your token here
+        store.dispatch(authSuccess(localStorage.tokenOTroquet, user));
       }
-      axios.post(`http://${authenticationURI}`, {
-        token: localStorage.token,
-      },
-      { withCredentials: true },
-      )
-        .then((response) => {
-          console.log('response', response.data);
-          const { token } = response.data;
-          const user = jwt(token); // decode your token here
-          localStorage.setItem('token', token);
-          // j'ai le token fourni par l'api
-          // mon intention : ranger ce pseudo dans le state
-          // je vais dispatcher une action
-          const actionToSaveToken = changeValue('token', response.data.token);
-          store.dispatch(actionToSaveToken);
+      break;
+    }
+    case REGISTER: {
+      console.log(action);
+      /*   ========      regex       ========  */
+      const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/gm;
+      const str = state.user.password;
 
-          store.dispatch(authSuccess(token, user));
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      if (regex.exec(str)) {
+        if (state.user.passwordVerify === state.user.password) {
+          axios.post(`http://${authenticationURI}register`, {
+            username: state.user.username,
+            password: state.user.password,
+            email: state.user.email,
+          },
+          { withCredentials: true },
+          )
+            .then((response) => {
+              window.alert(response.data.success);
+              // j'ai le pseudo fourni par l'api
+              // mon intention : ranger ce pseudo dans le state
+              // je vais dispatcher une action
+              const actionToSaveRegisterResponse = changeValue('register_response', response.data);
+              store.dispatch(actionToSaveRegisterResponse);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        }
+        else {
+          window.alert('Les mots de passe sont différents')
+        }
+      }
+      else {
+        window.alert('Votre mot de passe doit contenir au moins 6 caractères dont une lettre majuscule, une minuscule, un chiffre et un caractère spécial parmi les suivants : @$!%*#?& ')
+      }
+
       break;
     }
     default:

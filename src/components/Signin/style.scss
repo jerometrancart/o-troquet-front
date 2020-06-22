@@ -1,30 +1,84 @@
 @import 'src/styles/vars';
 
 .ui.grid.center.aligned {
-  background-color: rgba(255, 255, 255, 0.466);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
   padding: 20px;
+  max-width: 500px;
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .oauth {
   display: flex;
   justify-content: space-evenly;
-}
-
-/*
-.ui.form .field {
-  margin-bottom: 4rem;
-}
-
-.required.field>label {
   margin-bottom: 2rem;
 }
 
-.ui.form .field>label {
-  margin-bottom: 2rem;
+.signin, .forgotten {
+  margin-top: 2rem;
+  font-size: small;
+}
+.ui.blue.button.center.aligned {
+  margin-top: 3rem;
 }
 
-.ui.blue.button {
-  margin-bottom: 2rem;
+.login-form-message {
+  text-align: right;
+  margin: .3em 1em;
 }
-*/
+
+.login-form-logged {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@media (max-width: $breakpoint-tablet) {
+  /* ce style va s'appliquer pour toutes les vues plus petites que 1050px (cf vars) */
+  
+  
+  @media (max-width: $breakpoint-phone) {
+    /* ce style va s'appliquer pour toutes les vues plus petites que 510px (cf vars) */
+    .ui.grid.center.aligned {
+      margin: 1rem auto;
+    }
+    .signin, .forgotten {
+      margin-top: 0.5rem;
+    }
+    .oauth {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.modali.modali-size-regular, .modali-body {
+ border-radius: 20px;
+}
+.modali-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #fff;
+}
+
+.modali-close-button {
+ &:hover, &:active {
+   box-shadow: none;
+ }
+}
+
+.form-title {
+  text-align: center;
+}
+form.signin-form-element {
+  display: flex;
+  flex-direction: column;
+}
+.modali-body>.ui.grid.center.aligned {
+  margin: 0rem auto 4rem;
+}

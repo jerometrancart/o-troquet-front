@@ -10,60 +10,64 @@ import Soon from 'src/assets/images/soon.png';
 
 import './style.scss';
 
-const GamesListPage = ({ isLogged }) => {
+const GamesListPage = ({ isLogged, username }) => {
   /*
   if (!isLogged) {
     return <Redirect to="/" />;
   }
   */
   return (
-    <div className="playModes">
-      <div className="modes">
-        <Link to="/gameboard/fourtwentyone">
-          <Button color="blue" className="center aligned">Quick play
-          </Button>
-        </Link>
-        <Link to="/">
-          <Button color="blue" className="center aligned">Invite friends
-          </Button>
-        </Link>
-      </div>
-      <div className="gamesVisuals">
-        <Image.Group size="small">
-          <div className="coupleImages">
-            <Link to="/gameboard/fourtwentyone">
+    <>
+      <h2 className="welcome">Bienvenue <span className="userPseudo">{username}</span>, qu'est-ce qu'on te sert?</h2>
+      <div className="playModes">
+        <div className="modes">
+          <Link to="/gameboard/fourtwentyone">
+            <Button className="center aligned">Quick play
+            </Button>
+          </Link>
+          <Link to="/">
+            <Button className="center aligned">Invite friends
+            </Button>
+          </Link>
+        </div>
+        <div className="gamesVisuals">
+          <Image.Group size="small">
+            <div className="coupleImages">
+              <Link to="/gameboard/fourtwentyone">
+                <Image
+                  src={Dice}
+                  rounded
+                  alt="421 game"
+                />
+              </Link>
               <Image
-                src={Dice}
+                src={Blackjack}
                 rounded
-                alt="421 game"
+                alt="Blackjack game - work in progress"
               />
-            </Link>
-            <Image
-              src={Blackjack}
-              rounded
-              alt="Blackjack game - work in progress"
-            />
-          </div>
-          <div className="coupleImages">
-            <Image
-              src={Soon}
-              rounded
-              alt="Soon"
-            />
-            <Image
-              src={Soon}
-              rounded
-              alt="Soon"
-            />
-          </div>
-        </Image.Group>
+            </div>
+            <div className="coupleImages">
+              <Image
+                src={Soon}
+                rounded
+                alt="Soon"
+              />
+              <Image
+                src={Soon}
+                rounded
+                alt="Soon"
+              />
+            </div>
+          </Image.Group>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
 GamesListPage.propTypes = {
   isLogged: PropTypes.bool.isRequired,
+  username: PropTypes.string.isRequired,
 };
 
 export default GamesListPage;

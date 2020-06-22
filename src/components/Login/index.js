@@ -6,9 +6,9 @@ import { Link, useHistory, Redirect } from 'react-router-dom';
 import Modali, { useModali } from 'modali';
 
 // import composants
-import Oauth from 'src/components/Oauth';
+// import Oauth from 'src/components/Oauth';
 import Field from 'src/containers/Login/Field';
-import Signin from 'src/components/Signin';
+import Signin from 'src/containers/Signin';
 
 // import de styles
 import './style.scss';
@@ -17,10 +17,10 @@ const Login = ({ isLogged, login, logout }) => {
   const history = useHistory();
   const [signinModal, toggleSigninModal] = useModali();
   if (isLogged) {
-    // history.push('/gameselect');
-    return (
+    history.push('/gameselect');
+    /* return (
       <Redirect to="/gameselect" />
-    );
+    ); */
   }
   const handleLogin = () => {
     console.log('ok connexion');
@@ -29,9 +29,8 @@ const Login = ({ isLogged, login, logout }) => {
   };
   return (
     <Grid className="center aligned">
-      <form autoComplete="off" className="login-form-element" onSubmit={handleLogin}>
+      <form autoComplete="on" className="login-form-element" onSubmit={handleLogin}>
         <h2 className="form-title">Je me connecte </h2>
-        <Oauth />
         <div className="oauth">
           <Button circular color="facebook" icon="facebook" />
           <Button circular color="google plus" icon="google plus g" />
@@ -52,10 +51,10 @@ const Login = ({ isLogged, login, logout }) => {
         <Link to="/">Mot de passe oublié
         </Link>
       </p>
-      <p className="signin">Vous n'avez pas de compte ?
+      <p className="signup">Vous n'avez pas de compte ?
       </p>
-      <Button onClick={toggleSigninModal}>Inscrivez-vous ^^
-      </Button>
+      <a className="signup-link" onClick={toggleSigninModal}>Inscrivez-vous ^^
+      </a>
       <Modali.Modal {...signinModal}>
         <Signin />
       </Modali.Modal>

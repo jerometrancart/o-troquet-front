@@ -1,9 +1,18 @@
 @import 'src/styles/vars';
 
+.main-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 64px;
+  color: $text-color;
+}
+
 .header {
   background-color: $main-color;
   height: $header-height;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: $breakpoint-tablet) {
@@ -17,4 +26,19 @@
       height: calc(#{$header-height}*.7);
     }
   }
+}
+
+.user-id {
+  height: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.avatar {
+  float: right;
+  margin-right: 32px;
+}
+
+.ui.small.avatar.image {
+  height: 2rem;
 }

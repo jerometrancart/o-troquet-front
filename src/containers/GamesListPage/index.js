@@ -7,6 +7,7 @@ import { login, logout } from '../../actions';
 
 const mapStateToProps = (state) => ({
   isLogged: state.user.isLogged,
+  username: state.user.userToken.username,
 });
 const mapDispatchToProps = {};
 

@@ -16,9 +16,12 @@
   margin-bottom: 2rem;
 }
 
-.signin, .forgotten {
+.signin, .forgotten, .signup, .signup-link {
   margin-top: 2rem;
   font-size: small;
+}
+.signup-link:hover {
+ cursor: pointer;
 }
 .ui.blue.button.center.aligned {
   margin-top: 1.5rem;

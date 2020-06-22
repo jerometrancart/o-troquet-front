@@ -14,6 +14,10 @@
 width: 50%;
 }
 
+.selectButton {
+  color: $main-color;
+}
+
 .gamesVisuals {
   display: flex;
   justify-content: space-around;
@@ -72,6 +76,15 @@ img {
 }
 .ui.small.images img {
   height: 150px;
+}
+
+.welcome {
+  color : $text-color;
+  text-shadow: 1.5px 1.5px 1.5px $main-color, -1.5px -1.5px 1.5px $main-color;
+}
+
+.userPseudo {
+  text-transform: capitalize;
 }
 
 @media (max-width: $breakpoint-tablet) {

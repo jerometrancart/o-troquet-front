@@ -30,6 +30,13 @@ body {
     font-size: 80px;
   }
 }
+
+.welcomeStranger {
+  padding-top : 3em;
+  color : $text-color;
+  text-shadow: 1.5px 1.5px 1.5px $main-color, -1.5px -1.5px 1.5px $main-color;
+}
+
 .error {
   align-items: center;
   text-align: center;
@@ -51,6 +58,9 @@ body {
   
   @media (max-width: $breakpoint-phone) {
     /* ce style va s'appliquer pour toutes les vues plus petites que 510px (cf vars) */
+    .body {
+      overflow-y: scroll;
+    }
     .app {
       height: calc(100vh-#{$header-height}*.7-#{$footer-height});
       min-height: 490px;

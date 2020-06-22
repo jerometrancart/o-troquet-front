@@ -4,7 +4,7 @@ export const FINISH_LOADING = 'FINISH_LOADING';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const LOGOUT = 'LOGOUT';
 export const CHECK = 'CHECK';
-export const CONNECT = 'CONNECT';
+export const REGISTER = 'REGISTER';
 
 export const changeValue = (name, value) => ({
   type: CHANGE_VALUE,
@@ -34,6 +34,6 @@ export const check = () => ({
   type: CHECK,
 });
 
-export const connect = () => ({
-  type: CONNECT,
+export const register = () => ({
+  type: REGISTER,
 });

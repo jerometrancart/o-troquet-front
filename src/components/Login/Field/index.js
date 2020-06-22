@@ -1,4 +1,3 @@
-
 // == Import : npm
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -18,6 +17,7 @@ const Field = ({
   return (
     <div className={value.length > 0 ? 'field field--has-content' : 'field'}>
       <input
+        autoComplete="on"
         name={name}
         value={value}
         className="field-input"

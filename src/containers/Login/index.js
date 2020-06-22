@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Login from 'src/components/Login';
 
 // Action Creators
-import { login, logout } from '../../actions/user.js';
+import { login } from '../../actions/user';
 
 const mapStateToProps = (state) => ({
   isLogged: state.user.isLogged,
@@ -11,9 +11,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   login: () => {
     dispatch(login());
-  },
-  logout: () => {
-    dispatch(logout());
   },
 });
 
