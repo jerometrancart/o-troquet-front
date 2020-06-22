@@ -6,12 +6,21 @@
   padding: 20px;
 }
 
+.form-title {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
 .oauth {
   display: flex;
   justify-content: space-evenly;
 }
 
-/*
+.field.input {
+
+
+}
+
 .ui.form .field {
   margin-bottom: 4rem;
 }
@@ -27,7 +36,7 @@
 .ui.blue.button {
   margin-bottom: 2rem;
 }
-*/
+
 
 // Around the modal
 .modali-overlay {

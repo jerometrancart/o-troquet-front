@@ -4,9 +4,8 @@ import Field from 'src/containers/Login/Field';
 import './style.scss';
 
 const Signin = () => (
-    <Grid className="center aligned">
-      <Form>
-      <h2 className="form-title">Je me connecte </h2>
+    <Grid className="center aligned">     
+        <h2 className="form-title">Inscription</h2>
         <div className="oauth">
           <Button circular color="facebook" icon="facebook" />
           <Button circular color="google plus" icon="google plus g" />
@@ -31,8 +30,7 @@ const Signin = () => (
         />
         <Button color="blue" type="submit" className="center aligned">
           Créer un compte
-        </Button>
-      </Form>
+        </Button>    
     </Grid>
 );
 
