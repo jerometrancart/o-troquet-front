@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Form, Grid } from "semantic-ui-react";
+import Field from 'src/containers/Login/Field';
 import './style.scss';
 
 const Signin = () => (
@@ -9,23 +10,24 @@ const Signin = () => (
         <Button circular color="facebook" icon="facebook" />
         <Button circular color="google plus" icon="google plus g" />
       </div>
-      <Form.Field required>
-        <label>Pseudo</label>
-        <input placeholder="Pseudo" />
-      </Form.Field>
-      <Form.Field required>
-        <label>E-mail</label>
-        <input placeholder="E-mail" />
-      </Form.Field>
-      <Form.Field required>
-        <label>Mot de passe</label>
-        <input type="password" placeholder="Mot de passe" />
-      </Form.Field>
-      <Form.Field required>
-        <label>Retapez votre mot de passe</label>
-        <input type="password" placeholder="Retapez votre mot de passe" />
-      </Form.Field>
-
+      <Field
+          name="username"
+          placeholder="Pseudo"
+      />
+      <Field
+          name="email"
+          placeholder="E-mail"
+      />
+      <Field
+          type="password"
+          name="password"
+          placeholder="Mot de passe"
+      />
+      <Field
+          type="password"
+          name="password-verify"
+          placeholder="Vérification du mot de passe"
+      />
       <Button color="blue" type="submit" className="center aligned">
         Créer un compte
     </Button>

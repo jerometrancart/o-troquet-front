@@ -7,6 +7,7 @@ import { Route, useLocation, Switch, Redirect } from 'react-router-dom';
 import Header from 'src/components/Header';
 import Welcome from 'src/components/Welcome';
 import Login from 'src/containers/Login';
+import Signin from 'src/components/Signin';
 import GamesListPage from 'src/containers/GamesListPage';
 import GameboardPage from 'src/containers/GameboardPage/Fourtwentyone';
 import Footer from 'src/components/Footer';
@@ -116,8 +117,14 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
               isAdmin={isAdmin}
             />
           </Route>
+          <Route exact path="/signin">
+            <Signin
+              isLogged={isLogged}
+              isAdmin={isAdmin}
+            />
+          </Route>
           <Route>
-            <p>404 fais gaffe dude</p>
+            <p className="error">404 fais gaffe dude</p>
           </Route>
         </Switch>
       </div>
