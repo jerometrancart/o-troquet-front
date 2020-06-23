@@ -14,19 +14,26 @@ const Header = ({ username, logout, isLogged }) => (
       <h1 className="main-title">O'Troquet</h1>
     </Link>
     {/* la nav, le pseudo et l'avatar + les amis */}
-    <div className="user-id">
-      {/* <Image src={Avatar} classname="avatar" alt="avatarJoueur" size="small" avatar /> */}
-      <p>Bonjour <span className="userPseudo">{username}</span> ^^</p>
-      <Link onClick={logout}>Logout</Link>
-    </div>
+    {isLogged
+    && (
+      <div className="user-id">
+        {/* <Image src={Avatar} classname="avatar" alt="avatarJoueur" size="small" avatar /> */}
+        <p>Bonjour <span className="userPseudo">{username}</span> ^^</p>
+        <Link to="/" onClick={logout} className="logout-link">Logout</Link>
+      </div>
+    )}
 
   </div>
 );
 
 Header.propTypes = {
-  username: PropTypes.string.isRequired,
+  username: PropTypes.string,
   logout: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
+};
+
+Header.defaultProps = {
+  username: '',
 };
 
 export default Header;

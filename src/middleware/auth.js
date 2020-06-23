@@ -28,7 +28,9 @@ const auth = (store) => (next) => (action) => {
       // { withCredentials: true },
       )
         .then((response) => {
-          console.log('response', response.data);
+          // console.log('response', response.data);
+          const actionToDeletePassword = changeValue('password', '');
+          store.dispatch(actionToDeletePassword);
           const { token } = response.data;
           const user = jwt(token); // decode your token here
           localStorage.setItem('tokenOTroquet', token);
