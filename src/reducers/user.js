@@ -11,8 +11,8 @@ export const initialState = {
   loading: false,
   path: '/',
   userToken: '',
-  show: false,
-  variant: '',
+  show: 'hidden',
+  variant: 'red',
   textAlert: '',
 };
 const reducer = (state = initialState, action = {}) => {
@@ -59,7 +59,7 @@ const reducer = (state = initialState, action = {}) => {
     case ALERT_SHOW:
       return {
         ...state,
-        show: true,
+        show: action.show,
         variant: action.variant,
         textAlert: action.textAlert,
       };

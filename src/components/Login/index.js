@@ -13,7 +13,7 @@ import Signin from 'src/containers/Signin';
 // import de styles
 import './style.scss';
 
-const Login = ({ isLogged, login, logout }) => {
+const Login = ({ isLogged, login }) => {
   const history = useHistory();
   const [signinModal, toggleSigninModal] = useModali();
   if (isLogged) {
@@ -65,7 +65,7 @@ const Login = ({ isLogged, login, logout }) => {
 Login.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
-  logout: PropTypes.func.isRequired,
+
   toggleSigninModal: PropTypes.func.isRequired,
 };
 /*

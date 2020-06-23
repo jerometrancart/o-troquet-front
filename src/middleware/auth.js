@@ -144,7 +144,7 @@ damien
               store.dispatch(actionToSaveRegisterResponse);
               // appel à la fonction alert show qui configure le composant bootstrap enrichi de show true
               // variant: danger et du message d'alerte contenu dans la requête
-              store.dispatch(alertShow(true, 'success', response.data.success));
+              store.dispatch(alertShow('visible', 'green', response.data.success));
             })
             .catch((error) => {
               console.error(error);
@@ -153,12 +153,12 @@ damien
         else {
           // appel à la fonction alert show qui configure le composant bootstrap enrichi de show true
           // variant: danger et du message d'alerte sous forme de string
-          store.dispatch(alertShow(true, 'danger', 'Les mots de passe sont différents'));
+          store.dispatch(alertShow('visible', 'red', 'Les mots de passe sont différents'));
           // window.alert('Les mots de passe sont différents')
         }
       }
       else {
-        store.dispatch(alertShow(true, 'danger', 'Votre mot de passe doit contenir au moins 6 caractères dont une lettre majuscule, une minuscule, un chiffre et un caractère spécial parmi les suivants : @$!%*#?& '));
+        store.dispatch(alertShow('visible', 'red', 'Votre mot de passe doit contenir au moins 6 caractères dont une lettre majuscule, une minuscule, un chiffre et un caractère spécial parmi les suivants : @$!%*#?& '));
         // window.alert('Votre mot de passe doit contenir au moins 6 caractères dont une lettre majuscule, une minuscule, un chiffre et un caractère spécial parmi les suivants : @$!%*#?& ')
       }
 
