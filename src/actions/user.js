@@ -5,6 +5,7 @@ export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const LOGOUT = 'LOGOUT';
 export const CHECK = 'CHECK';
 export const REGISTER = 'REGISTER';
+export const ALERT_SHOW = 'ALERT_SHOW';
 
 export const changeValue = (name, value) => ({
   type: CHANGE_VALUE,
@@ -36,4 +37,11 @@ export const check = () => ({
 
 export const register = () => ({
   type: REGISTER,
+});
+
+export const alertShow = (show, variant, textAlert) => ({
+  type: ALERT_SHOW,
+  show,
+  variant,
+  textAlert,
 });
