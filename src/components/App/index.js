@@ -11,7 +11,7 @@ import Signin from 'src/components/Signin';
 import GamesListPage from 'src/containers/GamesListPage';
 import GameboardPage from 'src/containers/GameboardPage/Fourtwentyone';
 import Footer from 'src/components/Footer';
-import SideBar from 'src/components/Nav/SideBar.js';
+import SideBar from 'src/components/Nav/SideBar';
 import AdminPage from 'src/components/AdminPage';
 import Legal from 'src/components/Legal';
 import Team from 'src/components/Team';
@@ -62,6 +62,7 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
   return (
     <div className="main">
       <Header />
+      <SideBar />
       {sideBar
       && <SideBar pageWrapId="page-wrap" outerContainerId="App" />}
       <div className="app">

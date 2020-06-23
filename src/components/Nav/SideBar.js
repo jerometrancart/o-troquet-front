@@ -1,25 +1,35 @@
-import React from "react";
-import { slide as Menu } from "react-burger-menu";
+import React, { Component } from 'react';
+import { Dropdown, Menu, Sidebar } from 'semantic-ui-react';
 
-export default props => {
-  return (
-    // Pass on our props
-    <Menu {...props}>
-      <a className="menu-item" href="/">
-        Home
-      </a>
+export default class MenuExampleVerticalDropdown extends Component {
+  state = { activeItem: 'account' }
 
-      <a className="menu-item" href="/burgers">
-        Burgers
-      </a>
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-      <a className="menu-item" href="/pizzas">
-        Pizzas
-      </a>
+  render() {
+    const { activeItem } = this.state;
 
-      <a className="menu-item" href="/desserts">
-        Desserts
-      </a>
-    </Menu>
-  );
-};
+    return (
+      <Menu secondary vertical>
+        <Menu.Item
+          name='Infos joueur'
+          active={activeItem === 'account'}
+          onClick={this.handleItemClick}
+        />
+        <Menu.Item
+          name='Parametres'
+          active={activeItem === 'settings'}
+          onClick={this.handleItemClick}
+        />
+        <Dropdown item text='Friend'>
+          <Dropdown.Menu>
+            <Dropdown.Header>En Ligne</Dropdown.Header>
+            <Dropdown.Item>Cariboo</Dropdown.Item>
+            <Dropdown.Item>Lorem</Dropdown.Item>
+            <Dropdown.Item>Ipsum</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </Menu>
+    );
+  }
+}
