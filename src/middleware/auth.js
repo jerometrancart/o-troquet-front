@@ -1,4 +1,4 @@
-import { LOGIN, changeValue, authSuccess, CHECK, connect, REGISTER } from 'src/actions/user';
+import { LOGIN, changeValue, authSuccess, CHECK, connect, REGISTER, LOGOUT } from 'src/actions/user';
 
 import axios from 'axios';
 import jwt from 'jwt-decode';
@@ -156,6 +156,11 @@ damien
         window.alert('Votre mot de passe doit contenir au moins 6 caractères dont une lettre majuscule, une minuscule, un chiffre et un caractère spécial parmi les suivants : @$!%*#?& ')
       }
 
+      break;
+    }
+    case LOGOUT: {
+      localStorage.removeItem('tokenOTroquet');
+      next(action);
       break;
     }
     default:

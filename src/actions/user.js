@@ -26,8 +26,9 @@ export const authSuccess = (token, user) => ({
   user,
 });
 
-export const logout = () => ({
+export const logout = (localToken) => ({
   type: LOGOUT,
+  localToken,
 });
 
 export const check = () => ({
