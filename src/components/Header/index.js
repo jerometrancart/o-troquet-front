@@ -5,7 +5,7 @@ import Avatar from 'src/assets/images/avatars/001-modern.svg';
 
 import './style.scss';
 
-const Header = ({ username }) => (
+const Header = ({ username, logout }) => (
   <div className="header">
     <Link
       to="/"
@@ -15,7 +15,7 @@ const Header = ({ username }) => (
     {/* la nav, le pseudo et l'avatar + les amis */}
     <div className="user-id">
       {/* <Image src={Avatar} classname="avatar" alt="avatarJoueur" size="small" avatar /> */}
-      <span>{username}</span>
+      <p>Bonjour <span className="userPseudo">{username}</span> ^^</p>
     </div>
   </div>
 );

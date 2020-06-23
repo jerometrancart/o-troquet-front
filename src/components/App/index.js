@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Route, useLocation, Switch, Redirect } from 'react-router-dom';
 
 // == Import
-import Header from 'src/components/Header';
+import Header from 'src/containers/Header';
 //import Welcome from 'src/components/Welcome';
 import Login from 'src/containers/Login';
 import Signin from 'src/components/Signin';
@@ -29,7 +29,7 @@ https://codepen.io/omascaros/pen/CBapm
 const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
   // hook d'effet : s'applique après le chargement de l'application
 
-  const location = useLocation();
+  // const location = useLocation();
   useEffect(checkIsLogged, []);
   useEffect(() => {
     // création d'un tableau contenant des belles images de bar

@@ -22,7 +22,8 @@ const Login = ({ isLogged, login, logout }) => {
       <Redirect to="/gameselect" />
     ); */
   }
-  const handleLogin = () => {
+  const handleLogin = (evt) => {
+    evt.preventDefault();
     console.log('ok connexion');
     login();
     history.push('/gameselect');

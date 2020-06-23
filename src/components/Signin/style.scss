@@ -50,11 +50,18 @@
     .oauth {
       margin-bottom: 1rem;
     }
+    .modali.modali-size-regular {
+      max-width: 340px;
+    }
+    .modali-size-regular {
+      max-width: 340px;
+    }
   }
 }
 
 .modali.modali-size-regular, .modali-body {
  border-radius: 20px;
+ max-width: 350px;
 }
 .modali-body {
   position: relative;
