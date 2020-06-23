@@ -22,7 +22,8 @@ const Login = ({ isLogged, login, logout }) => {
       <Redirect to="/gameselect" />
     ); */
   }
-  const handleLogin = () => {
+  const handleLogin = (evt) => {
+    evt.preventDefault();
     console.log('ok connexion');
     login();
     history.push('/gameselect');
@@ -53,7 +54,11 @@ const Login = ({ isLogged, login, logout }) => {
       </p>
       <p className="signup">Vous n'avez pas de compte ?
       </p>
+<<<<<<< HEAD
       <a className="signup-link" onClick={toggleSigninModal}>Inscrivez-vous ^^
+=======
+      <a href="#" onClick={toggleSigninModal}>Inscrivez-vous ^^
+>>>>>>> 54a6c7822629d6d0cdc44a5a77c96c3049a03009
       </a>
       <Modali.Modal {...signinModal}>
         <Signin />

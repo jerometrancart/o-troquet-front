@@ -78,6 +78,7 @@ const auth = (store) => (next) => (action) => {
       password:bobkor3,
       roles: ["ROLE_ADMIN"],
       avatar: 123
+      
 http://ec2-35-153-19-27.compute-1.amazonaws.com/phpmyadmin/
 damien
 729Cbk192!

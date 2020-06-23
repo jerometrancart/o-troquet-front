@@ -4,8 +4,10 @@ import Header from 'src/components/Header';
 
 import { logout } from 'src/actions/user';
 
+
+
 const mapStateToProps = (state) => ({
-  username: state.user.username,
+  username: state.user.userToken.username,
 });
 const mapDispatchToProps = (dispatch) => ({
   logout: () => {
