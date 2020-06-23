@@ -18,7 +18,7 @@ const GamesListPage = ({ isLogged, username }) => {
   */
   return (
     <>
-      <h2 className="welcome">Bienvenue <span className="userPseudo">{username}</span>, qu'est-ce qu'on te sert?</h2>
+      <h2 className="welcome">Bienvenue <span className="userPseudo">{username}</span>, qu'est-ce qu'on te sert ?</h2>
       <div className="playModes">
         <div className="modes">
           <Link to="/gameboard/fourtwentyone">

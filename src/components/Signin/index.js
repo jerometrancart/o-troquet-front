@@ -23,6 +23,7 @@ const Signin = ({ isLogged, register, alertShow, show, variant, textAlert }) => 
     <Grid className="center aligned">
       <h2 className="form-title">Je m'inscris </h2>
       <form autoComplete="on" className="signin-form-element" onSubmit={handleSignin}>
+
         <div className="oauth">
           <Button circular color="facebook" icon="facebook" />
           <Button circular color="google plus" icon="google plus g" />
@@ -59,6 +60,7 @@ const Signin = ({ isLogged, register, alertShow, show, variant, textAlert }) => 
           Créer un compte
         </Button>
       </form>
+
     </Grid>
   );
 };

@@ -7,12 +7,24 @@
 }
 
 .header {
+  position: relative;
   background-color: $main-color;
   height: $header-height;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: $text-color;
+}
+
+.userPseudo {
+  text-transform: capitalize;
+}
+
+.logout-link {
+  margin-left: 3rem;
+  text-decoration: none;
+  color: $text-color;
 }
 
 @media (max-width: $breakpoint-tablet) {
@@ -29,6 +41,8 @@
 }
 
 .user-id {
+  position: absolute;
+  right: 5rem;
   height: 2rem;
   display: flex;
   justify-content: flex-end;

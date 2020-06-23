@@ -1,4 +1,5 @@
-import { LOGIN, changeValue, authSuccess, CHECK, connect, REGISTER, alertShow } from 'src/actions/user';
+import { LOGIN, changeValue, authSuccess, CHECK, connect, REGISTER, alertShow, LOGOUT } from 'src/actions/user';
+
 
 import axios from 'axios';
 import jwt from 'jwt-decode';
@@ -20,24 +21,27 @@ const auth = (store) => (next) => (action) => {
       console.log(data);
 
 /* =========  REQUETE AXIOS   ==============  */
-
+      
       axios.post(`http://${authenticationURI}login_check`, {
         username: state.user.username,
         password: state.user.password,
       },
-      // { withCredentials: true },
+      { withCredentials: true },
       )
         .then((response) => {
-          console.log('response', response.data);
+          // debugger
+          console.log(response);
+          const actionToDeletePassword = changeValue('password', '');
+          store.dispatch(actionToDeletePassword);
           const { token } = response.data;
           const user = jwt(token); // decode your token here
           localStorage.setItem('tokenOTroquet', token);
           // j'ai le token fourni par l'api
           // mon intention : ranger ce pseudo dans le state
           // je vais dispatcher une action
-          const actionToSaveToken = changeValue('tokenOTroquet', response.data.token);
+          // const actionToSaveToken = changeValue('tokenOTroquet', response.data.token);
           const actionToSavePseudo = changeValue('pseudo', response.data.username);
-          store.dispatch(actionToSaveToken);
+          // store.dispatch(actionToSaveToken);
           store.dispatch(actionToSavePseudo);
 
           store.dispatch(authSuccess(token, user));
@@ -78,6 +82,7 @@ const auth = (store) => (next) => (action) => {
       password:bobkor3,
       roles: ["ROLE_ADMIN"],
       avatar: 123
+      
 http://ec2-35-153-19-27.compute-1.amazonaws.com/phpmyadmin/
 damien
 729Cbk192!
@@ -162,6 +167,11 @@ damien
         // window.alert('Votre mot de passe doit contenir au moins 6 caractères dont une lettre majuscule, une minuscule, un chiffre et un caractère spécial parmi les suivants : @$!%*#?& ')
       }
 
+      break;
+    }
+    case LOGOUT: {
+      localStorage.removeItem('tokenOTroquet');
+      next(action);
       break;
     }
     default:
