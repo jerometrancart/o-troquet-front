@@ -6,7 +6,7 @@ import Field from 'src/containers/Login/Field';
 // import Alert from 'react-bootstrap/Alert';
 import './style.scss';
 
-const Signin = ({ isLogged, register, alertShow, show, variant, textAlert }) => {
+const Signin = ({ isLogged, register, show, variant, textAlert }) => {
   if (isLogged) {
     // history.push('/gameselect');
     return (

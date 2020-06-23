@@ -14,6 +14,13 @@ export const initialState = {
   show: 'hidden',
   variant: 'red',
   textAlert: '',
+  errorList: [
+    'Les mots de passe sont différents',
+    'Votre mot de passe doit contenir au moins 6 caractères dont une lettre majuscule, une minuscule, un chiffre et un caractère spécial parmi les suivants : @$!%*#?& ',
+    'Vos identifiants sont incorrects',
+    'Votre compte utilisateur a été banni suite à un comportement inapproprié, vous ne pouvez plus vous connecter à compte',
+    'Votre compte n\'est pas encore actif, merci de vérifier vos e-mails',
+  ],
 };
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -29,7 +36,7 @@ const reducer = (state = initialState, action = {}) => {
         loading: true,
 
       };
-    case FINISH_LOADING:
+    case FINISH_LOADING: state.user
       return {
         ...state,
         loading: false,

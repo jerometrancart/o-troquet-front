@@ -1,7 +1,7 @@
 // import des librairies
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form, Grid } from "semantic-ui-react";
+import { Button, Form, Grid, Message } from "semantic-ui-react";
 import { Link, useHistory, Redirect } from 'react-router-dom';
 import Modali, { useModali } from 'modali';
 
@@ -13,7 +13,7 @@ import Signin from 'src/containers/Signin';
 // import de styles
 import './style.scss';
 
-const Login = ({ isLogged, login }) => {
+const Login = ({ isLogged, login, show, variant, textAlert }) => {
   const history = useHistory();
   const [signinModal, toggleSigninModal] = useModali();
   if (isLogged) {
@@ -32,6 +32,9 @@ const Login = ({ isLogged, login }) => {
     <Grid className="center aligned">
       <form autoComplete="on" className="login-form-element" onSubmit={handleLogin}>
         <h2 className="form-title">Je me connecte </h2>
+        <Message className={show} color={variant}>
+          {textAlert}
+        </Message>
         <div className="oauth">
           <Button circular color="facebook" icon="facebook" />
           <Button circular color="google plus" icon="google plus g" />
@@ -67,6 +70,10 @@ Login.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
   toggleSigninModal: PropTypes.func.isRequired,
+  show: PropTypes.string.isRequired,
+  variant: PropTypes.string.isRequired,
+  textAlert: PropTypes.string.isRequired,
+  alertShow: PropTypes.func.isRequired,
 };
 /*
 Login.defaultProps = {
