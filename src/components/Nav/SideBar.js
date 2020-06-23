@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Dropdown, Menu, Sidebar } from 'semantic-ui-react';
-
+import './style.scss';
 export default class MenuExampleVerticalDropdown extends Component {
   state = { activeItem: 'account' }
 
