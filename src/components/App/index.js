@@ -58,7 +58,11 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
     // application de l'image tirée au sort sur le fond de l'appli (balise body)
     document.body.style.backgroundImage = 'url(' + backgroundImage[random] + ')';
   }, []);
-
+  useEffect(() => {
+    const usernameInput = document.querySelector("input[name='username']");
+    console.log(usernameInput);
+    usernameInput.focus();
+  }, []);
   return (
     <div className="main">
       <Header />

@@ -20,15 +20,16 @@ const auth = (store) => (next) => (action) => {
       console.log(data);
 
 /* =========  REQUETE AXIOS   ==============  */
-
+      
       axios.post(`http://${authenticationURI}login_check`, {
         username: state.user.username,
         password: state.user.password,
       },
-      // { withCredentials: true },
+      { withCredentials: true },
       )
         .then((response) => {
-          // console.log('response', response.data);
+          // debugger
+          console.log(response);
           const actionToDeletePassword = changeValue('password', '');
           store.dispatch(actionToDeletePassword);
           const { token } = response.data;
