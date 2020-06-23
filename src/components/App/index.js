@@ -7,7 +7,7 @@ import { Route, useLocation, Switch, Redirect } from 'react-router-dom';
 import Header from 'src/containers/Header';
 //import Welcome from 'src/components/Welcome';
 import Login from 'src/containers/Login';
-import Signin from 'src/components/Signin';
+import Signin from 'src/containers/Signin';
 import GamesListPage from 'src/containers/GamesListPage';
 import GameboardPage from 'src/containers/GameboardPage/Fourtwentyone';
 import Footer from 'src/components/Footer';
@@ -16,7 +16,6 @@ import AdminPage from 'src/components/AdminPage';
 import Legal from 'src/components/Legal';
 import Team from 'src/components/Team';
 import './style.scss';
-
 
 /*
 https://itnext.io/responsive-background-images-using-react-hooks-941af365ea1f

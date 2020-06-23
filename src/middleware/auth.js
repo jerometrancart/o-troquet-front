@@ -1,4 +1,5 @@
-import { LOGIN, changeValue, authSuccess, CHECK, connect, REGISTER, LOGOUT } from 'src/actions/user';
+import { LOGIN, changeValue, authSuccess, CHECK, connect, REGISTER, alertShow, LOGOUT } from 'src/actions/user';
+
 
 import axios from 'axios';
 import jwt from 'jwt-decode';
@@ -140,23 +141,30 @@ damien
           { withCredentials: true },
           )
             .then((response) => {
-              window.alert(response.data.success);
+              // window.alert(response.data.success);
               // j'ai le pseudo fourni par l'api
               // mon intention : ranger ce pseudo dans le state
               // je vais dispatcher une action
               const actionToSaveRegisterResponse = changeValue('register_response', response.data);
               store.dispatch(actionToSaveRegisterResponse);
+              // appel à la fonction alert show qui configure le composant bootstrap enrichi de show true
+              // variant: danger et du message d'alerte contenu dans la requête
+              store.dispatch(alertShow('visible', 'green', response.data.success));
             })
             .catch((error) => {
               console.error(error);
             });
         }
         else {
-          window.alert('Les mots de passe sont différents')
+          // appel à la fonction alert show qui configure le composant bootstrap enrichi de show true
+          // variant: danger et du message d'alerte sous forme de string
+          store.dispatch(alertShow('visible', 'red', 'Les mots de passe sont différents'));
+          // window.alert('Les mots de passe sont différents')
         }
       }
       else {
-        window.alert('Votre mot de passe doit contenir au moins 6 caractères dont une lettre majuscule, une minuscule, un chiffre et un caractère spécial parmi les suivants : @$!%*#?& ')
+        store.dispatch(alertShow('visible', 'red', 'Votre mot de passe doit contenir au moins 6 caractères dont une lettre majuscule, une minuscule, un chiffre et un caractère spécial parmi les suivants : @$!%*#?& '));
+        // window.alert('Votre mot de passe doit contenir au moins 6 caractères dont une lettre majuscule, une minuscule, un chiffre et un caractère spécial parmi les suivants : @$!%*#?& ')
       }
 
       break;
