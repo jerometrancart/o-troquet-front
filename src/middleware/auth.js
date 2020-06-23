@@ -35,9 +35,9 @@ const auth = (store) => (next) => (action) => {
           // j'ai le token fourni par l'api
           // mon intention : ranger ce pseudo dans le state
           // je vais dispatcher une action
-          const actionToSaveToken = changeValue('tokenOTroquet', response.data.token);
+          // const actionToSaveToken = changeValue('tokenOTroquet', response.data.token);
           const actionToSavePseudo = changeValue('pseudo', response.data.username);
-          store.dispatch(actionToSaveToken);
+          // store.dispatch(actionToSaveToken);
           store.dispatch(actionToSavePseudo);
 
           store.dispatch(authSuccess(token, user));

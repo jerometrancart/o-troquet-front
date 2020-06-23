@@ -41,10 +41,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isLogged: false,
-        email: '',
+        isAdmin: false,
+        username: '',
         password: '',
         userToken: '',
-        user: '',
+        tokenOTroquet: '',
       };
     case CHECK:
       return {
