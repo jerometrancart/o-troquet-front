@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Field from 'src/containers/Login/Field';
 import './style.scss';
 
+<<<<<<< HEAD
 const Signin = ({ isLogged, register }) => {
   if (isLogged) {
     // history.push('/gameselect');
@@ -22,6 +23,11 @@ const Signin = ({ isLogged, register }) => {
     <Grid className="center aligned">
       <h2 className="form-title">Je m'inscris </h2>
       <form autoComplete="on" className="signin-form-element" onSubmit={handleSignin}>
+=======
+const Signin = () => (
+    <Grid className="center aligned">     
+        <h2 className="form-title">Inscription</h2>
+>>>>>>> 54a6c7822629d6d0cdc44a5a77c96c3049a03009
         <div className="oauth">
           <Button circular color="facebook" icon="facebook" />
           <Button circular color="google plus" icon="google plus g" />
@@ -46,8 +52,12 @@ const Signin = ({ isLogged, register }) => {
         />
         <Button color="blue" type="submit" className="center aligned">
           Créer un compte
+<<<<<<< HEAD
         </Button>
       </form>
+=======
+        </Button>    
+>>>>>>> 54a6c7822629d6d0cdc44a5a77c96c3049a03009
     </Grid>
   );
 };
