@@ -48,7 +48,7 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
     // backgroundImage[12] = "https://images.unsplash.com/photo-1468056961052-15507578a50d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80";
     // backgroundImage[13] = "https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80";
     backgroundImage[7] = "https://images.unsplash.com/photo-1503876466-1fc5143eda57?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80";
-    backgroundImage[8] = "https://images.unsplash.com/photo-1528219086320-73c3c9558a26?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=677&q=80";
+    // backgroundImage[8] = "https://images.unsplash.com/photo-1528219086320-73c3c9558a26?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=677&q=80";
     // backgroundImage[16] = "https://images.unsplash.com/photo-1506712465535-e301badbc49d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80";
 
     // création d'une variable tirée au hasard, entier entre 0 et la longueur du tableau
