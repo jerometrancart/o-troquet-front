@@ -1,19 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Image } from 'semantic-ui-react';
-import Avatar from 'src/assets/images/avatars/001-modern.svg';
+// import { Image } from 'semantic-ui-react';
+// import Avatar from 'src/assets/images/avatars/001-modern.svg';
 import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const Header = ({ username, logout, isLogged }) => (
+const Header = ({ username, logout, isLogged, }) => (
   <div className="header">
     <Link
       to="/"
     >
       <h1 className="main-title">O'Troquet</h1>
     </Link>
-    {/* la nav, le pseudo et l'avatar + les amis */}
+    {/* la nav, le pseudo et l'avatar + les amis + la sidebar
+    n'apparaissent que quand tu es loggé */}
     {isLogged
     && (
       <div className="user-id">
@@ -22,7 +23,6 @@ const Header = ({ username, logout, isLogged }) => (
         <Link to="/" onClick={logout} className="logout-link">Logout</Link>
       </div>
     )}
-
   </div>
 );
 

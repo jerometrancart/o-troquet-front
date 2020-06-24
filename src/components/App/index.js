@@ -5,13 +5,13 @@ import { Route, useLocation, Switch, Redirect } from 'react-router-dom';
 
 // == Import
 import Header from 'src/containers/Header';
-//import Welcome from 'src/components/Welcome';
+// import Welcome from 'src/components/Welcome';
+import SideBar from 'src/components/Sidebar/SideBar';
 import Login from 'src/containers/Login';
-import Signin from 'src/components/Signin';
+// import Signin from 'src/components/Signin';
 import GamesListPage from 'src/containers/GamesListPage';
 import GameboardPage from 'src/containers/GameboardPage/Fourtwentyone';
 import Footer from 'src/components/Footer';
-import SideBar from 'src/components/Nav/SideBar';
 import AdminPage from 'src/components/AdminPage';
 import Legal from 'src/components/Legal';
 import Team from 'src/components/Team';
@@ -23,7 +23,6 @@ https://itnext.io/responsive-background-images-using-react-hooks-941af365ea1f
 https://codepen.io/Ruegen/pen/oYpEbm
 https://codepen.io/omascaros/pen/CBapm
 */
-
 
 // == Composant
 const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
@@ -59,10 +58,13 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
     document.body.style.backgroundImage = 'url(' + backgroundImage[random] + ')';
   }, []);
 
-  return (
+  return ( 
     <div className="main">
-      <Header />
+      {isLogged
+      && (
       <SideBar />
+      )}
+      <Header />
       <div className="app">
         <Switch>
           <Route exact path="/">

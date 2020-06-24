@@ -28,11 +28,11 @@ export default class MenuExampleVerticalDropdown extends Component {
           />
         </Link>
         <Link to ='/logout'>
-        <Menu.Item
-              name='Deconnexion'
-              active={activeItem === 'settings'}
-              onClick={this.handleItemClick}
-            />
+          <Menu.Item
+                name='Deconnexion'
+                active={activeItem === 'settings'}
+                onClick={this.handleItemClick}
+              />
         </Link>
         <Menu.Item
           name='Parametres'
@@ -51,3 +51,4 @@ export default class MenuExampleVerticalDropdown extends Component {
     );
   }
 }
+
