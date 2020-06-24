@@ -30,6 +30,7 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
 
   // const location = useLocation();
   useEffect(checkIsLogged, []);
+  
   useEffect(() => {
     // création d'un tableau contenant des belles images de bar
     const backgroundImage = new Array ();
@@ -53,15 +54,13 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
 
     // création d'une variable tirée au hasard, entier entre 0 et la longueur du tableau
     const random = Math.floor(Math.random() * backgroundImage.length);
-
+    
     // application de l'image tirée au sort sur le fond de l'appli (balise body)
     document.body.style.backgroundImage = 'url(' + backgroundImage[random] + ')';
+    
+    
   }, []);
-  useEffect(() => {
-    const usernameInput = document.querySelector("input[name='username']");
-    console.log(usernameInput);
-    usernameInput.focus();
-  }, []);
+
   return (
     <div className="main">
       <Header />

@@ -22,12 +22,21 @@ const Login = ({ isLogged, login, show, variant, textAlert }) => {
       <Redirect to="/gameselect" />
     ); */
   }
+
   const handleLogin = (evt) => {
     evt.preventDefault();
     console.log('ok connexion');
     login();
     history.push('/gameselect');
   };
+
+  useEffect(() => {
+    // focus sur l'input du pseudo au premier chargement de la page
+    const usernameInput = document.querySelector("input[name='username']");
+    console.log(usernameInput);
+    usernameInput.focus();
+  }, []);
+
   return (
     <Grid className="center aligned">
       <form autoComplete="on" className="login-form-element" onSubmit={handleLogin}>
