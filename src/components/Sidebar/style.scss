@@ -1,6 +1,10 @@
+@import 'src/styles/vars';
+
+
 .ui.secondary.vertical.menu {
   position: fixed;
-  background-color: #fff;
+  background-color: $text-color;
+  color: $text-color;
   margin: 0;
   border: 2px, black;
   height: 100vh;

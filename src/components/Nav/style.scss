@@ -1,0 +1,30 @@
+@use 'sass:color';
+@import 'src/styles/vars';
+
+
+.menu {
+  background-color : $text-color;
+  width: 15%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 1rem;
+  border-right: 3px, solid, color.adjust($cafe, $lightness: 20%);
+
+  &-link {
+      display: block;
+      padding: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: grey;
+
+      &:hover {
+        color: $cafe;
+      }
+
+      /* &--current {
+        color: $cafe;
+      }; */
+  }
+}

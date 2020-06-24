@@ -6,7 +6,7 @@ import { Route, useLocation, Switch, Redirect } from 'react-router-dom';
 // == Import
 import Header from 'src/containers/Header';
 // import Welcome from 'src/components/Welcome';
-import SideBar from 'src/components/Sidebar/SideBar';
+import Nav from 'src/components/Nav';
 import Login from 'src/containers/Login';
 // import Signin from 'src/components/Signin';
 import GamesListPage from 'src/containers/GamesListPage';
@@ -62,7 +62,7 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
     <div className="main">
       {isLogged
       && (
-      <SideBar />
+      <Nav />
       )}
       <Header />
       <div className="app">
