@@ -63,8 +63,6 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
     <div className="main">
       <Header />
       <SideBar />
-      {sideBar
-      && <SideBar pageWrapId="page-wrap" outerContainerId="App" />}
       <div className="app">
         <Switch>
           <Route exact path="/">
