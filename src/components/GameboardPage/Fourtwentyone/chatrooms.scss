@@ -1,0 +1,13 @@
+@import 'src/styles/vars';
+
+.chatroom-messages {
+  height: 400px;
+  width: 100%;
+  background-color: adjust-color($color: $table-color, $lightness: 10%,);
+  border: 2px solid adjust-color($color: $board-color, $lightness: 10%,);
+  border-radius: 10px;
+}
+
+.chatroom-input {
+  width: 100%;
+}
