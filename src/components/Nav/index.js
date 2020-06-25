@@ -1,8 +1,6 @@
 import React from 'react';
-// import Friendlist from 'src/components/Friendlist';
+import Friendlist from 'src/components/Friendlist';
 import './style.scss';
-// import de la liste de boutons du menu depuis src/data.js
-// import menuItems from 'src/data';
 import PropTypes from 'prop-types';
 
 const Nav = (/* { menuItems } */) => (
@@ -18,11 +16,11 @@ const Nav = (/* { menuItems } */) => (
       <a key={id} className="menu-link menu-link--current">{title}</a>
     ))}
     */}
-    <a className="menu-link menu-link--current">Préférences</a>
+    <a className="menu-link menu-link--current">Profil</a>
     <a className="menu-link menu-link--current">Statistiques / Récompenses</a>
-    <a className="menu-link menu-link--current">Me déconnecter</a>
-    <a className="menu-link menu-link--current">Amis</a> 
-    {/* <Friendlist friendList={friendList}/> */}
+    <a className="menu-link menu-link--current">Amis</a>
+    <a className="menu-link menu-link--current">Retour au bar</a>
+    <Friendlist /* friendList={friendList} *//>
   </nav>
 );
 

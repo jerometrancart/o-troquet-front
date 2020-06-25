@@ -1,6 +1,13 @@
-.friendlist {
-height: 100px;
-width: 100px;
-background-color: blue;
-border: solid;
+@use 'sass:color';
+@import 'src/styles/vars'; 
+
+.friendList {
+  text-align: center;
+  &-title {
+    display: block;
+    margin: 0;
+    border: 3px, solid, color.adjust($cafe, $lightness: 20%);
+    padding: 1rem;
+  }
 }
+

@@ -14,21 +14,22 @@ const Friendlist = ({ friendList }) => (
         {friendList.map(({ id, username }) => (
       <li key={id} className="friend">{username}</li>
     ))} */}
-    <li className="friend">Accueil</li>
-    <li className="friend">Préférences</li>
-    <li className="friend">Statistiques / Récompenses</li>
-    <li className="friend">Me déconnecter</li>
-    <li className="friend">Amis</li>
+    <h3 className="friendList-title">Les copaing</h3>
+    <li className="friend">Damien</li>
+    <li className="friend">Clément</li>
+    <li className="friend">Jérôme</li>
+    <li className="friend">Thomas</li>
+    <li className="friend">Florian</li>
   </ul>
 );
 
-Friendlist.propTypes = {
+/* Friendlist.propTypes = {
   friendList: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       username: PropTypes.string.isRequired,
     }),
   ).isRequired,
-};
+}; */
 
 export default Friendlist;
