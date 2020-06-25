@@ -1,38 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Icon, Input } from 'semantic-ui-react';
+import Messages from 'src/containers/GameboardPage/Fourtwentyone/Messages';
+import Form from 'src/containers/GameboardPage/Fourtwentyone/Form';
 
-import './style.scss';
+
+// import './style.scss';
 import './chatrooms.scss';
 
 const Chatrooms = ({
-  children,
-  value,
-  changeValue,
-  type,
-  placeholder,
-  name,
-}) => (
-  <div className="chatrooms">
-    <div className="chatroom-messages" />
-    <Input
-      className="chatroom-input"
-      icon={<Icon name="search" inverted circular link />}
-      placeholder="Type your text here ..."
-    />
-    {children}
-  </div>
+  webSocketConnect,
+}) => {
+  useEffect(() => {
+    // connexion au chat
+    console.log('je veux me connecter au socketcluster');
+    webSocketConnect();
+  }, []);
 
-);
+  return (
+    <div className="chatroom">
+      <Messages className="chatroom-messages" />
+      <Form className="chatroom-input" />
+    </div>
+  );
+};
 
 Chatrooms.propTypes = {
-  children: PropTypes.node,
+  webSocketConnect: PropTypes.func.isRequired,
 };
 
 Chatrooms.defaultProps = {
-  children: (
-    <div className="chatrooms--children">Chatrooms children</div>
-  ),
+
 };
 
 export default Chatrooms;

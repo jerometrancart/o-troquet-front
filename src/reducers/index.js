@@ -3,11 +3,13 @@ import { reducer as BurgerMenu } from 'redux-burger-menu';
 import login from './login';
 import user from './user';
 import fourtwentyoneControls from './games/fourtwentyone/controls';
+import fourtwentyoneChats from './chats/fourtwentyone';
 
 export default combineReducers({
   // login,
   user,
   fourtwentyoneControls,
+  fourtwentyoneChats,
 });
 
 

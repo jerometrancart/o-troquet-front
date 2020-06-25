@@ -62,12 +62,14 @@
     "react-bootstrap": "^1.0.1",
     "react-burger-menu": "^2.6.15",
     "react-dom": "*",
+    "react-feather": "^2.0.8",
     "react-redux": "*",
     "react-router-dom": "^5.2.0",
     "redux": "*",
     "redux-burger-menu": "^0.2.8",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.2",
+    "socket.io": "^2.3.0",
     "socketcluster-client": "^16.0.1",
     "styled-components": "*"
   }

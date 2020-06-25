@@ -9,7 +9,7 @@ import Dice from './dice';
 import Scoreboard from './scoreboard';
 import Infos from './infos';
 import Players from './players';
-import Chatrooms from './chatrooms';
+import Chatrooms from 'src/containers/GameboardPage/Fourtwentyone/chatrooms';
 
 import './style.scss';
 
