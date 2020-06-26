@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Modali, { useModali } from 'modali';
 import { Dropdown, Menu, Sidebar, List, Image } from 'semantic-ui-react';
 import './style.scss';
 import { Link, useHistory, Redirect } from 'react-router-dom';

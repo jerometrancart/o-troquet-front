@@ -1,7 +1,7 @@
 // import des librairies
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form, Grid } from "semantic-ui-react";
+import { Button, Grid } from "semantic-ui-react";
 import { Link, useHistory, Redirect } from 'react-router-dom';
 import Modali, { useModali } from 'modali';
 
@@ -15,7 +15,9 @@ import './style.scss';
 
 const Login = ({ isLogged, login }) => {
   const history = useHistory();
-  const [signinModal, toggleSigninModal] = useModali();
+  const [signinModal, toggleSigninModal] = useModali({
+    animated: true
+  });
   if (isLogged) {
     history.push('/gameselect');
     /* return (

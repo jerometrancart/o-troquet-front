@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { Button, Form, Grid } from 'semantic-ui-react';
+import { Button, Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import Field from 'src/containers/Login/Field';
 import './style.scss';
