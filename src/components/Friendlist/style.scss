@@ -6,8 +6,20 @@
   &-title {
     display: block;
     margin: 0;
-    border: 3px, solid, color.adjust($cafe, $lightness: 20%);
+    // border: 3px, solid, color.adjust($cafe, $lightness: 20%);
     padding: 1rem;
+    background-color: $cafe;
+    color: white;
   }
+  &--item {
+    display: block;
+    // border: 3px, solid, color.adjust($cafe, $lightness: 20%);
+    padding-top: 0.5rem;
+    color: $grey ;
+    &:hover {
+      color: $cafe;
+    }
+  }
+    
 }
 

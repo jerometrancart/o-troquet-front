@@ -8,5 +8,5 @@ export default combineReducers({
   // login,
   user,
   fourtwentyoneControls,
-  friends,
+  // friends,
 });

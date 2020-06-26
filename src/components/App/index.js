@@ -6,7 +6,7 @@ import { Route, useLocation, Switch, Redirect } from 'react-router-dom';
 // == Import
 import Header from 'src/containers/Header';
 // import Welcome from 'src/components/Welcome';
-import Nav from 'src/components/Nav';
+import Nav from 'src/containers/Nav';
 import Login from 'src/containers/Login';
 // import Signin from 'src/components/Signin';
 import GamesListPage from 'src/containers/GamesListPage';
