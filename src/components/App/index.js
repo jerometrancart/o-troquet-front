@@ -68,7 +68,7 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, gameId, webSocke
                 <Redirect to="/" />
                 )}
           </Route>
-          {/* <Route path="/gameboard/fourtwentyone"> */}
+          {/* <Route exact path="/gameboard/fourtwentyone"> */}
           <Route path={`/gameboard/fourtwentyone/${gameId}`}>
             {isLogged
               && (

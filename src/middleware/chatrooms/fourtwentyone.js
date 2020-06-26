@@ -1,7 +1,10 @@
-import { useHistory } from 'react-router-dom';
+import React from 'react';
+import { useHistory, Redirect } from 'react-router-dom';
 import { WEBSOCKET_CONNECT, WEBSOCKET_DISCONNECT, SEND_MESSAGE, receiveMessage, WEBSOCKET_CREATE_ROOM } from 'src/actions/chatrooms/fourtwentyone';
-import { tinyURL } from 'src/selectors';
+import GameboardPage from 'src/containers/GameboardPage/Fourtwentyone';
+import { tinyURL, redirect } from 'src/selectors';
 import { WEBSOCKET_GET_ROOM } from '../../actions/chatrooms/fourtwentyone';
+
 
 // je prépare une let qui sera accessible dans tout mon fichier qui contiendra mon canal
 let socketCanal;
@@ -14,13 +17,42 @@ const socket = (store) => (next) => (action) => {
       socketCanal = window.io('http://localhost:3001');
       // on se met en mode écoute, dès que l'évènement 'send_message' a lieu / est émis par le serveur, je réagis
       // dès que quelqu'un envoie l'évènement 'send_message' dans mon canal de discussion, je réagis
+
+
+
+      // socketCanal.on('room_created', (room, user) => {
+      //   console.log('room created :', room, user);
+      //   const roomElement = document.createElement('div')
+      //   roomElement.innerText = room
+      //   const roomLink = document.createElement('a')
+      //   roomLink.href = `/${room}`
+      //   roomLink.innerText = 'join'
+      //   roomContainer.append(roomElement)
+      //   roomContainer.append(roomLink)
+      // });
+
+
+
+
+
       socketCanal.on('send_message', (message) => {
         console.log('un message a été envoyé', message);
         console.log('je peux réagir, en modifiant mon state puisque je veux l\'afficher dans mon application');
         // je veux stocker le nouveau message reçu dans mon state
-        store.dispatch(receiveMessage(message));
+        store.dispatch(receiveMessage(`${message.name}: ${message.message}`));
       });
 
+      // say who connects
+      socketCanal.on('user-connected', (name) => {
+        store.dispatch(receiveMessage(`${name} connected`));
+        // appendMessage(`${name} connected`);
+      });
+
+      // say who disconnects
+      socketCanal.on('user-disconnected', (name) => {
+        store.dispatch(receiveMessage(`${name} disconnected`));
+        // appendMessage(`${name} disconnected`);
+      });
       // on écoute un événement, ça fonctionne comme les écouteurs d'événements qu'on connait bien
       // document.addEventListener('click', () => { })
       // ici j'envoie un message
@@ -54,13 +86,25 @@ const socket = (store) => (next) => (action) => {
       break;
     }
     case WEBSOCKET_CREATE_ROOM: {
-      const path = tinyURL(12);
-      console.log('Random tiny URL : ', path);
+      const roomId = tinyURL(12);
+      console.log('roomId calculated in front : ', roomId);
       // j'envoie le chemin au serveur, qui écoute l'évènement 'set_path'
-      socketCanal.emit('set_path', path);
-      const room = io(`/gameboard/fourtwentyone/${path}`);
-      const history = useHistory();
-      history.push(`/gameboard/fourtwentyone/${path}`);
+      socketCanal = window.io('http://localhost:3001');
+      // socketCanal.emit('set_path', path);
+      const state = store.getState();
+      socketCanal.emit('create_room', roomId, state.user.userToken.username);
+      socketCanal.on('room_created', (room) => {
+        console.log('roomId returned from server :', room);
+        // return (<Redirect to={`http://localhost:8080/gameboard/fourtwentyone/`} />);
+        // return (<GameboardPage />);
+      });
+      socketCanal.on('available_rooms', (rooms) => {
+        console.log('available_rooms returned from server :', rooms);
+      });
+
+      // const room = io(`/gameboard/fourtwentyone/${path}`);
+      // const history = useHistory();
+      // history.push(`/gameboard/fourtwentyone/${path}`);
       break;
     }
     default:

@@ -19,10 +19,12 @@ const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webS
     return <Redirect to="/" />;
   }
   */
+
   useEffect(() => {
     webSocketConnect();
     return webSocketDisconnect;
   }, []);
+
   return (
     <div className="gameScreen">
       <h2>--- 421 ---</h2>

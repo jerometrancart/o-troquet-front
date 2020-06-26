@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-
+import { useHistory } from 'react-router-dom';
 // ici on a écrit une fonction utilitaire qui retourne un résultat en fonction d'une entrée
 // dans l'univers redux une fonction utilitaire qui prend un morceau de state en entrée s'appelle un selector
 export const getNextId = (messages) => {
@@ -50,4 +50,9 @@ export const getRandomBackgroundImage = () => {
 
   // application de l'image tirée au sort sur le fond de l'appli (balise body)
   document.body.style.backgroundImage = `url(${backgroundImage[random]})`;
+};
+
+export const redirect = (adress) => {
+  const history = useHistory();
+  history.push(adress);
 };
