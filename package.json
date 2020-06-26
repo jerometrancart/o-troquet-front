@@ -59,6 +59,7 @@
     "modali": "^1.2.0",
     "prop-types": "*",
     "react": "*",
+    "react-bootstrap": "^1.0.1",
     "react-burger-menu": "^2.6.15",
     "react-dom": "*",
     "react-redux": "*",

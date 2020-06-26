@@ -1,4 +1,5 @@
-import { LOGIN, changeValue, authSuccess, CHECK, connect, REGISTER, LOGOUT } from 'src/actions/user';
+import { LOGIN, changeValue, authSuccess, CHECK, connect, REGISTER, alertShow, LOGOUT } from 'src/actions/user';
+
 
 import axios from 'axios';
 import jwt from 'jwt-decode';
@@ -20,32 +21,48 @@ const auth = (store) => (next) => (action) => {
       console.log(data);
 
 /* =========  REQUETE AXIOS   ==============  */
-
+      
       axios.post(`http://${authenticationURI}login_check`, {
         username: state.user.username,
         password: state.user.password,
       },
-      // { withCredentials: true },
+      { withCredentials: true },
       )
         .then((response) => {
-          // console.log('response', response.data);
+          // debugger
+          console.log(response);
           const actionToDeletePassword = changeValue('password', '');
           store.dispatch(actionToDeletePassword);
-          const { token } = response.data;
-          const user = jwt(token); // decode your token here
-          localStorage.setItem('tokenOTroquet', token);
-          // j'ai le token fourni par l'api
-          // mon intention : ranger ce pseudo dans le state
-          // je vais dispatcher une action
-          // const actionToSaveToken = changeValue('tokenOTroquet', response.data.token);
-          const actionToSavePseudo = changeValue('pseudo', response.data.username);
-          // store.dispatch(actionToSaveToken);
-          store.dispatch(actionToSavePseudo);
-
-          store.dispatch(authSuccess(token, user));
+          if (response.data.token) {
+            // debugger
+            console.log(response.data.token);
+            // const token = ;
+            const user = jwt(response.data.token); // decode your token here
+            localStorage.setItem('tokenOTroquet', response.data.token);
+            // j'ai le token fourni par l'api
+            // mon intention : ranger ce pseudo dans le state
+            // je vais dispatcher une action
+            // const actionToSaveToken = changeValue('tokenOTroquet', response.data.token);
+            const actionToSavePseudo = changeValue('pseudo', response.data.username);
+            // store.dispatch(actionToSaveToken);
+            store.dispatch(actionToSavePseudo);
+            store.dispatch(authSuccess(response.data.token, user));
+          }
+          else {
+            if (response.data.metadata.banned === true) {
+              // afficher une phrase pour dire que l'utilisateur est banni
+              store.dispatch(alertShow('visible', 'red', state.user.errorList[3]));
+            }
+            if (response.data.metadata.active === false) {
+              store.dispatch(alertShow('visible', 'red', state.user.errorList[4]));
+            }
+            console.log(response.data.metadata.banned);
+            // store.dispatch(alertShow('visible', 'red', errorResponse));
+          }
         })
         .catch((error) => {
           console.error(error);
+          store.dispatch(alertShow('visible', 'red', state.user.errorList[2]));
         });
 
       /* =========    FIN REQUETE AXIOS    ============= */
@@ -126,7 +143,9 @@ damien
     case REGISTER: {
       console.log(action);
       /*   ========      regex       ========  */
-      const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/gm;
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/gm;
+      // regex du back
+      // " /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i"
       const str = state.user.password;
 
       if (regex.exec(str)) {
@@ -139,23 +158,30 @@ damien
           { withCredentials: true },
           )
             .then((response) => {
-              window.alert(response.data.success);
+              // window.alert(response.data.success);
               // j'ai le pseudo fourni par l'api
               // mon intention : ranger ce pseudo dans le state
               // je vais dispatcher une action
               const actionToSaveRegisterResponse = changeValue('register_response', response.data);
               store.dispatch(actionToSaveRegisterResponse);
+              // appel à la fonction alert show qui configure le composant bootstrap enrichi de show true
+              // variant: danger et du message d'alerte contenu dans la requête
+              store.dispatch(alertShow('visible', 'green', response.data.success));
             })
             .catch((error) => {
               console.error(error);
             });
         }
         else {
-          window.alert('Les mots de passe sont différents')
+          // appel à la fonction alert show qui configure le composant bootstrap enrichi de show true
+          // variant: danger et du message d'alerte sous forme de string
+          store.dispatch(alertShow('visible', 'red', state.user.errorList[0]));
+          // window.alert('Les mots de passe sont différents')
         }
       }
       else {
-        window.alert('Votre mot de passe doit contenir au moins 6 caractères dont une lettre majuscule, une minuscule, un chiffre et un caractère spécial parmi les suivants : @$!%*#?& ')
+        store.dispatch(alertShow('visible', 'red', state.user.errorList[1]));
+        // window.alert('Votre mot de passe doit contenir au moins 6 caractères dont une lettre majuscule, une minuscule, un chiffre et un caractère spécial parmi les suivants : @$!%*#?& ')
       }
 
       break;

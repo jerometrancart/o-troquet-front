@@ -8,7 +8,7 @@ import Header from 'src/containers/Header';
 // import Welcome from 'src/components/Welcome';
 import Nav from 'src/containers/Nav';
 import Login from 'src/containers/Login';
-// import Signin from 'src/components/Signin';
+
 import GamesListPage from 'src/containers/GamesListPage';
 import GameboardPage from 'src/containers/GameboardPage/Fourtwentyone';
 import Footer from 'src/components/Footer';
@@ -16,7 +16,6 @@ import AdminPage from 'src/components/AdminPage';
 import Legal from 'src/components/Legal';
 import Team from 'src/components/Team';
 import './style.scss';
-
 
 /*
 https://itnext.io/responsive-background-images-using-react-hooks-941af365ea1f
@@ -30,6 +29,7 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
 
   // const location = useLocation();
   useEffect(checkIsLogged, []);
+  
   useEffect(() => {
     // création d'un tableau contenant des belles images de bar
     const backgroundImage = new Array ();
@@ -53,9 +53,11 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
 
     // création d'une variable tirée au hasard, entier entre 0 et la longueur du tableau
     const random = Math.floor(Math.random() * backgroundImage.length);
-
+    
     // application de l'image tirée au sort sur le fond de l'appli (balise body)
     document.body.style.backgroundImage = 'url(' + backgroundImage[random] + ')';
+    
+    
   }, []);
 
   return ( 
@@ -65,6 +67,8 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
       <Nav />
       )}
       <Header />
+
+
       <div className="app">
         <Switch>
           <Route exact path="/">
