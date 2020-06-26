@@ -29,7 +29,7 @@ const Login = ({ isLogged, login, show, variant, textAlert, webSocketDisconnect 
     login();
     history.push('/gameselect');
   };
-  useEffect(webSocketDisconnect)
+  // useEffect(webSocketDisconnect)
   useEffect(() => {
     // focus sur l'input du pseudo au premier chargement de la page
     const usernameInput = document.querySelector("input[name='username']");
@@ -83,6 +83,7 @@ Login.propTypes = {
   variant: PropTypes.string.isRequired,
   textAlert: PropTypes.string.isRequired,
   alertShow: PropTypes.func.isRequired,
+  webSocketDisconnect: PropTypes.func.isRequired,
 };
 /*
 Login.defaultProps = {

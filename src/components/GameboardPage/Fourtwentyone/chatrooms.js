@@ -21,7 +21,6 @@ Chatrooms.propTypes = {
 };
 
 Chatrooms.defaultProps = {
-
 };
 
 export default Chatrooms;

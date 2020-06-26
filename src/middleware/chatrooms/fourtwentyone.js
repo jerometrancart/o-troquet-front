@@ -30,8 +30,9 @@ const socket = (store) => (next) => (action) => {
       break;
     }
     case WEBSOCKET_DISCONNECT: {
+      //debugger;
       console.log('middleware chatrooms je veux me déconnecter');
-      socketCanal = window.io('http://localhost:3001');
+      // socketCanal = window.io('http://localhost:3001');
       socketCanal.emit('disconnect');
       socketCanal.disconnect();
       socketCanal.close();
@@ -39,6 +40,7 @@ const socket = (store) => (next) => (action) => {
     }
     case SEND_MESSAGE: {
       console.log('on demande d\'envoyer un message, je traduis comment ça doit se faire dans le middleware');
+      // debugger;
       // ici j'envoie un message
       // sur le canal d'échange socket j'ai accès à une méthode emit pour émettre un évènements
       // En premier argument on a le type d'évènement, en 2ème des infos véhiculées avec l'évènement

@@ -13,7 +13,7 @@ import Players from './players';
 
 import './style.scss';
 
-const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect }) => {
+const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webSocketDisconnect }) => {
   /*
   if (!isLogged) {
     return <Redirect to="/" />;
@@ -21,6 +21,7 @@ const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect }) =>
   */
   useEffect(() => {
     webSocketConnect();
+    return webSocketDisconnect;
   }, []);
   return (
     <div className="gameScreen">
@@ -51,6 +52,7 @@ GameboardPage.propTypes = {
   rollDice: PropTypes.func.isRequired,
   toggleBlock: PropTypes.bool,
   webSocketConnect: PropTypes.func.isRequired,
+  webSocketDisconnect: PropTypes.func.isRequired,
 };
 
 GameboardPage.defaultProps = {

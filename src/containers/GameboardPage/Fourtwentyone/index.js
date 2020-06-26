@@ -4,7 +4,7 @@ import { rollDice } from 'src/actions/games/fourtwentyone/player';
 import GameboardPage from 'src/components/GameboardPage/Fourtwentyone';
 
 // Action Creators
-import { webSocketConnect } from 'src/actions/chatrooms/fourtwentyone';
+import { webSocketConnect, webSocketDisconnect } from 'src/actions/chatrooms/fourtwentyone';
 import { login, logout } from '../../../actions';
 
 const mapStateToProps = (state) => ({
@@ -16,6 +16,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   webSocketConnect: () => {
     dispatch(webSocketConnect());
+  },
+  webSocketDisconnect: () => {
+    dispatch(webSocketDisconnect());
   },
 });
 
