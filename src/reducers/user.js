@@ -1,5 +1,8 @@
 // ici je crée un second reducer qui gère toutes les infos liées au user
+
 import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK, ALERT_SHOW} from "src/actions/user";
+import Friendlist from "../components/Friendlist";
+
 
 // import { } from 'src/actions';
 
@@ -11,6 +14,63 @@ export const initialState = {
   loading: false,
   path: '/',
   userToken: '',
+  
+  menuItems: [
+    {
+      id: 1,
+      title: 'Profil',
+    },
+    {
+      id: 2,
+      title: 'Statistiques / Récompenses',
+    },
+    {
+      id: 3,
+      title: 'Retour au bar',
+    },
+  ],
+  friends: [
+    {
+      isAccepted: false,
+      isAnswered: true,
+      friendDetails: {
+        id: 1,
+        username: 'Damien',
+      },
+    },
+    {
+      isAccepted: true,
+      isAnswered: true,
+      friendDetails: {
+        id: 2,
+        username: 'Jerome',
+      },
+    },
+    {
+      isAccepted: true,
+      isAnswered: true,
+      friendDetails: {
+        id: 3,
+        username: 'Thomas',
+      },
+    },
+    {
+      isAccepted: false,
+      isAnswered: false,
+      friendDetails: {
+        id: 4,
+        username: 'Clément',
+      },
+    },
+    {
+      isAccepted: false,
+      isAnswered: true,
+      friendDetails: {
+        id: 5,
+        username: 'Florian',
+      },
+    },
+
   show: 'hidden',
   variant: 'red',
   textAlert: '',
@@ -20,8 +80,11 @@ export const initialState = {
     'Vos identifiants sont incorrects',
     'Votre compte utilisateur a été banni suite à un comportement inapproprié, vous ne pouvez plus vous connecter à compte',
     'Votre compte n\'est pas encore actif, merci de vérifier vos e-mails',
+
   ],
 };
+
+
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case CHANGE_VALUE:
