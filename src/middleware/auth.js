@@ -1,5 +1,5 @@
 import { LOGIN, changeValue, authSuccess, CHECK, connect, REGISTER, alertShow, LOGOUT } from 'src/actions/user';
-
+import { webSocketDisconnect } from 'src/actions/chatrooms/fourtwentyone';
 
 import axios from 'axios';
 import jwt from 'jwt-decode';
@@ -188,6 +188,8 @@ damien
     }
     case LOGOUT: {
       localStorage.removeItem('tokenOTroquet');
+      console.log('middleware auth je veux me déconnecter');
+      webSocketDisconnect();
       next(action);
       break;
     }

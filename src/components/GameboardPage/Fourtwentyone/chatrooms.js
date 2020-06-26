@@ -9,20 +9,12 @@ import './chatrooms.scss';
 
 const Chatrooms = ({
   webSocketConnect,
-}) => {
-  useEffect(() => {
-    // connexion au chat
-    console.log('je veux me connecter au socketcluster');
-    webSocketConnect();
-  }, []);
-
-  return (
+}) => (
     <div className="chatroom">
       <Messages className="chatroom-messages" />
       <Form className="chatroom-input" />
     </div>
-  );
-};
+);
 
 Chatrooms.propTypes = {
   webSocketConnect: PropTypes.func.isRequired,

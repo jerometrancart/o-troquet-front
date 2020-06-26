@@ -1,24 +1,27 @@
-import React from 'react';
+import React, { useEffect, useHistory } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 // import resources
 import Controls from 'src/containers/GameboardPage/Fourtwentyone/controls';
 import Die from 'src/containers/GameboardPage/Fourtwentyone/die';
+import Chatrooms from 'src/containers/GameboardPage/Fourtwentyone/chatrooms';
 import Board from './board';
 import Dice from './dice';
 import Scoreboard from './scoreboard';
 import Infos from './infos';
 import Players from './players';
-import Chatrooms from 'src/containers/GameboardPage/Fourtwentyone/chatrooms';
 
 import './style.scss';
 
-const GameboardPage = ({ isLogged, rollDice, toggleBlock }) => {
+const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect }) => {
   /*
   if (!isLogged) {
     return <Redirect to="/" />;
   }
   */
+  useEffect(() => {
+    webSocketConnect();
+  }, []);
   return (
     <div className="gameScreen">
       <h2>--- 421 ---</h2>
@@ -46,6 +49,12 @@ const GameboardPage = ({ isLogged, rollDice, toggleBlock }) => {
 GameboardPage.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   rollDice: PropTypes.func.isRequired,
+  toggleBlock: PropTypes.bool,
+  webSocketConnect: PropTypes.func.isRequired,
+};
+
+GameboardPage.defaultProps = {
+  toggleBlock: false,
 };
 
 export default GameboardPage;

@@ -1,5 +1,6 @@
 // ici je crée un second reducer qui gère toutes les infos liées au user
 import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK, ALERT_SHOW} from "src/actions/user";
+import { WEBSOCKET_CONNECT } from "../actions/chatrooms/fourtwentyone";
 
 // import { } from 'src/actions';
 
@@ -36,7 +37,7 @@ const reducer = (state = initialState, action = {}) => {
         loading: true,
 
       };
-    case FINISH_LOADING: state.user
+    case FINISH_LOADING:
       return {
         ...state,
         loading: false,
@@ -62,8 +63,6 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isLogged: true,
       };
-    default:
-      return state;
     case ALERT_SHOW:
       return {
         ...state,
@@ -71,6 +70,13 @@ const reducer = (state = initialState, action = {}) => {
         variant: action.variant,
         textAlert: action.textAlert,
       };
+    case WEBSOCKET_CONNECT:
+      return {
+        ...state,
+        gameId: action.gameId,
+      };
+    default:
+      return state;
   }
 };
 export default reducer;
