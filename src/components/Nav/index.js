@@ -7,24 +7,69 @@ import './style.scss';
 import PropTypes from 'prop-types';
 
 // Composants
-const Data = ['partie gagnées, partie perdue, partie jouées']
 
 
 const Nav = () => {
+  const [StatsModal, toggleStatsModal] = useModali({
+    animated: true
+  });
+
   const [ProfilModal, toggleProfilModal] = useModali({
     animated: true
   });
 
+
   return (
     <nav className="menu">
       <a className="menu-link menu-link--current">Accueil</a>
-      <a className="menu-link menu-link--current">Profil</a>
-      <a className="menu-link menu-link--current" onClick={toggleProfilModal}>Statistiques / Récompenses</a>
+      <a className="menu-link menu-link--current" onClick={toggleProfilModal}>Profil</a>
       <Modali.Modal {...ProfilModal}>
+      <nav className="onglets">
+        <a>Statistiques</a>
+        <a>Profil</a>
+      </nav>
+
+      <div class="field">
+        <input 
+        autocomplete="on" 
+        name="username" 
+        class="field-input" 
+        type="text" 
+        placeholder="Pseudo" 
+        value=""/>
+        <label for="field-username" class="field-label">
+          Pseudo
+        </label>
+      </div>
+
+    <div class="field">
+      <input 
+      autocomplete="on" 
+      name="password" 
+      class="field-input" 
+      type="password" 
+      placeholder="Mot de passe" 
+      value=""/>
+      <label for="field-password" class="field-label">Mot de passe</label>
+    </div>
+
+    <img 
+        className="ProfilPicture"
+        src={Blackjack}
+        alt="Gagnez 50 parties"
+    /> 
+
+    <button className="AvatarButton">changer d'avatar</button>
+      </Modali.Modal>
+
+
+
+      <a className="menu-link menu-link--current" onClick={toggleStatsModal}>Statistiques / Récompenses</a>
+      <Modali.Modal {...StatsModal}>
       
         <nav className="onglets">
           <a>Statistiques</a>
-          <a>profil</a>
+          <a>Profil</a>
         </nav>
         <div className="stats">
           <ul>parties jouées :</ul>
