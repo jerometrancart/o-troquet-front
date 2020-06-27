@@ -6,6 +6,7 @@ export const LOGOUT = 'LOGOUT';
 export const CHECK = 'CHECK';
 export const REGISTER = 'REGISTER';
 export const ALERT_SHOW = 'ALERT_SHOW';
+export const TOGGLE_FRIENDLIST = 'TOGGLE_FRIENDLIST';
 
 export const changeValue = (name, value) => ({
   type: CHANGE_VALUE,
@@ -21,7 +22,7 @@ export const finishLoading = () => ({
   type: FINISH_LOADING,
 });
 
-export const authSuccess = (token, user) => ({
+export const authSuccess = (token, user, userId) => ({
   type: AUTH_SUCCESS,
   token,
   user,
@@ -44,4 +45,8 @@ export const alertShow = (show, variant, textAlert) => ({
   show,
   variant,
   textAlert,
+});
+
+export const toggleFriendlist = () => ({
+  type: TOGGLE_FRIENDLIST,
 });

@@ -1,8 +1,6 @@
 // ici je crée un second reducer qui gère toutes les infos liées au user
 
 import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK, ALERT_SHOW} from "src/actions/user";
-import Friendlist from "../components/Friendlist";
-
 
 // import { } from 'src/actions';
 
@@ -14,19 +12,22 @@ export const initialState = {
   loading: false,
   path: '/',
   userToken: '',
-  
+  userId: '',
   menuItems: [
     {
       id: 1,
       title: 'Profil',
+      url: '/profile',
     },
     {
       id: 2,
       title: 'Statistiques / Récompenses',
+      url: '/stats',
     },
     {
       id: 3,
       title: 'Retour au bar',
+      url: '/gameselect',
     },
   ],
   friends: [
@@ -70,6 +71,7 @@ export const initialState = {
         username: 'Florian',
       },
     },
+  ],
 
   show: 'hidden',
   variant: 'red',
@@ -119,6 +121,7 @@ const reducer = (state = initialState, action = {}) => {
         password: '',
         userToken: '',
         tokenOTroquet: '',
+        userId: '',
       };
     case CHECK:
       return {

@@ -4,7 +4,7 @@ import Friendlist from 'src/components/Friendlist';
 
 const mapStateToProps = (state) => ({
   friends: state.user.friends,
-//  friendDetails: state.user.friends.friendDetails,
+  //  friendDetails: state.user.friends.friendDetails,
   curUsername: state.user.userToken.username,
   isLogged: state.user.isLogged,
 });

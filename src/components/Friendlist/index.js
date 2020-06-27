@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './style.scss';
-//TODO : initialiser friendList comme tableau d'objets vide dans le reducer
-const Friendlist = ({ friends, curUsername, isLogged, /* friendDetails */ }) => {
+
+const Friendlist = ({ friends, curUsername, isLogged,}) => {
   console.log(friends);
   return (
     <ul className="friendList">
@@ -17,8 +17,11 @@ const Friendlist = ({ friends, curUsername, isLogged, /* friendDetails */ }) => 
       <h3 className="friendList-title">Les copaings</h3>
       {friends.map((friend) => (
         // ({ if(({friend.isAccepted}) && ({friend.isAnswered})) &&
-        <li key={friend.friendDetails.id} className="friendList--item">{friend.friendDetails.username}</li>
+        // friends.isAccepted && friends.isAnswered ? 
+
+        <li key={friend.friendDetails.id} className="friendList--item">{friend.friendDetails.username}</li> 
       ))}
+
     </ul>
   );
 };

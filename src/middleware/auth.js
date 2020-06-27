@@ -1,5 +1,11 @@
-import { LOGIN, changeValue, authSuccess, CHECK, connect, REGISTER, alertShow, LOGOUT } from 'src/actions/user';
-
+import { 
+  LOGIN,
+  changeValue,
+  authSuccess,
+  CHECK,
+  REGISTER,
+  alertShow,
+  LOGOUT } from 'src/actions/user';
 
 import axios from 'axios';
 import jwt from 'jwt-decode';
@@ -20,8 +26,7 @@ const auth = (store) => (next) => (action) => {
       };
       console.log(data);
 
-/* =========  REQUETE AXIOS   ==============  */
-      
+      /* =========  REQUETE AXIOS   ==============  */
       axios.post(`http://${authenticationURI}login_check`, {
         username: state.user.username,
         password: state.user.password,
@@ -34,18 +39,22 @@ const auth = (store) => (next) => (action) => {
           const actionToDeletePassword = changeValue('password', '');
           store.dispatch(actionToDeletePassword);
           if (response.data.token) {
-            // debugger
             console.log(response.data.token);
+            console.log(response.data.metadata.user_id);
             // const token = ;
             const user = jwt(response.data.token); // decode your token here
             localStorage.setItem('tokenOTroquet', response.data.token);
+            localStorage.setItem('userId', response.data.metadata.user_id);
             // j'ai le token fourni par l'api
             // mon intention : ranger ce pseudo dans le state
             // je vais dispatcher une action
             // const actionToSaveToken = changeValue('tokenOTroquet', response.data.token);
             const actionToSavePseudo = changeValue('pseudo', response.data.username);
-            // store.dispatch(actionToSaveToken);
             store.dispatch(actionToSavePseudo);
+            const actionToSaveUserId = changeValue('userId', response.data.metadata.user_id);
+            store.dispatch(actionToSaveUserId);
+            const actionToSaveToken = changeValue('tokenOTroquet', response.data.token);
+            store.dispatch(actionToSaveToken);
             store.dispatch(authSuccess(response.data.token, user));
           }
           else {
@@ -76,36 +85,29 @@ const auth = (store) => (next) => (action) => {
 
       username: Sdarlz
       password: 729Cbk192!
-      
       username: jerome
       password: bobkor3
 
       username : damien
       password: root
 
-      
     username: Damien38,
     password: 729Cbk192!,
     email: belingheridamien@gmail.com
 
       damien@gmail.com
       bobkor3
-
-
       username: jerome,
       email: jerome@gdmail.com,
       password:bobkor3,
       roles: ["ROLE_ADMIN"],
       avatar: 123
-      
 http://ec2-35-153-19-27.compute-1.amazonaws.com/phpmyadmin/
 damien
 729Cbk192!
 */
-
-
-/*   ========   REQUETE AJAX    ======== */
-/*
+      /*   ========   REQUETE AJAX    ======== */
+      /*
       fetch(`http://${authenticationURI}login_check`, {
         method: 'post',
         mode: 'cors',
@@ -136,6 +138,9 @@ damien
       console.log(action);
       if (localStorage.tokenOTroquet) {
         const user = jwt(localStorage.tokenOTroquet); // decode your token here
+        /* const { userId } = localStorage.userId;
+        const actionToGetId = changeValue('userId', userId);
+        store.dispatch(actionToGetId); */
         store.dispatch(authSuccess(localStorage.tokenOTroquet, user));
       }
       break;
@@ -164,8 +169,8 @@ damien
               // je vais dispatcher une action
               const actionToSaveRegisterResponse = changeValue('register_response', response.data);
               store.dispatch(actionToSaveRegisterResponse);
-              // appel à la fonction alert show qui configure le composant bootstrap enrichi de show true
-              // variant: danger et du message d'alerte contenu dans la requête
+              // appel à la fonction alert show qui configure le composant bootstrap enrichi de
+              // show true, variant: danger et du message d'alerte contenu dans la requête
               store.dispatch(alertShow('visible', 'green', response.data.success));
             })
             .catch((error) => {
@@ -173,21 +178,22 @@ damien
             });
         }
         else {
-          // appel à la fonction alert show qui configure le composant bootstrap enrichi de show true
-          // variant: danger et du message d'alerte sous forme de string
+          // appel à la fonction alert show qui configure le composant bootstrap enrichi de show
+          // true, variant: danger et du message d'alerte sous forme de string
           store.dispatch(alertShow('visible', 'red', state.user.errorList[0]));
           // window.alert('Les mots de passe sont différents')
         }
       }
       else {
         store.dispatch(alertShow('visible', 'red', state.user.errorList[1]));
-        // window.alert('Votre mot de passe doit contenir au moins 6 caractères dont une lettre majuscule, une minuscule, un chiffre et un caractère spécial parmi les suivants : @$!%*#?& ')
+        // window.alert('Votre mot de passe doit contenir au moins 6 caractères dont une lettre maj,
+        // une minuscule, un chiffre et un caractère spécial parmi les suivants : @$!%*#?& ')
       }
 
       break;
     }
     case LOGOUT: {
-      localStorage.removeItem('tokenOTroquet');
+      localStorage.removeItem('tokenOTroquet', 'userId');
       next(action);
       break;
     }
