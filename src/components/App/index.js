@@ -45,7 +45,7 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, gameId, webSocke
             {!isLogged
               && (
                 <>
-                  <h2 className="welcomeStranger">Bienvenue, bla, bla, bla...</h2>
+                  <h2 className="welcomeStranger">Bienvenue, faites comme chez vous (mais pas trop quand même, hein !) </h2>
                   <Login
                     isLogged={isLogged}
                   />

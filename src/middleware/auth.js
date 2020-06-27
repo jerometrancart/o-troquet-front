@@ -31,6 +31,7 @@ const auth = (store) => (next) => (action) => {
         .then((response) => {
           // debugger
           console.log(response);
+          // on ne garde pas le mot de passe de l'utilisateur en dans le state !
           const actionToDeletePassword = changeValue('password', '');
           store.dispatch(actionToDeletePassword);
           if (response.data.token) {

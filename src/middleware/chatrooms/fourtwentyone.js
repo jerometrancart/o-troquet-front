@@ -1,9 +1,22 @@
 import React from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
-import { WEBSOCKET_CONNECT, WEBSOCKET_DISCONNECT, SEND_MESSAGE, receiveMessage, WEBSOCKET_CREATE_ROOM } from 'src/actions/chatrooms/fourtwentyone';
+import {
+  WEBSOCKET_CONNECT,
+  WEBSOCKET_DISCONNECT,
+  webSocketDisconnect,
+  SEND_MESSAGE,
+  receiveMessage,
+  WEBSOCKET_CREATE_ROOM,
+  WEBSOCKET_GET_ROOM,
+  webSocketJoinRoom,
+  WEBSOCKET_LEAVE_ROOMS,
+} from 'src/actions/chatrooms/fourtwentyone';
 import GameboardPage from 'src/containers/GameboardPage/Fourtwentyone';
-import { tinyURL, redirect } from 'src/selectors';
-import { WEBSOCKET_GET_ROOM } from '../../actions/chatrooms/fourtwentyone';
+import {
+  tinyURL,
+  redirect,
+} from 'src/selectors';
+import {  } from '../../actions/chatrooms/fourtwentyone';
 
 
 // je prépare une let qui sera accessible dans tout mon fichier qui contiendra mon canal
@@ -14,7 +27,7 @@ const socket = (store) => (next) => (action) => {
   switch (action.type) {
     case WEBSOCKET_CONNECT: {
       // ouverture du canal, on exécute la méthode io sur window mise à disposition par la librairie socket.io (ajoutée dans index.html)
-      socketCanal = window.io('http://localhost:3001');
+      socketCanal = window.io('http://localhost:3001', { reconnection: false });
       // on se met en mode écoute, dès que l'évènement 'send_message' a lieu / est émis par le serveur, je réagis
       // dès que quelqu'un envoie l'évènement 'send_message' dans mon canal de discussion, je réagis
 
@@ -65,9 +78,12 @@ const socket = (store) => (next) => (action) => {
       //debugger;
       console.log('middleware chatrooms je veux me déconnecter');
       // socketCanal = window.io('http://localhost:3001');
-      socketCanal.emit('disconnect');
-      socketCanal.disconnect();
-      socketCanal.close();
+      if (socketCanal !== undefined) {
+        console.log(socketCanal);
+        socketCanal.emit('disconnect');
+        socketCanal.disconnect();
+        socketCanal.close();
+      }
       break;
     }
     case SEND_MESSAGE: {
@@ -89,19 +105,52 @@ const socket = (store) => (next) => (action) => {
       const roomId = tinyURL(12);
       console.log('roomId calculated in front : ', roomId);
       // j'envoie le chemin au serveur, qui écoute l'évènement 'set_path'
-      socketCanal = window.io('http://localhost:3001');
+      if ((socketCanal === undefined)) {
+        socketCanal = window.io('http://localhost:3001');
+      }
+      else if ((socketCanal.connected === false)) {
+        socketCanal = window.io('http://localhost:3001');
+      }
       // socketCanal.emit('set_path', path);
+      // j'appelle le store pour avoir mon pseudo
       const state = store.getState();
+      // je demande au socket de me créer une chatroom
       socketCanal.emit('create_room', roomId, state.user.userToken.username);
+      // j'écoute la réponse
       socketCanal.on('room_created', (room) => {
         console.log('roomId returned from server :', room);
-        // return (<Redirect to={`http://localhost:8080/gameboard/fourtwentyone/`} />);
-        // return (<GameboardPage />);
+        // je dois quitter les éventuelles autres rooms
+        // TODO quitter les autres rooms
+        store.dispatch(webSocketJoinRoom(room));
+        store.dispatch(webSocketDisconnect());
       });
+      break;
+    }
+    case WEBSOCKET_GET_ROOM: {
+      if ((socketCanal === undefined)) {
+        socketCanal = window.io('http://localhost:3001');
+      }
+      else if ((socketCanal.connected === false)) {
+        socketCanal = window.io('http://localhost:3001');
+      }
+      console.log(socketCanal);
+      socketCanal.emit('available_rooms');
       socketCanal.on('available_rooms', (rooms) => {
         console.log('available_rooms returned from server :', rooms);
       });
+      socketCanal.emit('get_room');
+      socketCanal.on('your_room', (yourRoomId) => {
+        console.log('i\'ve found you a room : ', yourRoomId);
+      });
+      // store.dispatch(webSocketDisconnect());
+      console.log('');
+      break;
+    }
+    case WEBSOCKET_LEAVE_ROOMS: {
 
+    
+    
+      
       // const room = io(`/gameboard/fourtwentyone/${path}`);
       // const history = useHistory();
       // history.push(`/gameboard/fourtwentyone/${path}`);

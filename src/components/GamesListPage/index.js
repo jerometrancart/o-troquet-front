@@ -17,7 +17,7 @@ const GamesListPage = ({ isLogged, username, webSocketConnect, webSocketDisconne
   }
 
   */
-  // useEffect(webSocketDisconnect);
+  useEffect(webSocketDisconnect);
   // useEffect(() => {
   //   console.log('je veux me connecter au websocket socket.io');
   //   webSocketConnect();
@@ -28,7 +28,7 @@ const GamesListPage = ({ isLogged, username, webSocketConnect, webSocketDisconne
       <div className="playModes">
         <div className="modes">
           {/* <Link to="/gameboard/fourtwentyone"> */}
-          <Button className="center aligned" onClick={(roomId) => webSocketJoinRoom(roomId)}>Quick play
+          <Button className="center aligned" onClick={webSocketGetRoom}>Quick play
           {/* <Button className="center aligned" onClick={webSocketJoinRoom.bind(this, roomId)}>Quick play */}
           </Button>
           {/* </Link> */}
@@ -45,7 +45,7 @@ const GamesListPage = ({ isLogged, username, webSocketConnect, webSocketDisconne
                 src={Dice}
                 rounded
                 alt="421 game"
-                onClick={(roomId) => webSocketJoinRoom(roomId)}
+                onClick={webSocketGetRoom}
                 // onClick={webSocketJoinRoom.bind(this, roomId)}
               />
               {/* </Link> */}
@@ -78,6 +78,8 @@ GamesListPage.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   username: PropTypes.string.isRequired,
   webSocketConnect: PropTypes.func.isRequired,
+  webSocketGetRoom: PropTypes.func.isRequired,
+  webSocketCreateRoom: PropTypes.func.isRequired,
   roomId: PropTypes.string,
 };
 GamesListPage.defaultProps = {

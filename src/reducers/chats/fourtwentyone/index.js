@@ -1,4 +1,4 @@
-import { RECEIVE_MESSAGE, SET_MESSAGE, SEND_MESSAGE, WEBSOCKET_JOIN_ROOM } from 'src/actions/chatrooms/fourtwentyone';
+import { RECEIVE_MESSAGE, SET_MESSAGE, SEND_MESSAGE, WEBSOCKET_JOIN_ROOM, WEBSOCKET_CREATE_ROOM } from 'src/actions/chatrooms/fourtwentyone';
 
 const initialState = {
   text: '',
@@ -14,6 +14,7 @@ const initialState = {
       id: 2,
     },
   ],
+  rooms: [],
   roomId: '',
 };
 const reducer = (state = initialState, action = {}) => {
@@ -30,6 +31,19 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         messages: newMessages,
+      };
+    }
+    case WEBSOCKET_CREATE_ROOM: {
+      const newRooms = [
+        ...state.rooms,
+      ];
+      const newRoom = {
+        ...action.room,
+      };
+      newRooms.push(newRoom);
+      return {
+        ...state,
+        rooms: newRooms,
       };
     }
     case SET_MESSAGE:
