@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Friend from './Friend';
 
 import './style.scss';
 
@@ -16,20 +17,14 @@ const Friendlist = ({ friends, curUsername, isLogged,}) => {
       */}
       <h3 className="friendList-title">Les copaings</h3>
       {friends.map((friend) => (
-        // ({ if(({friend.isAccepted}) && ({friend.isAnswered})) &&
-        // friends.isAccepted && friends.isAnswered ? 
-
-        <li key={friend.friendDetails.id} className="friendList--item">{friend.friendDetails.username}</li> 
+        <Friend key={friend.friendDetails.id} {...friend} />
       ))}
-
     </ul>
   );
 };
 
 Friendlist.propTypes = {
-  friends: PropTypes.arrayOf(
-    PropTypes.object,
-  ).isRequired,
+  friends: PropTypes.array.isRequired,
   // friendDetails: PropTypes.object.isRequired,
   curUsername: PropTypes.string.isRequired,
   isLogged: PropTypes.bool.isRequired,

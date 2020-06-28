@@ -78,7 +78,7 @@ const Login = ({ isLogged, login, show, variant, textAlert }) => {
 Login.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
-  toggleSigninModal: PropTypes.func.isRequired,
+  toggleSigninModal: PropTypes.func,
   show: PropTypes.string.isRequired,
   variant: PropTypes.string.isRequired,
   textAlert: PropTypes.string.isRequired,
