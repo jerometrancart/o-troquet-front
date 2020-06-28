@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import {
   WEBSOCKET_CONNECT,
   WEBSOCKET_DISCONNECT,
@@ -16,8 +16,6 @@ import {
   tinyURL,
   redirect,
 } from 'src/selectors';
-import {  } from '../../actions/chatrooms/fourtwentyone';
-
 
 // je prépare une let qui sera accessible dans tout mon fichier qui contiendra mon canal
 let socketCanal;
@@ -149,12 +147,10 @@ const socket = (store) => (next) => (action) => {
     }
     case WEBSOCKET_LEAVE_ROOMS: {
 
-    
-    
-      
       // const room = io(`/gameboard/fourtwentyone/${path}`);
       // const history = useHistory();
       // history.push(`/gameboard/fourtwentyone/${path}`);
+
       next(action);
       break;
     }
