@@ -1,6 +1,6 @@
-import React, { useEffect, useHistory } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 // import resources
 import Controls from 'src/containers/GameboardPage/Fourtwentyone/controls';
 import Die from 'src/containers/GameboardPage/Fourtwentyone/die';
@@ -13,12 +13,21 @@ import Players from './players';
 
 import './style.scss';
 
-const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webSocketDisconnect }) => {
+const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webSocketDisconnect, roomId }) => {
   /*
   if (!isLogged) {
     return <Redirect to="/" />;
   }
   */
+  // const history = useHistory();
+
+  // useEffect(() => {
+
+  //   if (roomId) {
+  //     history.push(`/gameboard/fourtwentyone/${roomId}`);
+  //   }
+
+  // }, []);
 
   useEffect(() => {
     webSocketConnect();
@@ -55,6 +64,7 @@ GameboardPage.propTypes = {
   toggleBlock: PropTypes.bool,
   webSocketConnect: PropTypes.func.isRequired,
   webSocketDisconnect: PropTypes.func.isRequired,
+  roomId: PropTypes.string.isRequired,
 };
 
 GameboardPage.defaultProps = {

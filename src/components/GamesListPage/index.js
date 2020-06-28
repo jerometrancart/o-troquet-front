@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Button, Image } from 'semantic-ui-react';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // import resources
@@ -10,13 +10,21 @@ import Soon from 'src/assets/images/soon.png';
 
 import './style.scss';
 
-const GamesListPage = ({ isLogged, username, webSocketConnect, webSocketDisconnect, webSocketGetRoom, webSocketCreateRoom, webSocketJoinRoom }) => {
+const GamesListPage = ({ isLogged, username, webSocketConnect, webSocketDisconnect, webSocketGetRoom, webSocketCreateRoom, webSocketJoinRoom, roomId }) => {
   /*
   if (!isLogged) {
     return <Redirect to="/" />;
   }
-
   */
+  const history = useHistory();
+  console.log(history);
+
+  useEffect(() => {
+    if ((roomId !== undefined) && (roomId !== null) && (roomId !== '')) {
+      history.push(`/gameboard/fourtwentyone/${roomId}`);
+    }
+  }, [roomId]);
+
   useEffect(webSocketDisconnect);
   // useEffect(() => {
   //   console.log('je veux me connecter au websocket socket.io');
@@ -80,9 +88,9 @@ GamesListPage.propTypes = {
   webSocketConnect: PropTypes.func.isRequired,
   webSocketGetRoom: PropTypes.func.isRequired,
   webSocketCreateRoom: PropTypes.func.isRequired,
-  roomId: PropTypes.string,
+  roomId: PropTypes.string.isRequired,
 };
-GamesListPage.defaultProps = {
-  roomId: '',
-};
+// GamesListPage.defaultProps = {
+//   roomId: '',
+// };
 export default GamesListPage;

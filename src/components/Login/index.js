@@ -13,7 +13,7 @@ import Signin from 'src/containers/Signin';
 // import de styles
 import './style.scss';
 
-const Login = ({ isLogged, login, show, variant, textAlert, webSocketDisconnect }) => {
+const Login = ({ isLogged, login, show, variant, textAlert, webSocketDisconnect, roomId }) => {
   const history = useHistory();
   const [signinModal, toggleSigninModal] = useModali();
   if (isLogged) {

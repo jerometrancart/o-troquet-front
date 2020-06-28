@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
     isLogged: state.user.isLogged,
     isAdmin: state.user.isAdmin,
     path: state.user.path,
+    roomId: state.fourtwentyoneChats.roomId,
   };
 };
 

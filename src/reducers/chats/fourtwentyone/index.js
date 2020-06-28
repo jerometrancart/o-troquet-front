@@ -38,7 +38,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state.rooms,
       ];
       const newRoom = {
-        ...action.room,
+        ...action.roomId,
       };
       newRooms.push(newRoom);
       return {

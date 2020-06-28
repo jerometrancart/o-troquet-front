@@ -39,8 +39,9 @@ export const webSocketGetRoom = () => ({
   type: WEBSOCKET_GET_ROOM,
 });
 
-export const webSocketCreateRoom = () => ({
+export const webSocketCreateRoom = (roomId) => ({
   type: WEBSOCKET_CREATE_ROOM,
+  roomId,
 });
 
 export const webSocketJoinRoom = (roomId) => ({

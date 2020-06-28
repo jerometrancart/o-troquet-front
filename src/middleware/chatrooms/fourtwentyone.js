@@ -27,11 +27,15 @@ const socket = (store) => (next) => (action) => {
   switch (action.type) {
     case WEBSOCKET_CONNECT: {
       // ouverture du canal, on exécute la méthode io sur window mise à disposition par la librairie socket.io (ajoutée dans index.html)
-      socketCanal = window.io('http://localhost:3001', { reconnection: false });
+      // socketCanal = window.io('http://localhost:3001', { reconnection: false });
+      socketCanal = window.io('http://localhost:3001');
+
+      // socketCanal = window.io({
+      //   path: '/test',
+      // });
+
       // on se met en mode écoute, dès que l'évènement 'send_message' a lieu / est émis par le serveur, je réagis
       // dès que quelqu'un envoie l'évènement 'send_message' dans mon canal de discussion, je réagis
-
-
 
       // socketCanal.on('room_created', (room, user) => {
       //   console.log('room created :', room, user);
@@ -45,14 +49,11 @@ const socket = (store) => (next) => (action) => {
       // });
 
 
-
-
-
       socketCanal.on('send_message', (message) => {
         console.log('un message a été envoyé', message);
         console.log('je peux réagir, en modifiant mon state puisque je veux l\'afficher dans mon application');
         // je veux stocker le nouveau message reçu dans mon state
-        store.dispatch(receiveMessage(`${message.name}: ${message.message}`));
+        store.dispatch(receiveMessage(message));
       });
 
       // say who connects
@@ -71,7 +72,7 @@ const socket = (store) => (next) => (action) => {
       // ici j'envoie un message
       // sur le canal d'échange socketCanal j'ai accès à une méthode emit pour émettre un évènement
       // En premier argument on a le type d'évènement, en 2ème des infos véhiculées avec l'évènement
-      next(action);
+      // next(action);
       break;
     }
     case WEBSOCKET_DISCONNECT: {
@@ -95,15 +96,15 @@ const socket = (store) => (next) => (action) => {
       // on récupère les infos qui nous intéressent du state, avec la fonction .getState qui nous est fournie par le store
       const state = store.getState();
       if (state.fourtwentyoneChats.text !== '') {
-        console.log(store.getState());
-        socketCanal.emit('send_message', { content: state.fourtwentyoneChats.text, author: state.user.userToken.username });
+        console.log('state : ', store.getState());
+        socketCanal.emit('send_message', state.fourtwentyoneChats.roomId, { content: state.fourtwentyoneChats.text, author: state.user.userToken.username });
       }
       next(action);
       break;
     }
     case WEBSOCKET_CREATE_ROOM: {
-      const roomId = tinyURL(12);
-      console.log('roomId calculated in front : ', roomId);
+      action.roomId = tinyURL(12);
+      console.log('roomId calculated in front : ', action.roomId);
       // j'envoie le chemin au serveur, qui écoute l'évènement 'set_path'
       if ((socketCanal === undefined)) {
         socketCanal = window.io('http://localhost:3001');
@@ -114,16 +115,23 @@ const socket = (store) => (next) => (action) => {
       // socketCanal.emit('set_path', path);
       // j'appelle le store pour avoir mon pseudo
       const state = store.getState();
+      // je dis au socket que je suis arrivé
+      socketCanal.emit('new_user', state.user.userToken.username);
+
       // je demande au socket de me créer une chatroom
-      socketCanal.emit('create_room', roomId, state.user.userToken.username);
+      socketCanal.emit('create_room', action.roomId, state.user.userToken.username);
       // j'écoute la réponse
       socketCanal.on('room_created', (room) => {
-        console.log('roomId returned from server :', room);
+        console.log('roomId returned from server : ', room);
+        // je rejoins la room en question
+        // socketCanal.join(room.id);
         // je dois quitter les éventuelles autres rooms
         // TODO quitter les autres rooms
-        store.dispatch(webSocketJoinRoom(room));
-        store.dispatch(webSocketDisconnect());
+        // window.location = `http://localhost:8080/gameboard/fourtwentyone/${room.id}`;
+        store.dispatch(webSocketJoinRoom(room.id));
+        // store.dispatch(webSocketDisconnect());
       });
+      next(action);
       break;
     }
     case WEBSOCKET_GET_ROOM: {
@@ -154,6 +162,7 @@ const socket = (store) => (next) => (action) => {
       // const room = io(`/gameboard/fourtwentyone/${path}`);
       // const history = useHistory();
       // history.push(`/gameboard/fourtwentyone/${path}`);
+      next(action);
       break;
     }
     default:

@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
 import { rollDice } from 'src/actions/games/fourtwentyone/player';
 
 import GameboardPage from 'src/components/GameboardPage/Fourtwentyone';
@@ -7,9 +9,12 @@ import GameboardPage from 'src/components/GameboardPage/Fourtwentyone';
 import { webSocketConnect, webSocketDisconnect } from 'src/actions/chatrooms/fourtwentyone';
 import { login, logout } from '../../../actions';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   isLogged: state.user.isLogged,
+  roomId: state.fourtwentyoneChats.roomId,
 });
+
+
 const mapDispatchToProps = (dispatch) => ({
   rollDice: () => {
     dispatch(rollDice());
@@ -22,7 +27,11 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(
+const container = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(GameboardPage);
+
+const containerWithRouter = withRouter(container);
+
+export default containerWithRouter;

@@ -1,5 +1,5 @@
 // == Import npm
-import React, { useEffect } from 'react';
+import React, { useEffect, useHistory } from 'react';
 import PropTypes from 'prop-types';
 import { Route, useLocation, Switch, Redirect } from 'react-router-dom';
 
@@ -24,7 +24,7 @@ https://codepen.io/omascaros/pen/CBapm
 
 
 // == Composant
-const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, gameId, webSocketDisconnect }) => {
+const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocketDisconnect }) => {
   // hook d'effet : s'applique après le chargement de l'application
 
   // const location = useLocation();
@@ -33,6 +33,15 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, gameId, webSocke
   useEffect(getRandomBackgroundImage, []);
 
   // useEffect(webSocketDisconnect, []);
+
+  // const history = useHistory();
+  // console.log(history);
+
+  // useEffect(() => {
+  //   if ((roomId !== undefined) && (roomId !== null) && (roomId !== '')) {
+  //     history.push('/gameboard/fourtwentyone/', { roomId });
+  //   }
+  // }, [roomId]);
 
   return (
     <div className="main">
@@ -69,7 +78,8 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, gameId, webSocke
                 )}
           </Route>
           {/* <Route exact path="/gameboard/fourtwentyone"> */}
-          <Route path={`/gameboard/fourtwentyone/${gameId}`}>
+          {/* <Route exact path="/gameboard/fourtwentyone/:slug"> */}
+          <Route exact path={`/gameboard/fourtwentyone/${roomId}`}>
             {isLogged
               && (
                 <GameboardPage
@@ -116,14 +126,14 @@ App.propTypes = {
   isAdmin: PropTypes.bool,
   path: PropTypes.string.isRequired,
   checkIsLogged: PropTypes.func.isRequired,
-  gameId: PropTypes.string,
+  roomId: PropTypes.string,
   webSocketDisconnect: PropTypes.func.isRequired,
 };
 
 App.defaultProps = {
   isLogged: false,
   isAdmin: false,
-  gameId: '',
+  roomId: '',
 };
 
 // == Export
