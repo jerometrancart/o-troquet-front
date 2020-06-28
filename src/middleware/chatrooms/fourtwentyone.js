@@ -26,46 +26,37 @@ const socket = (store) => (next) => (action) => {
   console.log('dans socket middleware : ', action);
   switch (action.type) {
     case WEBSOCKET_CONNECT: {
-      // ouverture du canal, on exécute la méthode io sur window mise à disposition par la librairie socket.io (ajoutée dans index.html)
+      // open general canal, using .io lib (coming from script in index.html)
       // socketCanal = window.io('http://localhost:3001', { reconnection: false });
       socketCanal = window.io('http://localhost:3001');
-
-      // socketCanal = window.io({
-      //   path: '/test',
-      // });
-
-      // on se met en mode écoute, dès que l'évènement 'send_message' a lieu / est émis par le serveur, je réagis
-      // dès que quelqu'un envoie l'évènement 'send_message' dans mon canal de discussion, je réagis
-
-      // socketCanal.on('room_created', (room, user) => {
-      //   console.log('room created :', room, user);
-      //   const roomElement = document.createElement('div')
-      //   roomElement.innerText = room
-      //   const roomLink = document.createElement('a')
-      //   roomLink.href = `/${room}`
-      //   roomLink.innerText = 'join'
-      //   roomContainer.append(roomElement)
-      //   roomContainer.append(roomLink)
-      // });
+      
+      // i get my state, to recognize my username
+      const state = store.getState();
+      
+      // i emit an action the server will recognize and broadcast, with a message
+      socketCanal.emit('new_user_client_to_server', { content: ' joined', author: state.user.userToken.username });
+      // listen to new users joining and manage their messages differently
+      socketCanal.on('new_user_server_to_client', (message) => {
+        console.log('new user ', message.author);
+        socketCanal.emit('send_message_client_to_server', 'general', { content: `${message.author} joined`, author: 'Bartender' });
+      });
 
 
-      socketCanal.on('send_message', (message) => {
-        console.log('un message a été envoyé', message);
-        console.log('je peux réagir, en modifiant mon state puisque je veux l\'afficher dans mon application');
+      // listen to incoming messages from general connection
+      socketCanal.on('send_message_server_to_client', (message) => {
+        console.log('un message a été reçu ', message);
         // je veux stocker le nouveau message reçu dans mon state
         store.dispatch(receiveMessage(message));
       });
 
       // say who connects
-      socketCanal.on('user-connected', (name) => {
-        store.dispatch(receiveMessage(`${name} connected`));
-        // appendMessage(`${name} connected`);
-      });
+      // socketCanal.on('user-connected', (name) => {
+      //   store.dispatch(receiveMessage({ author: name, content: ' connected' }));
+      // });
 
       // say who disconnects
       socketCanal.on('user-disconnected', (name) => {
-        store.dispatch(receiveMessage(`${name} disconnected`));
-        // appendMessage(`${name} disconnected`);
+        store.dispatch(receiveMessage({ author: name, content: ' disconnected' }));
       });
       // on écoute un événement, ça fonctionne comme les écouteurs d'événements qu'on connait bien
       // document.addEventListener('click', () => { })
@@ -78,10 +69,11 @@ const socket = (store) => (next) => (action) => {
     case WEBSOCKET_DISCONNECT: {
       //debugger;
       console.log('middleware chatrooms je veux me déconnecter');
+      const state = store.getState();
       // socketCanal = window.io('http://localhost:3001');
       if (socketCanal !== undefined) {
-        console.log(socketCanal);
-        socketCanal.emit('disconnect');
+        console.log(socketCanal.id);
+        socketCanal.emit('disconnect', state.user.userToken.username);
         socketCanal.disconnect();
         socketCanal.close();
       }
@@ -97,7 +89,7 @@ const socket = (store) => (next) => (action) => {
       const state = store.getState();
       if (state.fourtwentyoneChats.text !== '') {
         console.log('state : ', store.getState());
-        socketCanal.emit('send_message', state.fourtwentyoneChats.roomId, { content: state.fourtwentyoneChats.text, author: state.user.userToken.username });
+        socketCanal.emit('send_message_client_to_server', state.fourtwentyoneChats.roomId, { content: state.fourtwentyoneChats.text, author: state.user.userToken.username });
       }
       next(action);
       break;
