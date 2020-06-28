@@ -141,6 +141,7 @@ const socket = (store) => (next) => (action) => {
       socketCanal.emit('get_room');
       socketCanal.on('your_room', (yourRoomId) => {
         console.log('i\'ve found you a room : ', yourRoomId);
+        store.dispatch(webSocketJoinRoom(yourRoomId));
       });
       // store.dispatch(webSocketDisconnect());
       console.log('');
