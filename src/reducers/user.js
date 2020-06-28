@@ -72,6 +72,7 @@ export const initialState = {
       },
     },
   ],
+  axiosFriends: [],
 
   show: 'hidden',
   variant: 'red',

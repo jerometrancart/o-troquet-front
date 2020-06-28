@@ -12,14 +12,23 @@
     color: white;
   }
   &--item {
-    display: block;
+    display: flex;
+    justify-content: space-around;
     // border: 3px, solid, color.adjust($cafe, $lightness: 20%);
     padding-top: 0.5rem;
     color: $grey ;
-    &:hover {
+/*     &:hover {
       color: $cafe;
+    } */
+    &--name {
+      display: inline-block;
+      width: 80px;
     }
   }
-    
+  &--icon {
+    &:hover {
+      color: $cafe;
+      cursor: pointer;
+    }  
+  }
 }
-

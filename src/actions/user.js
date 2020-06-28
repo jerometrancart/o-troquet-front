@@ -6,7 +6,7 @@ export const LOGOUT = 'LOGOUT';
 export const CHECK = 'CHECK';
 export const REGISTER = 'REGISTER';
 export const ALERT_SHOW = 'ALERT_SHOW';
-export const TOGGLE_FRIENDLIST = 'TOGGLE_FRIENDLIST';
+export const GET_FRIENDS = 'GET_FRIENDS';
 
 export const changeValue = (name, value) => ({
   type: CHANGE_VALUE,
@@ -47,6 +47,7 @@ export const alertShow = (show, variant, textAlert) => ({
   textAlert,
 });
 
-export const toggleFriendlist = () => ({
-  type: TOGGLE_FRIENDLIST,
+export const getFriends = (friends) => ({
+  type: GET_FRIENDS,
+  friends,
 });

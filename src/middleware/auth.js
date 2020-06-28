@@ -5,6 +5,7 @@ import {
   CHECK,
   REGISTER,
   alertShow,
+  getFriends,
   LOGOUT } from 'src/actions/user';
 
 import axios from 'axios';
@@ -130,7 +131,7 @@ damien
         });
 */
       /*   ========   FIN REQUETE AJAX    ========  */
-
+      store.dispatch(getFriends());
       next(action);
       break;
     }

@@ -3,7 +3,8 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Route, useLocation, Switch, Redirect } from 'react-router-dom';
 
-// == Import
+
+// == Imports
 import Header from 'src/containers/Header';
 // import Welcome from 'src/components/Welcome';
 import Nav from 'src/containers/Nav';
@@ -29,7 +30,6 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
 
   // const location = useLocation();
   useEffect(checkIsLogged, []);
-  
   useEffect(() => {
     // création d'un tableau contenant des belles images de bar
     const backgroundImage = new Array ();
@@ -53,23 +53,20 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar }) => {
 
     // création d'une variable tirée au hasard, entier entre 0 et la longueur du tableau
     const random = Math.floor(Math.random() * backgroundImage.length);
-    
     // application de l'image tirée au sort sur le fond de l'appli (balise body)
     document.body.style.backgroundImage = 'url(' + backgroundImage[random] + ')';
-    
-    
+    // font-awesome, import de la librairie, ajout de toutes les icones  
   }, []);
 
   return ( 
     <div className="main">
+      
+      <Header />
+      <div className="app">
       {isLogged
       && (
       <Nav />
       )}
-      <Header />
-
-
-      <div className="app">
         <Switch>
           <Route exact path="/">
             {!isLogged
