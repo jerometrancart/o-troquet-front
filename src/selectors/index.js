@@ -2,6 +2,7 @@
 import { useHistory } from 'react-router-dom';
 // ici on a écrit une fonction utilitaire qui retourne un résultat en fonction d'une entrée
 // dans l'univers redux une fonction utilitaire qui prend un morceau de state en entrée s'appelle un selector
+
 export const getNextId = (messages) => {
   // je veux générer un id
   // on part d'un tableau d'objet on le transpose en tableau de nombre
