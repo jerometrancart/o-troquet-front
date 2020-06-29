@@ -1,7 +1,11 @@
 import React from 'react';
 import BLACKJACK from 'src/assets/images/blackjack.png';
 
-const Profile = () => (
+const Profile = ({
+  username,
+  password, 
+  avatar, 
+  value}) => (
   <div className="profile">
     <nav className="onglets">
       <a>Statistiques</a>
@@ -11,11 +15,14 @@ const Profile = () => (
       <div className="field">
         <input
           autoComplete="on"
-          name="username"
+          name={username}
           className="field-input"
           type="text"
           placeholder="Pseudo"
-          value=""
+          value={value}
+          onChange={(event) => {
+          changeValue(event.target.value);
+          }}
         />
         <label className="field-label">
           Pseudo
@@ -24,11 +31,14 @@ const Profile = () => (
       <div className="field">
         <input
           autoComplete="on"
-          name="password"
+          name={password}
           className="field-input"
           type="password"
           placeholder="Mot de passe"
-          value=""
+          value={value}
+          onChange={(event) => {
+          changeValue(event.target.value);
+          }}
         />
         <label className="field-label">Mot de passe</label>
       </div>
@@ -38,7 +48,7 @@ const Profile = () => (
     </form>
     <img
       className="ProfilPicture"
-      src={BLACKJACK}
+      src={avatar}
       alt=""
     />
 

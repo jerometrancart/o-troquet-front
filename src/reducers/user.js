@@ -27,6 +27,13 @@ export const initialState = {
       id: 3,
       phrase: 'C\'est la piquette, Jack',
       icon: BLACKJACK,
+    }],
+  Profile: [
+    {
+      id: 1,
+      username: '',
+      password: '',
+      avatar: 123,
     },
   ],
 };

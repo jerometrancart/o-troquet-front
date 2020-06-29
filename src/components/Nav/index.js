@@ -1,7 +1,7 @@
 import React from 'react';
 import Modali, { useModali } from 'modali';
 // import Friendlist from 'src/components/Friendlist';
-import Profile from 'src/components/Profile';
+import Profile from 'src/containers/Profile';
 
 import './style.scss';
 import PropTypes from 'prop-types';

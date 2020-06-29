@@ -1,4 +1,3 @@
- 
 import { connect } from 'react-redux';
 
 import Field from 'src/components/Login/Field';
