@@ -6,6 +6,7 @@ export const LOGOUT = 'LOGOUT';
 export const CHECK = 'CHECK';
 export const REGISTER = 'REGISTER';
 
+
 export const changeValue = (name, value) => ({
   type: CHANGE_VALUE,
   name,
@@ -37,3 +38,5 @@ export const check = () => ({
 export const register = () => ({
   type: REGISTER,
 });
+
+
