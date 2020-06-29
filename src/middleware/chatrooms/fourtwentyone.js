@@ -32,7 +32,7 @@ const socket = (store) => (next) => (action) => {
       const state = store.getState();
       
       // i emit an action the server will recognize and broadcast, with a message
-      socketCanal.emit('new_user_client_to_server', { content: ' joined', author: state.user.userToken.username });
+      socketCanal.emit('new_user_client_to_server', state.fourtwentyoneChats.roomId, { content: ' joined', author: state.user.userToken.username });
       // listen to new users joining and manage their messages differently
       socketCanal.on('new_user_server_to_client', (message) => {
         console.log('new user ', message.author);

@@ -36,7 +36,7 @@ const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webS
 
   return (
     <div className="gameScreen">
-      <h2>--- 421 ---</h2>
+      <h2>--- 421 --- room : {roomId}</h2>
       <div className="gameBoard">
         <Board>
           <Dice>
