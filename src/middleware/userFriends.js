@@ -15,15 +15,21 @@ const authenticationURI = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Ba
 
 const userFriends = (store) => (next) => (action) => {
   const state = store.getState();
-  const userId = localStorage.getItem(userId);
-  const friendsURI = `http://${authenticationURI}/v1/users/${userId}/friends`;
+  const token = localStorage.tokenOTroquet;
+  // debugger;
+  const friendsURI = `http://${authenticationURI}v1/users/${localStorage.userId}/friends`;
 
   switch (action.type) {
     case GET_FRIENDS: {
-      axios.get(friendsURI, {
-
-      },
-      { withCredentials: true })
+      console.log(token);
+      axios.get(friendsURI,
+        /* token, */
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            // withCredentials: true,
+          },
+        })
         .then((response) => {
           console.log(response);
           const actionToLoadFriendsList = changeValue('friends', response.data.friends);
