@@ -4,6 +4,7 @@ import Login from 'src/components/Login';
 
 // Action Creators
 import { login, alertShow } from '../../actions/user';
+import { webSocketDisconnect } from 'src/actions/chatrooms/fourtwentyone';
 
 const mapStateToProps = (state) => ({
   isLogged: state.user.isLogged,
@@ -17,7 +18,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   alertShow: (show, variant, textAlert) => {
     dispatch(alertShow(show, variant, textAlert));
-  }
+  },
+  webSocketDisconnect: () => {
+    dispatch(webSocketDisconnect());
+  },
 });
 
 // connect est une fonction qui prend un composant en entrée

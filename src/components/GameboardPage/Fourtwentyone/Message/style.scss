@@ -1,0 +1,24 @@
+@import 'src/styles/vars';
+
+.chatroom-message {
+  /* margin: 0.7rem; */ 
+  &--isAuthor {
+    font-weight: bolder;
+    color: adjust-color($color: $board-color, $lightness: 40%,);
+  }
+  /*
+  &-author {
+    padding: .5rem 0;
+  }
+  */
+  &-content {
+    font-weight: normal;
+    padding: .5rem;
+    display: inline-block;
+    color: adjust-color($color: $board-color, $lightness: 30%,);
+  }
+  &-author {
+    font-weight: bold;
+    color: adjust-color($color: $board-color, $lightness: 35%,);
+  }
+}

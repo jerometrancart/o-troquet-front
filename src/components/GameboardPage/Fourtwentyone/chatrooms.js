@@ -1,24 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Messages from 'src/containers/GameboardPage/Fourtwentyone/Messages';
+import Form from 'src/containers/GameboardPage/Fourtwentyone/Form';
 
-import './style.scss';
 
-const Chatrooms = ({ children }) => (
-  <div className="chatrooms">
-    Chatrooms
-    {children}
-  </div>
+// import './style.scss';
+import './chatrooms.scss';
 
+const Chatrooms = ({
+  webSocketConnect,
+}) => (
+    <div className="chatroom">
+      <Messages className="chatroom-messages" />
+      <Form className="chatroom-input" />
+    </div>
 );
 
 Chatrooms.propTypes = {
-  children: PropTypes.node,
+  webSocketConnect: PropTypes.func.isRequired,
 };
 
 Chatrooms.defaultProps = {
-  children: (
-    <div className="chatrooms--children">Chatrooms children</div>
-  ),
 };
 
 export default Chatrooms;
