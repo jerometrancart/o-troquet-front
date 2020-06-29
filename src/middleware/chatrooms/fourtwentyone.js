@@ -7,14 +7,17 @@ import {
   SEND_MESSAGE,
   receiveMessage,
   WEBSOCKET_CREATE_ROOM,
+  webSocketCreateRoom,
   WEBSOCKET_GET_ROOM,
   webSocketJoinRoom,
   WEBSOCKET_LEAVE_ROOMS,
+  WEBSOCKET_LISTEN_ROOM,
 } from 'src/actions/chatrooms/fourtwentyone';
 import GameboardPage from 'src/containers/GameboardPage/Fourtwentyone';
 import {
   tinyURL,
   redirect,
+  getNextId,
 } from 'src/selectors';
 
 // je prépare une let qui sera accessible dans tout mon fichier qui contiendra mon canal
@@ -25,18 +28,33 @@ const socket = (store) => (next) => (action) => {
   switch (action.type) {
     case WEBSOCKET_CONNECT: {
       // open general canal, using .io lib (coming from script in index.html)
-      // socketCanal = window.io('http://localhost:3001', { reconnection: false });
-      socketCanal = window.io('http://localhost:3001');
-      
+      // connect only if not already connected
+      if ((socketCanal === undefined)) {
+        socketCanal = window.io('http://localhost:3001');
+      }
+      else if ((socketCanal.connected === false)) {
+        socketCanal = window.io('http://localhost:3001');
+      }
+      // socketCanal = window.io('http://localhost:3001');
+      break;
+    }
+// ====================================================================================================== //
+    case WEBSOCKET_LISTEN_ROOM: {
       // i get my state, to recognize my username
       const state = store.getState();
-      
+      action.roomId = state.fourtwentyoneChats.roomId;
+      console.log('my room i\'m listening to : ', action.roomId)
       // i emit an action the server will recognize and broadcast, with a message
-      socketCanal.emit('new_user_client_to_server', state.fourtwentyoneChats.roomId, { content: ' joined', author: state.user.userToken.username });
+      const id = getNextId(state.fourtwentyoneChats.messages);
+      socketCanal.emit('new_user_client_to_server', state.fourtwentyoneChats.roomId, { content: ' joined', author: state.user.userToken.username, id });
+      
       // listen to new users joining and manage their messages differently
       socketCanal.on('new_user_server_to_client', (message) => {
         console.log('new user ', message.author);
-        socketCanal.emit('send_message_client_to_server', 'general', { content: `${message.author} joined`, author: 'Bartender' });
+        message.id = getNextId(state.fourtwentyoneChats.messages);
+        store.dispatch(receiveMessage({ content: `${message.author} joined`, author: 'Bartender', id: message.id }));
+
+        // socketCanal.emit('send_message_client_to_server', state.fourtwentyoneChats.roomId, { content: `${message.author} joined`, author: 'Bartender' });
       });
 
 
@@ -62,21 +80,25 @@ const socket = (store) => (next) => (action) => {
       // sur le canal d'échange socketCanal j'ai accès à une méthode emit pour émettre un évènement
       // En premier argument on a le type d'évènement, en 2ème des infos véhiculées avec l'évènement
       // next(action);
+
       break;
     }
+// ====================================================================================================== //
     case WEBSOCKET_DISCONNECT: {
       //debugger;
       console.log('middleware chatrooms je veux me déconnecter');
       const state = store.getState();
+
       // socketCanal = window.io('http://localhost:3001');
       if (socketCanal !== undefined) {
         console.log(socketCanal.id);
-        socketCanal.emit('disconnect', state.user.userToken.username);
+        socketCanal.emit('disconnect', state.user.userToken.username, state.fourtwentyoneChats.roomId);
         socketCanal.disconnect();
         socketCanal.close();
       }
       break;
     }
+// ====================================================================================================== //
     case SEND_MESSAGE: {
       console.log('on demande d\'envoyer un message, je traduis comment ça doit se faire dans le middleware');
       // debugger;
@@ -85,23 +107,27 @@ const socket = (store) => (next) => (action) => {
       // En premier argument on a le type d'évènement, en 2ème des infos véhiculées avec l'évènement
       // on récupère les infos qui nous intéressent du state, avec la fonction .getState qui nous est fournie par le store
       const state = store.getState();
+      const message = { content: state.fourtwentyoneChats.text, author: state.user.userToken.username };
       if (state.fourtwentyoneChats.text !== '') {
         console.log('state : ', store.getState());
-        socketCanal.emit('send_message_client_to_server', state.fourtwentyoneChats.roomId, { content: state.fourtwentyoneChats.text, author: state.user.userToken.username });
+        socketCanal.emit('send_message_client_to_server', state.fourtwentyoneChats.roomId, message);
+        message.id = getNextId(state.fourtwentyoneChats.messages);
+        store.dispatch(receiveMessage(message));
       }
       next(action);
       break;
     }
+// ====================================================================================================== //
     case WEBSOCKET_CREATE_ROOM: {
-      action.roomId = tinyURL(12);
-      console.log('roomId calculated in front : ', action.roomId);
+      // action.roomId = tinyURL(12);
+      // console.log('roomId calculated in front : ', action.roomId);
       // j'envoie le chemin au serveur, qui écoute l'évènement 'set_path'
-      if ((socketCanal === undefined)) {
-        socketCanal = window.io('http://localhost:3001');
-      }
-      else if ((socketCanal.connected === false)) {
-        socketCanal = window.io('http://localhost:3001');
-      }
+      // if ((socketCanal === undefined)) {
+      //   socketCanal = window.io('http://localhost:3001');
+      // }
+      // else if ((socketCanal.connected === false)) {
+      //   socketCanal = window.io('http://localhost:3001');
+      // }
       // socketCanal.emit('set_path', path);
       // j'appelle le store pour avoir mon pseudo
       const state = store.getState();
@@ -109,7 +135,7 @@ const socket = (store) => (next) => (action) => {
       socketCanal.emit('new_user', state.user.userToken.username);
 
       // je demande au socket de me créer une chatroom
-      socketCanal.emit('create_room', action.roomId, state.user.userToken.username);
+      socketCanal.emit('create_room', state.user.userToken.username);
       // j'écoute la réponse
       socketCanal.on('room_created', (room) => {
         console.log('roomId returned from server : ', room);
@@ -125,24 +151,26 @@ const socket = (store) => (next) => (action) => {
       break;
     }
     case WEBSOCKET_GET_ROOM: {
-      if ((socketCanal === undefined)) {
-        socketCanal = window.io('http://localhost:3001');
-      }
-      else if ((socketCanal.connected === false)) {
-        socketCanal = window.io('http://localhost:3001');
-      }
-      console.log(socketCanal);
-      socketCanal.emit('available_rooms');
-      socketCanal.on('available_rooms', (rooms) => {
-        console.log('available_rooms returned from server :', rooms);
-      });
+      // if ((socketCanal === undefined)) {
+      //   socketCanal = window.io('http://localhost:3001');
+      // }
+      // else if ((socketCanal.connected === false)) {
+      //   socketCanal = window.io('http://localhost:3001');
+      // }
+      console.log('id socket : ', socketCanal.id);
+      // socketCanal.emit('available_rooms');
+      // socketCanal.on('available_rooms', (rooms) => {
+      //   console.log('available_rooms returned from server :', rooms);
+      // });
       socketCanal.emit('get_room');
       socketCanal.on('your_room', (yourRoomId) => {
         console.log('i\'ve found you a room : ', yourRoomId);
         store.dispatch(webSocketJoinRoom(yourRoomId));
       });
-      // store.dispatch(webSocketDisconnect());
-      console.log('');
+      socketCanal.on('no_room', () => {
+        console.log('no room available, i create one for ya');
+        store.dispatch(webSocketCreateRoom());
+      });
       break;
     }
     case WEBSOCKET_LEAVE_ROOMS: {

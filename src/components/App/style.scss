@@ -1,11 +1,12 @@
 @import 'src/styles/vars';
 
 body {
-  font-family: sans-serif;
+  font-family: 'Lato', sans-serif;
   background-color: $main-color;
   background-size: cover;
   background-repeat: repeat;
   background-position: 50% 50%;
+  font-size: 16px;
 }
 
 .main {

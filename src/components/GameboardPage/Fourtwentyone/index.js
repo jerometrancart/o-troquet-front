@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect, useHistory, useParams } from 'react-router-dom';
 // import resources
 import Controls from 'src/containers/GameboardPage/Fourtwentyone/controls';
 import Die from 'src/containers/GameboardPage/Fourtwentyone/die';
@@ -13,7 +13,8 @@ import Players from './players';
 
 import './style.scss';
 
-const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webSocketDisconnect, roomId }) => {
+// const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webSocketDisconnect, webSocketListenRoom, roomId }) => {
+const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webSocketDisconnect, webSocketListenRoom }) => {
   /*
   if (!isLogged) {
     return <Redirect to="/" />;
@@ -29,10 +30,17 @@ const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webS
 
   // }, []);
 
+  const { roomId } = useParams();
+
   useEffect(() => {
     webSocketConnect();
     return webSocketDisconnect;
   }, []);
+
+  useEffect(() => {
+    webSocketListenRoom();
+  }, [roomId]);
+
 
   return (
     <div className="gameScreen">
@@ -65,6 +73,7 @@ GameboardPage.propTypes = {
   webSocketConnect: PropTypes.func.isRequired,
   webSocketDisconnect: PropTypes.func.isRequired,
   roomId: PropTypes.string.isRequired,
+  webSocketListenRoom: PropTypes.func.isRequired,
 };
 
 GameboardPage.defaultProps = {

@@ -4,6 +4,7 @@ export const WEBSOCKET_GET_ROOM = 'WEBSOCKET_GET_ROOM';
 export const WEBSOCKET_CREATE_ROOM = 'WEBSOCKET_CREATE_ROOM';
 export const WEBSOCKET_JOIN_ROOM = 'WEBSOCKET_JOIN_ROOM';
 export const WEBSOCKET_LEAVE_ROOMS = 'WEBSOCKET_LEAVE_ROOMS';
+export const WEBSOCKET_LISTEN_ROOM = 'WEBSOCKET_LISTEN_ROOM';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 export const SCROLL_DOWN = 'SCROLL_DOWN';
@@ -39,9 +40,8 @@ export const webSocketGetRoom = () => ({
   type: WEBSOCKET_GET_ROOM,
 });
 
-export const webSocketCreateRoom = (roomId) => ({
+export const webSocketCreateRoom = () => ({
   type: WEBSOCKET_CREATE_ROOM,
-  roomId,
 });
 
 export const webSocketJoinRoom = (roomId) => ({
@@ -52,4 +52,9 @@ export const webSocketJoinRoom = (roomId) => ({
 export const webSocketLeaveRooms = (user) => ({
   type: WEBSOCKET_LEAVE_ROOMS,
   user,
+});
+
+export const webSocketListenRoom = (room) => ({
+  type: WEBSOCKET_LISTEN_ROOM,
+  room,
 });

@@ -7,7 +7,6 @@
 }
 
 .header {
-  position: relative;
   background-color: $main-color;
   height: $header-height;
   text-align: center;
@@ -26,6 +25,8 @@
   text-decoration: none;
   color: $text-color;
 }
+
+
 
 @media (max-width: $breakpoint-tablet) {
   /* ce style va s'appliquer pour toutes les vues plus petites que 1050px (cf vars) */

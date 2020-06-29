@@ -3,15 +3,16 @@ import React, { useEffect, useHistory } from 'react';
 import PropTypes from 'prop-types';
 import { Route, useLocation, Switch, Redirect } from 'react-router-dom';
 
-// == Import
+
+// == Imports
 import Header from 'src/containers/Header';
 // import Welcome from 'src/components/Welcome';
+import Nav from 'src/containers/Nav'
 import Login from 'src/containers/Login';
-import Signin from 'src/containers/Signin';
+
 import GamesListPage from 'src/containers/GamesListPage';
 import GameboardPage from 'src/containers/GameboardPage/Fourtwentyone';
 import Footer from 'src/components/Footer';
-import SideBar from 'src/components/Nav/SideBar.js';
 import AdminPage from 'src/components/AdminPage';
 import Legal from 'src/components/Legal';
 import Team from 'src/components/Team';
@@ -22,13 +23,13 @@ https://codepen.io/Ruegen/pen/oYpEbm
 https://codepen.io/omascaros/pen/CBapm
 */
 
-
 // == Composant
 const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocketDisconnect }) => {
   // hook d'effet : s'applique après le chargement de l'application
 
   // const location = useLocation();
   useEffect(checkIsLogged, []);
+
 
   useEffect(getRandomBackgroundImage, []);
 
@@ -43,12 +44,15 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
   //   }
   // }, [roomId]);
 
-  return (
+  return ( 
     <div className="main">
+      
       <Header />
-      {sideBar
-      && <SideBar className="sidemenu" pageWrapId="page-wrap" outerContainerId="App" />}
       <div className="app">
+      {isLogged
+      && (
+      <Nav />
+      )}
         <Switch>
           <Route exact path="/">
             {!isLogged
@@ -77,7 +81,7 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
                 <Redirect to="/" />
                 )}
           </Route>
-          <Route exact path="/gameboard/fourtwentyone/:slug">
+          <Route path="/gameboard/fourtwentyone/:roomId">
             {isLogged
               && (
                 <GameboardPage

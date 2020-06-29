@@ -6,12 +6,12 @@ import { rollDice } from 'src/actions/games/fourtwentyone/player';
 import GameboardPage from 'src/components/GameboardPage/Fourtwentyone';
 
 // Action Creators
-import { webSocketConnect, webSocketDisconnect } from 'src/actions/chatrooms/fourtwentyone';
+import { webSocketConnect, webSocketDisconnect, webSocketListenRoom } from 'src/actions/chatrooms/fourtwentyone';
 import { login, logout } from '../../../actions';
 
 const mapStateToProps = (state, ownProps) => ({
   isLogged: state.user.isLogged,
-  roomId: state.fourtwentyoneChats.roomId,
+  roomId: ownProps.match.params.roomId,
 });
 
 
@@ -25,6 +25,9 @@ const mapDispatchToProps = (dispatch) => ({
   webSocketDisconnect: () => {
     dispatch(webSocketDisconnect());
   },
+  webSocketListenRoom: () => {
+    dispatch(webSocketListenRoom());
+  },
 });
 
 const container = connect(
@@ -35,3 +38,4 @@ const container = connect(
 const containerWithRouter = withRouter(container);
 
 export default containerWithRouter;
+

@@ -1,0 +1,34 @@
+@use 'sass:color';
+@import 'src/styles/vars'; 
+
+.friendList {
+  text-align: center;
+  &-title {
+    display: block;
+    margin: 0;
+    // border: 3px, solid, color.adjust($cafe, $lightness: 20%);
+    padding: 1rem;
+    background-color: $cafe;
+    color: white;
+  }
+  &--item {
+    display: flex;
+    justify-content: space-around;
+    // border: 3px, solid, color.adjust($cafe, $lightness: 20%);
+    padding-top: 0.5rem;
+    color: $grey ;
+/*     &:hover {
+      color: $cafe;
+    } */
+    &--name {
+      display: inline-block;
+      width: 80px;
+    }
+  }
+  &--icon {
+    &:hover {
+      color: $cafe;
+      cursor: pointer;
+    }  
+  }
+}
