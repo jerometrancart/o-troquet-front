@@ -6,12 +6,12 @@ import { Route, useLocation, Switch, Redirect } from 'react-router-dom';
 // == Import
 import Header from 'src/containers/Header';
 // import Welcome from 'src/components/Welcome';
+import Nav from 'src/containers/Nav'
 import Login from 'src/containers/Login';
-import Signin from 'src/containers/Signin';
+
 import GamesListPage from 'src/containers/GamesListPage';
 import GameboardPage from 'src/containers/GameboardPage/Fourtwentyone';
 import Footer from 'src/components/Footer';
-import SideBar from 'src/components/Nav/SideBar.js';
 import AdminPage from 'src/components/AdminPage';
 import Legal from 'src/components/Legal';
 import Team from 'src/components/Team';
@@ -21,7 +21,6 @@ import { getRandomBackgroundImage } from 'src/selectors';
 https://codepen.io/Ruegen/pen/oYpEbm
 https://codepen.io/omascaros/pen/CBapm
 */
-
 
 // == Composant
 const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocketDisconnect }) => {
@@ -43,11 +42,15 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
   //   }
   // }, [roomId]);
 
-  return (
+  return ( 
     <div className="main">
+      {isLogged
+      && (
+      <Nav />
+      )}
       <Header />
-      {sideBar
-      && <SideBar className="sidemenu" pageWrapId="page-wrap" outerContainerId="App" />}
+
+
       <div className="app">
         <Switch>
           <Route exact path="/">
