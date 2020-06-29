@@ -14,7 +14,6 @@ const mapStateToProps = (state, ownProps) => ({
   roomId: ownProps.match.params.roomId,
 });
 
-
 const mapDispatchToProps = (dispatch) => ({
   rollDice: () => {
     dispatch(rollDice());
