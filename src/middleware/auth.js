@@ -133,7 +133,7 @@ damien
         });
 */
       /*   ========   FIN REQUETE AJAX    ========  */
-
+      store.dispatch(getFriends());
       next(action);
       break;
     }

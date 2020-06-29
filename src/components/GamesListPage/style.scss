@@ -80,7 +80,8 @@ img {
 
 .welcome {
   color : $text-color;
-  text-shadow: 1px 1px 1px $main-color, -1px -1px 1px $main-color;
+  text-shadow: 1px 1px 1px black, -1px -1px 1px black;
+  font-weight: bold;
 }
 
 .userPseudo {

@@ -3,7 +3,8 @@ import React, { useEffect, useHistory } from 'react';
 import PropTypes from 'prop-types';
 import { Route, useLocation, Switch, Redirect } from 'react-router-dom';
 
-// == Import
+
+// == Imports
 import Header from 'src/containers/Header';
 // import Welcome from 'src/components/Welcome';
 import Nav from 'src/containers/Nav'
@@ -29,6 +30,7 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
   // const location = useLocation();
   useEffect(checkIsLogged, []);
 
+
   useEffect(getRandomBackgroundImage, []);
 
   // useEffect(webSocketDisconnect, []);
@@ -44,14 +46,13 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
 
   return ( 
     <div className="main">
+      
+      <Header />
+      <div className="app">
       {isLogged
       && (
       <Nav />
       )}
-      <Header />
-
-
-      <div className="app">
         <Switch>
           <Route exact path="/">
             {!isLogged

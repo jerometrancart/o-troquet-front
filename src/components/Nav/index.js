@@ -7,10 +7,10 @@ import { NavLink } from 'react-router-dom';
 const Nav = ( { menuItems, username, isLogged, /* check */ } ) => (
   <nav className="menu">
     <NavLink
-      to="/"
+      to="/gameselect"
       exact
       className="menu-link"
-      activeClassname="menu-link--current"
+      activeclassname="menu-link--current"
     >Accueil
     </NavLink>
     {/* Je recupère le tableau menuItems depuis le reducer user
@@ -24,7 +24,7 @@ const Nav = ( { menuItems, username, isLogged, /* check */ } ) => (
         to={url}
         key={id}
         className="menu-link"
-        activeClassname="menu-link--current"
+        activeclassname="menu-link--current"
       >{title}
       </NavLink>
     ))} 
@@ -42,10 +42,9 @@ Nav.propTypes = {
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
     }),
-  ).isRequired, 
-/*   check: PropTypes.func.isRequired,  */
-  username: PropTypes.string.isRequired, 
+  ).isRequired,
+  username: PropTypes.string.isRequired,
   isLogged: PropTypes.bool.isRequired,
-}; 
+};
 
 export default Nav;

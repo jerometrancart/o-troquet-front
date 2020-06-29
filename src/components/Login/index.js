@@ -79,6 +79,7 @@ Login.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
   // toggleSigninModal: PropTypes.func.isRequired,
+
   show: PropTypes.string.isRequired,
   variant: PropTypes.string.isRequired,
   textAlert: PropTypes.string.isRequired,
