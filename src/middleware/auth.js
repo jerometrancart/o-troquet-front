@@ -1,12 +1,13 @@
-import { 
-  LOGIN,
-  changeValue,
-  authSuccess,
-  CHECK,
-  REGISTER,
-  alertShow,
-  getFriends,
-  LOGOUT } from 'src/actions/user';
+import { LOGIN,
+        changeValue,
+        authSuccess,
+        CHECK,
+        connect,
+        REGISTER,
+        alertShow,
+        LOGOUT
+       } from 'src/actions/user';
+import { webSocketDisconnect } from 'src/actions/chatrooms/fourtwentyone';
 
 import axios from 'axios';
 import jwt from 'jwt-decode';
@@ -37,6 +38,7 @@ const auth = (store) => (next) => (action) => {
         .then((response) => {
           // debugger
           console.log(response);
+          // on ne garde pas le mot de passe de l'utilisateur en dans le state !
           const actionToDeletePassword = changeValue('password', '');
           store.dispatch(actionToDeletePassword);
           if (response.data.token) {
@@ -194,7 +196,10 @@ damien
       break;
     }
     case LOGOUT: {
-      localStorage.removeItem('tokenOTroquet', 'userId');
+      localStorage.removeItem('tokenOTroquet');
+      console.log('middleware auth je veux me déconnecter');
+      webSocketDisconnect();
+
       next(action);
       break;
     }

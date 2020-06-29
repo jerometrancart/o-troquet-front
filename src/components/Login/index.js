@@ -13,7 +13,7 @@ import Signin from 'src/containers/Signin';
 // import de styles
 import './style.scss';
 
-const Login = ({ isLogged, login, show, variant, textAlert }) => {
+const Login = ({ isLogged, login, show, variant, textAlert, webSocketDisconnect, roomId }) => {
   const history = useHistory();
   const [signinModal, toggleSigninModal] = useModali();
   if (isLogged) {
@@ -29,7 +29,7 @@ const Login = ({ isLogged, login, show, variant, textAlert }) => {
     login();
     history.push('/gameselect');
   };
-
+  // useEffect(webSocketDisconnect)
   useEffect(() => {
     // focus sur l'input du pseudo au premier chargement de la page
     const usernameInput = document.querySelector("input[name='username']");
@@ -78,11 +78,13 @@ const Login = ({ isLogged, login, show, variant, textAlert }) => {
 Login.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
-  toggleSigninModal: PropTypes.func,
+  // toggleSigninModal: PropTypes.func.isRequired,
+
   show: PropTypes.string.isRequired,
   variant: PropTypes.string.isRequired,
   textAlert: PropTypes.string.isRequired,
   alertShow: PropTypes.func.isRequired,
+  webSocketDisconnect: PropTypes.func.isRequired,
 };
 /*
 Login.defaultProps = {

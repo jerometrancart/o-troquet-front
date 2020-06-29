@@ -6,6 +6,7 @@ import rootReducer from '../reducers';
 import auth from '../middleware/auth';
 import userFriends from '../middleware/userFriends';
 import fourtwentyoneControls from '../middleware/games/fourtwentyone';
+import fourtwentyoneChat from '../middleware/chatrooms/fourtwentyone';
 
 // == Enhancers
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -15,6 +16,7 @@ const enhancers = composeEnhancers(
     auth,
     userFriends,
     fourtwentyoneControls,
+    fourtwentyoneChat,
   ),
 );
 
