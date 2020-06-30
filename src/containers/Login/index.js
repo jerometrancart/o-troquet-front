@@ -3,14 +3,24 @@ import { connect } from 'react-redux';
 import Login from 'src/components/Login';
 
 // Action Creators
-import { login } from '../../actions/user';
+import { login, alertShow } from '../../actions/user';
+import { webSocketDisconnect } from 'src/actions/chatrooms/fourtwentyone';
 
 const mapStateToProps = (state) => ({
   isLogged: state.user.isLogged,
+  show: state.user.show,
+  variant: state.user.variant,
+  textAlert: state.user.textAlert,
 });
 const mapDispatchToProps = (dispatch) => ({
   login: () => {
     dispatch(login());
+  },
+  alertShow: (show, variant, textAlert) => {
+    dispatch(alertShow(show, variant, textAlert));
+  },
+  webSocketDisconnect: () => {
+    dispatch(webSocketDisconnect());
   },
 });
 

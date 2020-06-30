@@ -1,7 +1,7 @@
 // import des librairies
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Grid } from "semantic-ui-react";
+import { Button, Form, Grid, Message } from "semantic-ui-react";
 import { Link, useHistory, Redirect } from 'react-router-dom';
 import Modali, { useModali } from 'modali';
 
@@ -13,7 +13,7 @@ import Signin from 'src/containers/Signin';
 // import de styles
 import './style.scss';
 
-const Login = ({ isLogged, login }) => {
+const Login = ({ isLogged, login, show, variant, textAlert, webSocketDisconnect, roomId }) => {
   const history = useHistory();
   const [signinModal, toggleSigninModal] = useModali({
     animated: true
@@ -24,16 +24,28 @@ const Login = ({ isLogged, login }) => {
       <Redirect to="/gameselect" />
     ); */
   }
+
   const handleLogin = (evt) => {
     evt.preventDefault();
     console.log('ok connexion');
     login();
     history.push('/gameselect');
   };
+  // useEffect(webSocketDisconnect)
+  useEffect(() => {
+    // focus sur l'input du pseudo au premier chargement de la page
+    const usernameInput = document.querySelector("input[name='username']");
+    console.log(usernameInput);
+    usernameInput.focus();
+  }, []);
+
   return (
     <Grid className="center aligned">
       <form autoComplete="on" className="login-form-element" onSubmit={handleLogin}>
         <h2 className="form-title">Je me connecte </h2>
+        <Message className={show} color={variant}>
+          {textAlert}
+        </Message>
         <div className="oauth">
           <Button circular color="facebook" icon="facebook" />
           <Button circular color="google plus" icon="google plus g" />
@@ -68,7 +80,13 @@ const Login = ({ isLogged, login }) => {
 Login.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
-  toggleSigninModal: PropTypes.func.isRequired,
+  // toggleSigninModal: PropTypes.func.isRequired,
+
+  show: PropTypes.string.isRequired,
+  variant: PropTypes.string.isRequired,
+  textAlert: PropTypes.string.isRequired,
+  alertShow: PropTypes.func.isRequired,
+  webSocketDisconnect: PropTypes.func.isRequired,
 };
 /*
 Login.defaultProps = {

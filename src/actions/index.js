@@ -53,5 +53,3 @@ export const Profile = () => ({
 export const Stats = () => ({
   type: STATS,
 });
-
-

@@ -4,8 +4,10 @@ export const FINISH_LOADING = 'FINISH_LOADING';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const LOGOUT = 'LOGOUT';
 export const CHECK = 'CHECK';
+export const CONNECT = 'CONNECT';
 export const REGISTER = 'REGISTER';
-
+export const ALERT_SHOW = 'ALERT_SHOW';
+export const GET_FRIENDS = 'GET_FRIENDS';
 
 export const changeValue = (name, value) => ({
   type: CHANGE_VALUE,
@@ -21,7 +23,7 @@ export const finishLoading = () => ({
   type: FINISH_LOADING,
 });
 
-export const authSuccess = (token, user) => ({
+export const authSuccess = (token, user, userId) => ({
   type: AUTH_SUCCESS,
   token,
   user,
@@ -35,8 +37,22 @@ export const check = () => ({
   type: CHECK,
 });
 
+export const connect = () => ({
+  type: CONNECT,
+});
+
 export const register = () => ({
   type: REGISTER,
 });
 
+export const alertShow = (show, variant, textAlert) => ({
+  type: ALERT_SHOW,
+  show,
+  variant,
+  textAlert,
+});
 
+export const getFriends = (friends) => ({
+  type: GET_FRIENDS,
+  friends,
+});

@@ -1,0 +1,33 @@
+@import 'src/styles/vars';
+
+.chatroom-form {
+  /*
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  */
+  height: 3rem;
+  display: flex;
+
+  &-input {
+    width: 100%;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    background-color: adjust-color($color: $table-color, $lightness: 5%,);
+    border: 1px solid adjust-color($color: $board-color, $lightness: 10%,);
+    color: adjust-color($color: $board-color, $lightness: 50%,);
+  }
+
+  &-button {
+    padding: 0.6rem 1rem;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: adjust-color($color: $table-color, $lightness: 5%,);
+    border: 1px solid adjust-color($color: $board-color, $lightness: 10%,);
+    color: adjust-color($color: $board-color, $lightness: 20%,);
+    border-radius: 5px;
+  }
+}

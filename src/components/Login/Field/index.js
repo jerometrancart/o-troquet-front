@@ -1,5 +1,5 @@
 // == Import : npm
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // == Import : local

@@ -54,19 +54,26 @@
     "webpack-merge": "*"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.29",
+    "@fortawesome/free-solid-svg-icons": "^5.13.1",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "axios": "^0.19.2",
     "jwt-decode": "^2.2.0",
     "modali": "^1.2.0",
     "prop-types": "*",
     "react": "*",
+    "react-bootstrap": "^1.0.1",
     "react-burger-menu": "^2.6.15",
     "react-dom": "*",
+    "react-feather": "^2.0.8",
     "react-redux": "*",
     "react-router-dom": "^5.2.0",
     "redux": "*",
     "redux-burger-menu": "^0.2.8",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.2",
+    "socket.io": "^2.3.0",
+    "socketcluster-client": "^16.0.1",
     "styled-components": "*"
   }
 }
