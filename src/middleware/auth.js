@@ -1,14 +1,14 @@
 import { LOGIN,
-        changeValue,
-        authSuccess,
-        CHECK,
-        connect,
-        REGISTER,
-        alertShow,
-        LOGOUT,
-        getFriends,
-        AUTH_SUCCESS,
-       } from 'src/actions/user';
+  changeValue,
+  authSuccess,
+  CHECK,
+  connect,
+  REGISTER,
+  alertShow,
+  LOGOUT,
+  getFriends,
+  AUTH_SUCCESS,
+} from 'src/actions/user';
 import { webSocketDisconnect, webSocketListenRoom, webSocketConnect, checkRoom } from 'src/actions/chatrooms/fourtwentyone';
 
 
@@ -61,6 +61,7 @@ const auth = (store) => (next) => (action) => {
             const actionToSaveToken = changeValue('tokenOTroquet', response.data.token);
             store.dispatch(actionToSaveToken);
             store.dispatch(authSuccess(response.data.token, user));
+            store.dispatch(getFriends());
           }
           else {
             if (response.data.metadata.banned === true) {
@@ -138,21 +139,15 @@ damien
       if (roomId !== '') {
         // il y a des caractères à la fin de l'url, nous allons vérifier qu'ils constituent une room valide
         // store.dispatch(changeValue('roomId', roomId));
-        
         // const socket = store.dispatch(webSocketConnect());
         store.dispatch(webSocketConnect(roomId));
         // console.log(socket);
         // const socket = window.io('http://localhost:3001');
-        
-
         next(action);
       }
       // )
-      
       next(action);
-    }
-    break;
-    
+    } break;
     case REGISTER: {
       console.log(action);
       /*   ========      regex       ========  */
