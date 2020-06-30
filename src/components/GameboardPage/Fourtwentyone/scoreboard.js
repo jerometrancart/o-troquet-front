@@ -8,8 +8,8 @@ import './style.scss';
 
 const Scoreboard = ({ children }) => (
   <div className="scoreboard">
-    Scoreboard
-    {children}
+    <h2 className="scoreboard--title">Score :</h2>
+    {/* {children} */}
   </div>
 
 );

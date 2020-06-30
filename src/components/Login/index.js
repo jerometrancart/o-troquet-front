@@ -16,7 +16,7 @@ import './style.scss';
 const Login = ({ isLogged, login, show, variant, textAlert, webSocketDisconnect, roomId }) => {
   const history = useHistory();
   const [signinModal, toggleSigninModal] = useModali({
-    animated: true
+    animated: true,
   });
   if (isLogged) {
     history.push('/gameselect');

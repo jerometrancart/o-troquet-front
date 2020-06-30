@@ -8,7 +8,7 @@
     margin: 0;
     // border: 3px, solid, color.adjust($cafe, $lightness: 20%);
     padding: 1rem;
-    background-color: color.adjust(#975B33, $lightness: 15%);
+    background-color: color.adjust($brown, $lightness: 15%);
     color: white;
   }
   &--item {
@@ -27,7 +27,7 @@
   }
   &--icon {
     &:hover {
-      color: $cafe;
+      color: $brown;
       cursor: pointer;
     }  
   }

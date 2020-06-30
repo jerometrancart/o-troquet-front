@@ -14,32 +14,20 @@ import { Plus } from 'react-feather';
 import Stats from 'src/containers/Stats';
 
 // Composants
-const Nav = (friendList) => {
-  const [StatsModal, toggleStatsModal] = useModali({
-    animated: true,
-  });
-
-  const [ProfilModal, toggleProfilModal] = useModali({
-    animated: true,
-  });
-
+/* const Nav = (friendList) => {
   return (
     <nav className="menu">
       <a className="menu-link menu-link--current">Accueil</a>
       <a className="menu-link menu-link--current" onClick={toggleProfilModal}>Profil</a>
-      <Modali.Modal className="stats" {...ProfilModal}>
         <Profile />
-      </Modali.Modal>
       <a className="menu-link menu-link--current" onClick={toggleStatsModal}>Statistiques / Récompenses</a>
-      <Modali.Modal className="stats" {...StatsModal}>
         <Stats />
-      </Modali.Modal>
       <a className="menu-link menu-link--current">Amis</a>
       <a className="menu-link menu-link--current">Retour au bar</a>
-      <Friendlist /* friendList={friendList} */ />
+      <Friendlist />
     </nav>
   );
-};
+}; */
 
 /* Nav.propTypes = {
   menuItems: PropTypes.arrayOf(
@@ -47,15 +35,11 @@ const Nav = (friendList) => {
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
     }),
-  ).isRequired, 
+  ).isRequired,
 }; */
 
-
-
-
-    /* Je recupère au dessus le tableau depuis src/data */
-
-/* const Nav = ( { menuItems, username, isLogged, /* check */ /* } ) => (
+/* Je recupère au dessus le tableau depuis src/data */
+const Nav = ( { menuItems, username, isLogged, } ) => (
   <nav className="menu">
     <button type="button" className="menu-toggler"> <Plus color="#5C5874" size="100%" /></button>
     <NavLink
@@ -64,15 +48,9 @@ const Nav = (friendList) => {
       className="menu-link"
       activeclassname="menu-link--current"
     >Accueil
-    </NavLink> */ 
-    {/* Je recupère le tableau menuItems depuis le reducer user
+    </NavLink>
 
-    Ci-dessous, je le map pour recupéré un item, je
-    destructure cet item pour récupérer son id et son title
-    je m'en sers pour générer autant de <a> que d'items dans
-    le tableau
-    */}
-/*     {menuItems.map(({ id, title, url }) => (
+    {menuItems.map(({ id, title, url }) => (
       <NavLink
         to={url}
         key={id}
@@ -80,16 +58,9 @@ const Nav = (friendList) => {
         activeclassname="menu-link--current"
       >{title}
       </NavLink>
-    ))}  */
-    {/* <a className="menu-link menu-link--current">Profil</a>
-        <a className="menu-link menu-link--current">Statistiques / Récompenses</a>
-        <a className="menu-link menu-link--current">Amis</a>
-        <a className="menu-link menu-link--current">Retour au bar</a> */}
-
-    
-/*   </nav>
-); */
-
+    ))}
+  </nav>
+);
 
 Nav.propTypes = {
   menuItems: PropTypes.arrayOf(
