@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 
 import Modali, { useModali } from 'modali';
@@ -6,6 +7,10 @@ import Profile from 'src/containers/Profile';
 
 import './style.scss';
 import PropTypes from 'prop-types';
+
+import { NavLink } from 'react-router-dom';
+import { Plus } from 'react-feather';
+
 import Stats from 'src/containers/Stats';
 
 // Composants
@@ -47,10 +52,12 @@ const Nav = (friendList) => {
 
 
 
+
     /* Je recupère au dessus le tableau depuis src/data */
 
 /* const Nav = ( { menuItems, username, isLogged, /* check */ /* } ) => (
   <nav className="menu">
+    <button type="button" className="menu-toggler"> <Plus color="#5C5874" size="100%" /></button>
     <NavLink
       to="/gameselect"
       exact
@@ -78,9 +85,11 @@ const Nav = (friendList) => {
         <a className="menu-link menu-link--current">Statistiques / Récompenses</a>
         <a className="menu-link menu-link--current">Amis</a>
         <a className="menu-link menu-link--current">Retour au bar</a> */}
+
     
 /*   </nav>
 ); */
+
 
 Nav.propTypes = {
   menuItems: PropTypes.arrayOf(

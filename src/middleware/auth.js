@@ -112,7 +112,7 @@ http://ec2-35-153-19-27.compute-1.amazonaws.com/phpmyadmin/
 damien
 729Cbk192!
 */
-      store.dispatch(getFriends());
+
       next(action);
       break;
     }
