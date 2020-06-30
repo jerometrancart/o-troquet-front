@@ -27,12 +27,12 @@ const userFriends = (store) => (next) => (action) => {
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            // withCredentials: true,
           },
+        //   { withCredentials: true },
         })
         .then((response) => {
-          //debugger
-          console.log(response.data.success[0].friends);
+          // debugger
+          console.log('my friends : ', response.data.success[0].friends);
           const actionToLoadFriendsList = changeValue('friends', response.data.success[0].friends);
           store.dispatch(actionToLoadFriendsList);
         })
