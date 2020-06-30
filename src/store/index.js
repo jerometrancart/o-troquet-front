@@ -16,7 +16,7 @@ const enhancers = composeEnhancers(
     auth,
     userFriends,
     fourtwentyoneControls,
-    // fourtwentyoneChat,
+    fourtwentyoneChat,
   ),
 );
 

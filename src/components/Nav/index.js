@@ -1,12 +1,61 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
+
+import Modali, { useModali } from 'modali';
 import Friendlist from 'src/containers/Friendlist';
+import Profile from 'src/containers/Profile';
+
 import './style.scss';
 import PropTypes from 'prop-types';
+
 import { NavLink } from 'react-router-dom';
 import { Plus } from 'react-feather';
 
-const Nav = ( { menuItems, username, isLogged, /* check */ } ) => (
+import Stats from 'src/containers/Stats';
+
+// Composants
+const Nav = (friendList) => {
+  const [StatsModal, toggleStatsModal] = useModali({
+    animated: true,
+  });
+
+  const [ProfilModal, toggleProfilModal] = useModali({
+    animated: true,
+  });
+
+  return (
+    <nav className="menu">
+      <a className="menu-link menu-link--current">Accueil</a>
+      <a className="menu-link menu-link--current" onClick={toggleProfilModal}>Profil</a>
+      <Modali.Modal className="stats" {...ProfilModal}>
+        <Profile />
+      </Modali.Modal>
+      <a className="menu-link menu-link--current" onClick={toggleStatsModal}>Statistiques / Récompenses</a>
+      <Modali.Modal className="stats" {...StatsModal}>
+        <Stats />
+      </Modali.Modal>
+      <a className="menu-link menu-link--current">Amis</a>
+      <a className="menu-link menu-link--current">Retour au bar</a>
+      <Friendlist /* friendList={friendList} */ />
+    </nav>
+  );
+};
+
+/* Nav.propTypes = {
+  menuItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    }),
+  ).isRequired, 
+}; */
+
+
+
+
+    /* Je recupère au dessus le tableau depuis src/data */
+
+/* const Nav = ( { menuItems, username, isLogged, /* check */ /* } ) => (
   <nav className="menu">
     <button type="button" className="menu-toggler"> <Plus color="#5C5874" size="100%" /></button>
     <NavLink
@@ -15,14 +64,15 @@ const Nav = ( { menuItems, username, isLogged, /* check */ } ) => (
       className="menu-link"
       activeclassname="menu-link--current"
     >Accueil
-    </NavLink>
+    </NavLink> */ 
     {/* Je recupère le tableau menuItems depuis le reducer user
+
     Ci-dessous, je le map pour recupéré un item, je
     destructure cet item pour récupérer son id et son title
     je m'en sers pour générer autant de <a> que d'items dans
     le tableau
     */}
-    {menuItems.map(({ id, title, url }) => (
+/*     {menuItems.map(({ id, title, url }) => (
       <NavLink
         to={url}
         key={id}
@@ -30,14 +80,16 @@ const Nav = ( { menuItems, username, isLogged, /* check */ } ) => (
         activeclassname="menu-link--current"
       >{title}
       </NavLink>
-    ))} 
+    ))}  */
     {/* <a className="menu-link menu-link--current">Profil</a>
         <a className="menu-link menu-link--current">Statistiques / Récompenses</a>
         <a className="menu-link menu-link--current">Amis</a>
         <a className="menu-link menu-link--current">Retour au bar</a> */}
-    <Friendlist /* friendList={friendList} */ />
-  </nav>
-);
+
+    
+/*   </nav>
+); */
+
 
 Nav.propTypes = {
   menuItems: PropTypes.arrayOf(
