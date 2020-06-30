@@ -61,6 +61,7 @@ const auth = (store) => (next) => (action) => {
             const actionToSaveToken = changeValue('tokenOTroquet', response.data.token);
             store.dispatch(actionToSaveToken);
             store.dispatch(authSuccess(response.data.token, user));
+            store.dispatch(getFriends());
           }
           else {
             if (response.data.metadata.banned === true) {
@@ -135,7 +136,6 @@ damien
         });
 */
       /*   ========   FIN REQUETE AJAX    ========  */
-      store.dispatch(getFriends());
       next(action);
       break;
     }

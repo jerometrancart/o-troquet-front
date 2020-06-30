@@ -17,8 +17,10 @@ body {
   text-align: center;
   width: 80%;
   max-width: 1000px;
-  height: calc(100vh-#{$header-height}-#{$footer-height});
-  min-height: calc(#{$header-height}+#{$footer-height}+280px);
+  // height: calc(100vh-#{$header-height}-#{$footer-height});
+  height: 80vh;
+  // min-height: calc(#{$header-height}+#{$footer-height}+280px);
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,23 +55,23 @@ body {
 
 @media (max-width: $breakpoint-tablet) {
   /* ce style va s'appliquer pour toutes les vues plus petites que 1050px (cf vars) */
-  .app {
+/*   .app {
     height: calc(100vh-#{$header-height}*.85-#{$footer-height});
-    }
+    } */
   
   @media (max-width: $breakpoint-phone) {
     /* ce style va s'appliquer pour toutes les vues plus petites que 510px (cf vars) */
     .body {
       overflow-y: scroll;
     }
-    .app {
+/*     .app {
       height: calc(100vh-#{$header-height}*.7-#{$footer-height});
       min-height: 490px;
     }
     .main {
       height :0;
       min-height: calc(#{$header-height}*.7+#{$footer-height}+280px);
-    }
+    } */
   }
 }
 
