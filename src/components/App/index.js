@@ -115,12 +115,12 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
             />
           </Route> */}
           <Route>
-            <p className="error">404 fais gaffe dude</p>
+            <p className="errorPage">404 fais gaffe dude</p>
           </Route>
         </Switch>
         )}
         {loading && (
-          <p className="loading">Veuillez patienter. Nous ouvrons la boutique ...</p>
+          <p className="loadingPage">Veuillez patienter. Nous ouvrons la boutique ...</p>
         )}
       </div>
       <Footer
