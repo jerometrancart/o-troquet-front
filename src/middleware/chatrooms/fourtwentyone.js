@@ -28,12 +28,13 @@ const url = 'http://localhost:3001';
 
 // const url = '192.168.56.101:3001';
  
-
+let listeneradded = false;
 
 const socket = (store) => (next) => (action) => {
   console.log('dans socket middleware : ', action);
   switch (action.type) {
     case WEBSOCKET_CONNECT: {
+      console.log('websocket lancé');
       // open general canal, using .io lib (coming from script in index.html)
       // connect only if not already connected
       if ((socketCanal === undefined)) {
@@ -43,13 +44,14 @@ const socket = (store) => (next) => (action) => {
         socketCanal = window.io(url);
       }
       // socketCanal = window.io(url);
-
+      if (!listeneradded) {
       if (action.roomId !== undefined) {
         socketCanal.emit('check_room_client_to_server', action.roomId);
         socketCanal.on('check_room_server_to_client_ok', () => {
+          // console.log('check_room_server_to_client_ok');
           // window.io(url).emit('check_room_client_to_server', roomId);
           // window.io(url).on('check_room_server_to_client_ok', () => {
-          store.dispatch(webSocketListenRoom());
+          // store.dispatch(webSocketListenRoom());
           next(action);
         });
         socketCanal.on('check_room_server_to_client_not_ok', () => {
@@ -60,20 +62,10 @@ const socket = (store) => (next) => (action) => {
           action.roomId = '';
         });
       }
-      break;
-    }
-// ====================================================================================================== //
-    case WEBSOCKET_LISTEN_ROOM: {
-      // i get my state, to recognize my username
-      const state = store.getState();
-      action.roomId = state.fourtwentyoneChats.roomId;
-      console.log('my room i\'m listening to : ', action.roomId)
-      // i emit an action the server will recognize and broadcast, with a message
-      const id = getNextId(state.fourtwentyoneChats.messages);
-      socketCanal.emit('new_user_client_to_server', state.fourtwentyoneChats.roomId, { content: ' joined', author: state.user.userToken.username, id });
-      
-      // listen to new users joining and manage their messages differently
-      socketCanal.on('new_user_server_to_client', (message) => {
+     
+       // listen to new users joining and manage their messages differently
+       socketCanal.on('new_user_server_to_client', (message) => {
+        const state = store.getState();
         console.log('new user ', message.author);
         message.id = getNextId(state.fourtwentyoneChats.messages);
         store.dispatch(receiveMessage({ content: `${message.author} joined`, author: 'Bartender', id: message.id }));
@@ -98,13 +90,28 @@ const socket = (store) => (next) => (action) => {
       socketCanal.on('user-disconnected', (name) => {
         store.dispatch(receiveMessage({ author: name, content: ' disconnected' }));
       });
+
+      listeneradded = true;
+    }
       // on écoute un événement, ça fonctionne comme les écouteurs d'événements qu'on connait bien
       // document.addEventListener('click', () => { })
       // ici j'envoie un message
       // sur le canal d'échange socketCanal j'ai accès à une méthode emit pour émettre un évènement
       // En premier argument on a le type d'évènement, en 2ème des infos véhiculées avec l'évènement
-      // next(action);
-
+      break;
+    }
+// ====================================================================================================== //
+    case WEBSOCKET_LISTEN_ROOM: {
+      // i get my state, to recognize my username
+      const state = store.getState();
+      action.roomId = state.fourtwentyoneChats.roomId;
+      console.log('ICI  !!!!!!!!!!!!!!!! : ', action.roomId);
+      // i emit an action the server will recognize and broadcast, with a message
+      const id = getNextId(state.fourtwentyoneChats.messages);
+      socketCanal.emit('new_user_client_to_server', state.fourtwentyoneChats.roomId, { content: ' joined', author: state.user.userToken.username, id });
+      
+     
+      next(action);
       break;
     }
 // ====================================================================================================== //
@@ -136,7 +143,7 @@ const socket = (store) => (next) => (action) => {
         console.log('state : ', store.getState());
         socketCanal.emit('send_message_client_to_server', state.fourtwentyoneChats.roomId, message);
         message.id = getNextId(state.fourtwentyoneChats.messages);
-        store.dispatch(receiveMessage(message));
+        // store.dispatch(receiveMessage(message));
       }
       next(action);
       break;
