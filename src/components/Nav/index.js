@@ -1,11 +1,14 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 import Friendlist from 'src/containers/Friendlist';
 import './style.scss';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { Plus } from 'react-feather';
 
 const Nav = ( { menuItems, username, isLogged, /* check */ } ) => (
   <nav className="menu">
+    <button type="button" className="menu-toggler"> <Plus color="#5C5874" size="100%" /></button>
     <NavLink
       to="/gameselect"
       exact
@@ -32,7 +35,7 @@ const Nav = ( { menuItems, username, isLogged, /* check */ } ) => (
         <a className="menu-link menu-link--current">Statistiques / Récompenses</a>
         <a className="menu-link menu-link--current">Amis</a>
         <a className="menu-link menu-link--current">Retour au bar</a> */}
-    <Friendlist /* friendList={friendList} *//>
+    <Friendlist /* friendList={friendList} */ />
   </nav>
 );
 

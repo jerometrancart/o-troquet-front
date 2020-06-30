@@ -29,8 +29,6 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
 
   // const location = useLocation();
   useEffect(checkIsLogged, []);
-
-
   useEffect(getRandomBackgroundImage, []);
 
   // useEffect(webSocketDisconnect, []);
@@ -44,15 +42,14 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
   //   }
   // }, [roomId]);
 
-  return ( 
-    <div className="main">
-      
+  return (
+    <div className="main">  
       <Header />
       <div className="app">
-      {isLogged
-      && (
-      <Nav />
-      )}
+        {isLogged
+        && (
+          <Nav />
+        )}
         <Switch>
           <Route exact path="/">
             {!isLogged
