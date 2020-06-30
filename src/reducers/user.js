@@ -33,7 +33,7 @@ export const initialState = {
     },
   ],
   friends: [
-    {
+/*     {
       isAccepted: false,
       isAnswered: true,
       friendDetails: {
@@ -72,7 +72,7 @@ export const initialState = {
         id: 5,
         username: 'Florian',
       },
-    },
+    }, */
   ],
   axiosFriends: [],
 

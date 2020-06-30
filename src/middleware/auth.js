@@ -11,6 +11,7 @@ import { LOGIN,
        } from 'src/actions/user';
 import { webSocketDisconnect, webSocketListenRoom, webSocketConnect, checkRoom } from 'src/actions/chatrooms/fourtwentyone';
 
+
 import axios from 'axios';
 import jwt from 'jwt-decode';
 
@@ -122,6 +123,7 @@ damien
         const actionToGetId = changeValue('userId', userId);
         store.dispatch(actionToGetId); */
         store.dispatch(authSuccess(localStorage.tokenOTroquet, user));
+        store.dispatch(getFriends());
         // store.dispatch(checkRoom());
       }
       else {
