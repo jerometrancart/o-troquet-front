@@ -24,7 +24,7 @@ const Friendlist = ({ friends, curUsername, isLogged,}) => {
 };
 
 Friendlist.propTypes = {
-  friends: PropTypes.array.isRequired,
+  friends: PropTypes.array,
   // friendDetails: PropTypes.object.isRequired,
   curUsername: PropTypes.string.isRequired,
   isLogged: PropTypes.bool.isRequired,

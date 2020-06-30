@@ -1,12 +1,14 @@
-import { LOGIN,
-        changeValue,
-        authSuccess,
-        CHECK,
-        connect,
-        REGISTER,
-        alertShow,
-        LOGOUT
-       } from 'src/actions/user';
+import { 
+  LOGIN,
+  changeValue,
+  authSuccess,
+  CHECK,
+  connect,
+  REGISTER,
+  alertShow,
+  LOGOUT,
+  getFriends,
+} from 'src/actions/user';
 import { webSocketDisconnect } from 'src/actions/chatrooms/fourtwentyone';
 
 import axios from 'axios';
@@ -145,6 +147,7 @@ damien
         const actionToGetId = changeValue('userId', userId);
         store.dispatch(actionToGetId); */
         store.dispatch(authSuccess(localStorage.tokenOTroquet, user));
+        store.dispatch(getFriends());
       }
       break;
     }
