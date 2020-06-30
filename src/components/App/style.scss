@@ -41,11 +41,13 @@ body {
   text-shadow: 1.5px 1.5px 1.5px $main-color, -1.5px -1.5px 1.5px $main-color;
 }
 
-.error {
+.errorPage, .loadingPage {
   align-items: center;
   text-align: center;
   font-weight: 900;
   font-size: 80px;
+  color: $text-color;
+  text-shadow: 5px 5px 5px $main-color;
 }
 @media (min-width: $breakpoint-tablet) {
   /* ce style va s'appliquer pour toutes les vues plus grandes que 1050px (cf vars) */
