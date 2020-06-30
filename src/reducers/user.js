@@ -1,4 +1,7 @@
 // ici je crée un second reducer qui gère toutes les infos liées au user
+// import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK } from 'src/actions/user';
+import BLACKJACK from 'src/assets/images/blackjack.png';
+import Heart from 'src/assets/images/heart.png';
 
 import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK, ALERT_SHOW } from "src/actions/user";
 import { CHECK_ROOM } from 'src/actions/chatrooms/fourtwentyone';
@@ -14,6 +17,30 @@ export const initialState = {
   loading: true,
   path: '/',
   userToken: '',
+  achievements: [
+    {
+      id: 1,
+      phrase: '100 victoires youpi',
+      icon: BLACKJACK,
+    },
+    {
+      id: 2,
+      phrase: 'ohlala',
+      icon: Heart,
+    },
+    {
+      id: 3,
+      phrase: 'C\'est la piquette, Jack',
+      icon: BLACKJACK,
+    }],
+  Profile: [
+    {
+      id: 1,
+      username: '',
+      password: '',
+      avatar: 123,
+    },
+  ],
   userId: '',
   menuItems: [
     {
