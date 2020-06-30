@@ -24,12 +24,11 @@ https://codepen.io/omascaros/pen/CBapm
 */
 
 // == Composant
-const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocketDisconnect }) => {
+const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocketDisconnect, loading, hasError }) => {
   // hook d'effet : s'applique après le chargement de l'application
 
   // const location = useLocation();
   useEffect(checkIsLogged, []);
-
 
   useEffect(getRandomBackgroundImage, []);
 
@@ -44,15 +43,19 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
   //   }
   // }, [roomId]);
 
-  return ( 
+  return (
     <div className="main">
-      
+
       <Header />
       <div className="app">
-      {isLogged
+        {isLogged
       && (
       <Nav />
       )}
+        {!loading && hasError && (
+          <p className="error">Une erreur s'est produite. Veuillez réessayer plus tard.</p>
+        )}
+        {!loading && !hasError && (
         <Switch>
           <Route exact path="/">
             {!isLogged
@@ -81,9 +84,7 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
                 <Redirect to="/" />
                 )}
           </Route>
-          {/* <Route exact path="/gameboard/fourtwentyone"> */}
           <Route path="/gameboard/fourtwentyone/:roomId">
-          {/* <Route exact path={`/gameboard/fourtwentyone/${roomId}`}> */}
             {isLogged
               && (
                 <GameboardPage
@@ -117,6 +118,10 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
             <p className="error">404 fais gaffe dude</p>
           </Route>
         </Switch>
+        )}
+        {loading && (
+          <p className="loading">Veuillez patienter. Nous ouvrons la boutique ...</p>
+        )}
       </div>
       <Footer
         isAdmin={isAdmin}

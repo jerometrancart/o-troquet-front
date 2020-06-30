@@ -1,6 +1,10 @@
 // ici je crée un second reducer qui gère toutes les infos liées au user
+// import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK } from 'src/actions/user';
+import BLACKJACK from 'src/assets/images/blackjack.png';
+import Heart from 'src/assets/images/heart.png';
 
-import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK, ALERT_SHOW} from "src/actions/user";
+import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK, ALERT_SHOW } from "src/actions/user";
+import { CHECK_ROOM } from 'src/actions/chatrooms/fourtwentyone';
 import { WEBSOCKET_CONNECT } from "../actions/chatrooms/fourtwentyone";
 
 // import { } from 'src/actions';
@@ -10,9 +14,33 @@ export const initialState = {
   password: '',
   isLogged: false,
   isAdmin: false,
-  loading: false,
+  loading: true,
   path: '/',
   userToken: '',
+  achievements: [
+    {
+      id: 1,
+      phrase: '100 victoires youpi',
+      icon: BLACKJACK,
+    },
+    {
+      id: 2,
+      phrase: 'ohlala',
+      icon: Heart,
+    },
+    {
+      id: 3,
+      phrase: 'C\'est la piquette, Jack',
+      icon: BLACKJACK,
+    }],
+  Profile: [
+    {
+      id: 1,
+      username: '',
+      password: '',
+      avatar: 123,
+    },
+  ],
   userId: '',
   menuItems: [
     {
@@ -32,7 +60,7 @@ export const initialState = {
     },
   ],
   friends: [
-    {
+/*     {
       isAccepted: false,
       isAnswered: true,
       friendDetails: {
@@ -71,7 +99,7 @@ export const initialState = {
         id: 5,
         username: 'Florian',
       },
-    },
+    }, */
   ],
   axiosFriends: [],
 
@@ -86,6 +114,7 @@ export const initialState = {
     'Votre compte n\'est pas encore actif, merci de vérifier vos e-mails',
 
   ],
+  roomId: '',
 };
 
 
@@ -101,7 +130,6 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         loading: true,
-
       };
     case FINISH_LOADING:
       return {
@@ -113,6 +141,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isLogged: true,
         userToken: action.user,
+        loading: false,
       };
     case LOGOUT:
       return {
@@ -126,9 +155,11 @@ const reducer = (state = initialState, action = {}) => {
         userId: '',
       };
     case CHECK:
+      console.log(' dans le reducer user, CHECK va mettre state.user.loading à false, on va avoir le contrôle')
       return {
         ...state,
-        isLogged: true,
+        // loading: true,
+        loading: false,
       };
     case ALERT_SHOW:
       return {
@@ -141,6 +172,12 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         gameId: action.gameId,
+      };
+    case CHECK_ROOM:
+      return {
+        ...state,
+        roomId: state.fourtwentyoneChats.roomId,
+        loading: false,
       };
     default:
       return state;

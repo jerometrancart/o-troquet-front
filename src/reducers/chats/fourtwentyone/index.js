@@ -1,5 +1,5 @@
 import { RECEIVE_MESSAGE, SET_MESSAGE, SEND_MESSAGE, WEBSOCKET_JOIN_ROOM, WEBSOCKET_CREATE_ROOM } from 'src/actions/chatrooms/fourtwentyone';
-
+import { AUTH_SUCCESS } from 'src/actions/user';
 const initialState = {
   text: '',
   messages: [
@@ -60,6 +60,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         roomId: action.roomId,
+      };
+    case AUTH_SUCCESS:
+      return {
+        ...state,
+        roomId: window.location.pathname.slice(25),
       };
     default:
       return state;
