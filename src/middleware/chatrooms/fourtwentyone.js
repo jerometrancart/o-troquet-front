@@ -24,6 +24,12 @@ import {
 // je prépare une let qui sera accessible dans tout mon fichier qui contiendra mon canal
 let socketCanal;
 
+const url = 'http://localhost:3001';
+
+// const url = '192.168.56.101:3001';
+ 
+
+
 const socket = (store) => (next) => (action) => {
   console.log('dans socket middleware : ', action);
   switch (action.type) {
@@ -31,23 +37,23 @@ const socket = (store) => (next) => (action) => {
       // open general canal, using .io lib (coming from script in index.html)
       // connect only if not already connected
       if ((socketCanal === undefined)) {
-        socketCanal = window.io('http://localhost:3001');
+        socketCanal = window.io(url);
       }
       else if ((socketCanal.connected === false)) {
-        socketCanal = window.io('http://localhost:3001');
+        socketCanal = window.io(url);
       }
-      // socketCanal = window.io('http://localhost:3001');
+      // socketCanal = window.io(url);
 
       if (action.roomId !== undefined) {
         socketCanal.emit('check_room_client_to_server', action.roomId);
         socketCanal.on('check_room_server_to_client_ok', () => {
-          // window.io('http://localhost:3001').emit('check_room_client_to_server', roomId);
-          // window.io('http://localhost:3001').on('check_room_server_to_client_ok', () => {
+          // window.io(url).emit('check_room_client_to_server', roomId);
+          // window.io(url).on('check_room_server_to_client_ok', () => {
           store.dispatch(webSocketListenRoom());
           next(action);
         });
         socketCanal.on('check_room_server_to_client_not_ok', () => {
-          // window.io('http://localhost:3001').on('check_room_server_to_client_not_ok', () => {
+          // window.io(url).on('check_room_server_to_client_not_ok', () => {
           // la room n'existe pas, message d'erreur à afficher quelque part
           console.log('la room n\'existe pas, dsl, faites autre chose de votre vie');
           // store.dispatch(webSocketDisconnect());
@@ -107,7 +113,7 @@ const socket = (store) => (next) => (action) => {
       console.log('middleware chatrooms je veux me déconnecter');
       const state = store.getState();
 
-      // socketCanal = window.io('http://localhost:3001');
+      // socketCanal = window.io(url);
       if (socketCanal !== undefined) {
         console.log(socketCanal.id);
         socketCanal.emit('disconnect', state.user.userToken.username, state.fourtwentyoneChats.roomId);
@@ -141,10 +147,10 @@ const socket = (store) => (next) => (action) => {
       // console.log('roomId calculated in front : ', action.roomId);
       // j'envoie le chemin au serveur, qui écoute l'évènement 'set_path'
       // if ((socketCanal === undefined)) {
-      //   socketCanal = window.io('http://localhost:3001');
+      //   socketCanal = window.io(url);
       // }
       // else if ((socketCanal.connected === false)) {
-      //   socketCanal = window.io('http://localhost:3001');
+      //   socketCanal = window.io(url);
       // }
       // socketCanal.emit('set_path', path);
       // j'appelle le store pour avoir mon pseudo
@@ -170,10 +176,10 @@ const socket = (store) => (next) => (action) => {
     }
     case WEBSOCKET_GET_ROOM: {
       // if ((socketCanal === undefined)) {
-      //   socketCanal = window.io('http://localhost:3001');
+      //   socketCanal = window.io(url);
       // }
       // else if ((socketCanal.connected === false)) {
-      //   socketCanal = window.io('http://localhost:3001');
+      //   socketCanal = window.io(url);
       // }
       console.log('id socket : ', socketCanal.id);
       // socketCanal.emit('available_rooms');
