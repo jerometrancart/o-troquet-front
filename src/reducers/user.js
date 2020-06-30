@@ -1,6 +1,7 @@
 // ici je crée un second reducer qui gère toutes les infos liées au user
 
-import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK, ALERT_SHOW} from "src/actions/user";
+import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK, ALERT_SHOW } from "src/actions/user";
+import { CHECK_ROOM } from 'src/actions/chatrooms/fourtwentyone';
 import { WEBSOCKET_CONNECT } from "../actions/chatrooms/fourtwentyone";
 
 // import { } from 'src/actions';
@@ -10,7 +11,7 @@ export const initialState = {
   password: '',
   isLogged: false,
   isAdmin: false,
-  loading: false,
+  loading: true,
   path: '/',
   userToken: '',
   userId: '',
@@ -86,6 +87,7 @@ export const initialState = {
     'Votre compte n\'est pas encore actif, merci de vérifier vos e-mails',
 
   ],
+  roomId: '',
 };
 
 
@@ -101,7 +103,6 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         loading: true,
-
       };
     case FINISH_LOADING:
       return {
@@ -113,6 +114,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isLogged: true,
         userToken: action.user,
+        loading: false,
       };
     case LOGOUT:
       return {
@@ -126,9 +128,11 @@ const reducer = (state = initialState, action = {}) => {
         userId: '',
       };
     case CHECK:
+      console.log(' dans le reducer user, CHECK va mettre state.user.loading à false, on va avoir le contrôle')
       return {
         ...state,
-        isLogged: true,
+        // loading: true,
+        loading: false,
       };
     case ALERT_SHOW:
       return {
@@ -141,6 +145,12 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         gameId: action.gameId,
+      };
+    case CHECK_ROOM:
+      return {
+        ...state,
+        roomId: state.fourtwentyoneChats.roomId,
+        loading: false,
       };
     default:
       return state;

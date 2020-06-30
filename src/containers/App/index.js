@@ -11,6 +11,8 @@ const mapStateToProps = (state) => {
     isAdmin: state.user.isAdmin,
     path: state.user.path,
     roomId: state.fourtwentyoneChats.roomId,
+    loading: state.user.loading,
+    hasError: state.user.hasError,
   };
 };
 

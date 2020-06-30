@@ -12,6 +12,7 @@ import {
   webSocketJoinRoom,
   WEBSOCKET_LEAVE_ROOMS,
   WEBSOCKET_LISTEN_ROOM,
+  webSocketListenRoom,
 } from 'src/actions/chatrooms/fourtwentyone';
 import GameboardPage from 'src/containers/GameboardPage/Fourtwentyone';
 import {
@@ -36,6 +37,23 @@ const socket = (store) => (next) => (action) => {
         socketCanal = window.io('http://localhost:3001');
       }
       // socketCanal = window.io('http://localhost:3001');
+
+      if (action.roomId !== undefined) {
+        socketCanal.emit('check_room_client_to_server', action.roomId);
+        socketCanal.on('check_room_server_to_client_ok', () => {
+          // window.io('http://localhost:3001').emit('check_room_client_to_server', roomId);
+          // window.io('http://localhost:3001').on('check_room_server_to_client_ok', () => {
+          store.dispatch(webSocketListenRoom());
+          next(action);
+        });
+        socketCanal.on('check_room_server_to_client_not_ok', () => {
+          // window.io('http://localhost:3001').on('check_room_server_to_client_not_ok', () => {
+          // la room n'existe pas, message d'erreur à afficher quelque part
+          console.log('la room n\'existe pas, dsl, faites autre chose de votre vie');
+          // store.dispatch(webSocketDisconnect());
+          action.roomId = '';
+        });
+      }
       break;
     }
 // ====================================================================================================== //

@@ -5,9 +5,11 @@ import { LOGIN,
         connect,
         REGISTER,
         alertShow,
-        LOGOUT
+        LOGOUT,
+        getFriends,
+        AUTH_SUCCESS,
        } from 'src/actions/user';
-import { webSocketDisconnect } from 'src/actions/chatrooms/fourtwentyone';
+import { webSocketDisconnect, webSocketListenRoom, webSocketConnect, checkRoom } from 'src/actions/chatrooms/fourtwentyone';
 
 import axios from 'axios';
 import jwt from 'jwt-decode';
@@ -33,8 +35,7 @@ const auth = (store) => (next) => (action) => {
         username: state.user.username,
         password: state.user.password,
       },
-      { withCredentials: true },
-      )
+      { withCredentials: true })
         .then((response) => {
           // debugger
           console.log(response);
@@ -109,30 +110,6 @@ http://ec2-35-153-19-27.compute-1.amazonaws.com/phpmyadmin/
 damien
 729Cbk192!
 */
-      /*   ========   REQUETE AJAX    ======== */
-      /*
-      fetch(`http://${authenticationURI}login_check`, {
-        method: 'post',
-        mode: 'cors',
-        cache: 'no-cache',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => {
-          console.log('response', response.data);
-          // j'ai le pseudo fourni par l'api
-          // mon intention : ranger ce pseudo dans le state
-          // je vais dispatcher une action
-          const actionToSavePseudo = changeValue('pseudo', response.data);
-          store.dispatch(actionToSavePseudo);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-*/
-      /*   ========   FIN REQUETE AJAX    ========  */
       store.dispatch(getFriends());
       next(action);
       break;
@@ -145,9 +122,35 @@ damien
         const actionToGetId = changeValue('userId', userId);
         store.dispatch(actionToGetId); */
         store.dispatch(authSuccess(localStorage.tokenOTroquet, user));
+        // store.dispatch(checkRoom());
+      }
+      else {
+        next(action);
       }
       break;
     }
+    case AUTH_SUCCESS: {
+      console.log('CHECK a trouvé un token et dispatché authSuccess dans le store ', action);
+      // authSuccess doit vérifier si oui ou non nous avons une room en url
+      const roomId = window.location.pathname.slice(25);
+      if (roomId !== '') {
+        // il y a des caractères à la fin de l'url, nous allons vérifier qu'ils constituent une room valide
+        // store.dispatch(changeValue('roomId', roomId));
+        
+        // const socket = store.dispatch(webSocketConnect());
+        store.dispatch(webSocketConnect(roomId));
+        // console.log(socket);
+        // const socket = window.io('http://localhost:3001');
+        
+
+        next(action);
+      }
+      // )
+      
+      next(action);
+    }
+    break;
+    
     case REGISTER: {
       console.log(action);
       /*   ========      regex       ========  */
