@@ -129,7 +129,8 @@ const reducer = (state = initialState, action = {}) => {
       console.log(action);
       return {
         ...state,
-        loading: true,
+        // loading: true,
+        loading: false,
       };
     case FINISH_LOADING:
       return {

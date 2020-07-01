@@ -7,14 +7,14 @@ import Die from 'src/containers/GameboardPage/Fourtwentyone/die';
 import Chatrooms from 'src/containers/GameboardPage/Fourtwentyone/chatrooms';
 import Board from './board';
 import Dice from './dice';
-import Scoreboard from './scoreboard';
+import Scoreboard from 'src/containers/GameboardPage/Fourtwentyone/scoreboard';
 import Infos from './infos';
 import Players from './players';
 
 import './style.scss';
 
 // const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webSocketDisconnect, webSocketListenRoom, roomId }) => {
-const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webSocketDisconnect, webSocketListenRoom }) => {
+const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webSocketDisconnect, webSocketListenRoom, startGame }) => {
   /*
   if (!isLogged) {
     return <Redirect to="/" />;
@@ -43,7 +43,7 @@ const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webS
 
   return (
     <div className="gameScreen">
-      <h2>--- 421 --- room : {roomId}</h2>
+      <h2>room : {roomId}</h2>
       <div className="gameBoard">
         <Board>
           <Dice>
@@ -58,7 +58,10 @@ const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webS
           <Infos />
           <Players />
         </Scoreboard>
-        <Controls rollDice={rollDice} />
+        <Controls
+          rollDice={rollDice}
+          // startGame={startGame}
+        />
         <Chatrooms />
       </div>
     </div>
@@ -73,6 +76,7 @@ GameboardPage.propTypes = {
   webSocketDisconnect: PropTypes.func.isRequired,
   roomId: PropTypes.string.isRequired,
   webSocketListenRoom: PropTypes.func.isRequired,
+  startGame: PropTypes.func.isRequired,
 };
 
 GameboardPage.defaultProps = {

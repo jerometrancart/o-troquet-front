@@ -1,5 +1,5 @@
-import { ROLL_DICE, TOGGLE_BLOCK, NEXT_PLAYER, rollDice, toggleBlock, nextPlayer } from 'src/actions/games/fourtwentyone/player';
-
+import { ROLL_DICE, TOGGLE_BLOCK, NEXT_PLAYER, rollDice, toggleBlock, nextPlayer, START_GAME, LISTEN_GAME, listenGame } from 'src/actions/games/fourtwentyone/player';
+import { socketCanal } from 'src/selectors';
 import axios from 'axios';
 import jwt from 'jwt-decode';
 
@@ -8,6 +8,7 @@ import jwt from 'jwt-decode';
 // POST
 const authenticationURI = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/login_check';
 const authenticationURIAdministration = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/login';
+let listenerAdded = false ;
 
 const controls = (store) => (next) => (action) => {
   const state = store.getState();
@@ -44,7 +45,33 @@ const controls = (store) => (next) => (action) => {
 
       break;
     }
+    // GxPv4K7hcmRq
+    case START_GAME:
+      console.log('START GAME');
+      action.roomId = state.fourtwentyoneChats.roomId;
+      socketCanal.emit('start_game', action.roomId);
+      store.dispatch(listenGame(action.roomId));
+      next(action);
+      break;
 
+    case LISTEN_GAME:
+      if (!listenerAdded) {
+        socketCanal.on('GAME_STARTED', () => {
+          console.log('GAME STARTED FROM SERVER');
+
+        
+
+
+        });
+
+
+
+
+
+        listenerAdded = true;
+      }
+      next(action);
+      break;
     default:
       next(action);
   }

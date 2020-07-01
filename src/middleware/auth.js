@@ -143,7 +143,7 @@ damien
         store.dispatch(webSocketConnect(roomId));
         // console.log(socket);
         // const socket = window.io('http://localhost:3001');
-        next(action);
+        // next(action);
       }
       // )
       next(action);

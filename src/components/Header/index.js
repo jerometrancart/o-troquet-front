@@ -8,7 +8,7 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 import './style.scss';
 
-const Header = ({ username, logout, isLogged, }) => (
+const Header = ({ username, logout, isLogged }) => (
   <div className="header">
     <Link
       to="/"

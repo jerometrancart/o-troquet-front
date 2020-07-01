@@ -14,20 +14,22 @@ import {
   WEBSOCKET_LISTEN_ROOM,
   webSocketListenRoom,
 } from 'src/actions/chatrooms/fourtwentyone';
+import { newPlayerJoins } from 'src/actions/games/fourtwentyone/player';
 import GameboardPage from 'src/containers/GameboardPage/Fourtwentyone';
 import {
   tinyURL,
   redirect,
   getNextId,
+  socketCanal,
 } from 'src/selectors';
 
 // je prépare une let qui sera accessible dans tout mon fichier qui contiendra mon canal
-let socketCanal;
+// let socketCanal;
 
 const url = 'http://localhost:3001';
 
 // const url = '192.168.56.101:3001';
- 
+// GxPv4K7hcmRq
 let listeneradded = false;
 
 const socket = (store) => (next) => (action) => {
@@ -37,25 +39,25 @@ const socket = (store) => (next) => (action) => {
       console.log('websocket lancé');
       // open general canal, using .io lib (coming from script in index.html)
       // connect only if not already connected
-      if ((socketCanal === undefined)) {
-        socketCanal = window.io(url);
-      }
-      else if ((socketCanal.connected === false)) {
-        socketCanal = window.io(url);
-      }
-      // socketCanal = window.io(url);
+      // if ((socketCanal === undefined)) {
+      //   socketCanal = window.io(url);
+      // }
+      // else if ((socketCanal.connected === false)) {
+      //   socketCanal = window.io;
+      // }
+      // socketCanal = window.io;
       if (!listeneradded) {
       if (action.roomId !== undefined) {
         socketCanal.emit('check_room_client_to_server', action.roomId);
         socketCanal.on('check_room_server_to_client_ok', () => {
           // console.log('check_room_server_to_client_ok');
-          // window.io(url).emit('check_room_client_to_server', roomId);
-          // window.io(url).on('check_room_server_to_client_ok', () => {
+          // window.io.emit('check_room_client_to_server', roomId);
+          // window.io.on('check_room_server_to_client_ok', () => {
           // store.dispatch(webSocketListenRoom());
           next(action);
         });
         socketCanal.on('check_room_server_to_client_not_ok', () => {
-          // window.io(url).on('check_room_server_to_client_not_ok', () => {
+          // window.io.on('check_room_server_to_client_not_ok', () => {
           // la room n'existe pas, message d'erreur à afficher quelque part
           console.log('la room n\'existe pas, dsl, faites autre chose de votre vie');
           // store.dispatch(webSocketDisconnect());
@@ -69,6 +71,7 @@ const socket = (store) => (next) => (action) => {
         console.log('new user ', message.author);
         message.id = getNextId(state.fourtwentyoneChats.messages);
         store.dispatch(receiveMessage({ content: `${message.author} joined`, author: 'Bartender', id: message.id }));
+        store.dispatch(newPlayerJoins(message.author));
 
         // socketCanal.emit('send_message_client_to_server', state.fourtwentyoneChats.roomId, { content: `${message.author} joined`, author: 'Bartender' });
       });
@@ -120,7 +123,7 @@ const socket = (store) => (next) => (action) => {
       console.log('middleware chatrooms je veux me déconnecter');
       const state = store.getState();
 
-      // socketCanal = window.io(url);
+      // socketCanal = window.io;
       if (socketCanal !== undefined) {
         console.log(socketCanal.id);
         socketCanal.emit('disconnect', state.user.userToken.username, state.fourtwentyoneChats.roomId);
@@ -154,10 +157,10 @@ const socket = (store) => (next) => (action) => {
       // console.log('roomId calculated in front : ', action.roomId);
       // j'envoie le chemin au serveur, qui écoute l'évènement 'set_path'
       // if ((socketCanal === undefined)) {
-      //   socketCanal = window.io(url);
+      //   socketCanal = window.io;
       // }
       // else if ((socketCanal.connected === false)) {
-      //   socketCanal = window.io(url);
+      //   socketCanal = window.io;
       // }
       // socketCanal.emit('set_path', path);
       // j'appelle le store pour avoir mon pseudo
@@ -183,10 +186,10 @@ const socket = (store) => (next) => (action) => {
     }
     case WEBSOCKET_GET_ROOM: {
       // if ((socketCanal === undefined)) {
-      //   socketCanal = window.io(url);
+      //   socketCanal = window.io;
       // }
       // else if ((socketCanal.connected === false)) {
-      //   socketCanal = window.io(url);
+      //   socketCanal = window.io;
       // }
       console.log('id socket : ', socketCanal.id);
       // socketCanal.emit('available_rooms');

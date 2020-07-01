@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const Controls = ({ children, rollDice, nextPlayer }) => {
+const Controls = ({ children, rollDice, nextPlayer, startGame }) => {
 /*
   const toggleClasses = ((die) => {
     die.classList.toggle('odd-roll');
@@ -28,12 +28,13 @@ const Controls = ({ children, rollDice, nextPlayer }) => {
     console.log('Next player\'s turn');
   });
 */
-
+// http://localhost:8080/gameboard/fourtwentyone/44O84FlK88lb
   return (
     <div className="controls">
       {/* Controls
       {children} */}
       <div className="buttonbar">
+        <button className="start-button controls--button" type="button" id="start-button" onClick={startGame}>Start Game</button>
         <button className="roll-button controls--button" type="button" id="roll-button" onClick={rollDice}>Roll Dice</button>
         <button className="next-player-button controls--button" type="button" id="next-player-button" onClick={nextPlayer}>Next player</button>
         <button className="rules controls--button" type="button" id="rules">Règles</button>
@@ -46,6 +47,7 @@ const Controls = ({ children, rollDice, nextPlayer }) => {
 Controls.propTypes = {
   children: PropTypes.node,
   rollDice: PropTypes.func.isRequired,
+  startGame: PropTypes.func.isRequired,
 };
 
 Controls.defaultProps = {
