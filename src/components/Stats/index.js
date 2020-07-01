@@ -8,7 +8,6 @@ const Stats = ({ achievements }) => (
   <div className="stats">
     <nav className="onglets">
       <a>Statistiques</a>
-      <a>Profil</a>
     </nav>
     <div>
       <ul>parties jouées :</ul>

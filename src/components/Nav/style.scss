@@ -9,7 +9,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  border: 3px, solid, color.adjust($cafe, $lightness: 20%);
+  border-right: 2px solid #ddd0bb;;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -34,14 +34,7 @@
 }
 /* MODAL WINDOW */
 
-.onglets {
-margin-bottom: 20px;
-width: 100%;
-font-size: 30px;
-font-style: bold;
-display: flex;
-justify-content: space-around;
-}
+
 
 .stats {
   display: contents;
@@ -90,17 +83,57 @@ text-align: center;
 
 /* PROFIL */
 
+
+.profile {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  font-style: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  &--page1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  };
+  &--title {
+    text-align: center;
+    margin-bottom: 0;
+  }
+  &--page2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &--form{
+      align-items: center;
+    }
+  }
+  &--username {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  &--button {
+    width: 20rem;
+  }
+  }
+  
 .ProfilPicture {
+  margin: 2rem 0;
   width: 100px;
   height: 100px;
   border: 1px, solid;
   border-color: red;
   border-radius: 0px;
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
+
+    }
 
 .AvatarButton {
 margin-bottom: 20px;
 
+}
+
+.modali-body, .modali.modali-size-regular {
+  border-radius: 20px;
+  max-width: 450px !important; 
 }

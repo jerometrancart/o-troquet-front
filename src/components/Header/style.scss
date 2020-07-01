@@ -7,6 +7,7 @@
 }
 
 .header {
+  border-bottom: 1px solid $text-color;
   background-color: $main-color;
   height: $header-height;
   text-align: center;

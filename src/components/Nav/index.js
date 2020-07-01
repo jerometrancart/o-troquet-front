@@ -12,10 +12,12 @@ import Stats from 'src/containers/Stats';
 const Nav = (friendList) => {
   const [StatsModal, toggleStatsModal] = useModali({
     animated: true,
+    centered: true,
   });
 
   const [ProfilModal, toggleProfilModal] = useModali({
     animated: true,
+    centered: true,
   });
 
   return (

@@ -1,58 +1,57 @@
 import React from 'react';
 import BLACKJACK from 'src/assets/images/blackjack.png';
+import Field from 'src/containers/Login/Field';
+import { Button, Form, Grid, Message } from 'semantic-ui-react';
+import './style.scss';
 
-const Profile = ({
-  username,
-  password, 
-  avatar, 
-  value}) => (
+const Profile = ({avatar, value, username, show, variant, textAlert}) => (
   <div className="profile">
-    <nav className="onglets">
-      <a>Statistiques</a>
-      <a>Profil</a>
-    </nav>
-    <form>
-      <div className="field">
-        <input
-          autoComplete="on"
-          name={username}
-          className="field-input"
-          type="text"
-          placeholder="Pseudo"
-          value={value}
-          onChange={(event) => {
-          changeValue(event.target.value);
-          }}
-        />
-        <label className="field-label">
-          Pseudo
-        </label>
-      </div>
-      <div className="field">
-        <input
-          autoComplete="on"
-          name={password}
-          className="field-input"
-          type="password"
-          placeholder="Mot de passe"
-          value={value}
-          onChange={(event) => {
-          changeValue(event.target.value);
-          }}
-        />
-        <label className="field-label">Mot de passe</label>
-      </div>
-      <div>
-        <input type="submit" value="Envoyer" />
-      </div>
-    </form>
-    <img
-      className="ProfilPicture"
-      src={avatar}
-      alt=""
-    />
+    <div className="profile--page1">
+      <h2 className="profile--title">Profil</h2>
+      <img
+        className="ProfilPicture"
+        src={avatar}
+        alt=""
+      />
+      <span className="profile--username">{username}Bob</span>
+      <Button color="blue" type="submit" className="center aligned profile--button"> Supprimer mon compte</Button>
+      <Button color="blue" type="submit" className="center aligned profile--button"> Modifier mes informations </Button>
+    </div>
+    <div className="profile--page2">
+      <Grid className="center aligned">
+        <h2 className="profile--title">Modifier mon compte </h2>
+        <form className="profil--page2--form">
+          {/* <Message className={show} color={variant}>
+            {textAlert}
+          </Message> */}
+          <Field
+            name="username"
+            placeholder="Pseudo"
+          />
+          <Field
+            name="email"
+            placeholder="E-mail"
+          />
+          <Field
+            type="password"
+            name="old-password"
+            placeholder="Mot de passe actuel"
+          />
+          <Field
+            type="password"
+            name="new-password"
+            placeholder="Nouveau mot de passe"
+          />
+          <Field
+            type="password"
+            name="new-passwordVerify"
+            placeholder="Confirmer le mot de passe"
+          />
+          <Button color="blue" type="submit" className="center aligned profile--button"> Modifier </Button>
+        </form>
+      </Grid>
+    </div>
 
-    <button type="submit" className="AvatarButton">Supprimer son compte</button>
   </div>
 );
 
