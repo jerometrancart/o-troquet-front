@@ -8,9 +8,9 @@ const Messages = ({ messages }) => {
   const containerElement = useRef(null);
 
   useEffect(() => {
-    console.log('je veux scroller jusqu\'au dernier message');
+    // console.log('je veux scroller jusqu\'au dernier message');
     const scrollY = containerElement.current.scrollHeight;
-    console.log('ScrollHeight élement ciblé', scrollY);
+    // console.log('ScrollHeight élement ciblé', scrollY);
     containerElement.current.scrollTo(0, scrollY);
   }, [messages]);
 
@@ -19,7 +19,7 @@ const Messages = ({ messages }) => {
       ref={containerElement}
       className="chatroom-messages"
     >
-      {console.log('je veux transposer mes messages vers un tableau jsx', messages)}
+      {/* console.log('je veux transposer mes messages vers un tableau jsx', messages) */}
       {messages.map((message) => (
         <Message key={message.id} {...message} />
       ))}

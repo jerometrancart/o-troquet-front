@@ -59,8 +59,12 @@ export const redirect = (adress) => {
   history.push(adress);
 };
 
-const url = 'http://localhost:3001';
-export const socketCanal = window.io(url);
+const urlSocketIO = 'http://localhost:3001';
+export const socketCanal = window.io(urlSocketIO);
+
+export const authenticationURI = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/api/';
+export const authenticationURIAdministration = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/login';
+
 
 /*
 if ((socketCanal === undefined)) {

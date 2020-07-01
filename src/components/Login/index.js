@@ -27,7 +27,6 @@ const Login = ({ isLogged, login, show, variant, textAlert, webSocketDisconnect,
 
   const handleLogin = (evt) => {
     evt.preventDefault();
-    console.log('ok connexion');
     login();
     history.push('/gameselect');
   };
@@ -35,7 +34,6 @@ const Login = ({ isLogged, login, show, variant, textAlert, webSocketDisconnect,
   useEffect(() => {
     // focus sur l'input du pseudo au premier chargement de la page
     const usernameInput = document.querySelector("input[name='username']");
-    console.log(usernameInput);
     usernameInput.focus();
   }, []);
 

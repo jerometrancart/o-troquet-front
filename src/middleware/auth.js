@@ -10,7 +10,7 @@ import { LOGIN,
   AUTH_SUCCESS,
 } from 'src/actions/user';
 import { webSocketDisconnect, webSocketListenRoom, webSocketConnect, checkRoom } from 'src/actions/chatrooms/fourtwentyone';
-
+import { authenticationURI, authenticationURIAdministration } from 'src/selectors';
 
 import axios from 'axios';
 import jwt from 'jwt-decode';
@@ -18,8 +18,8 @@ import jwt from 'jwt-decode';
 // const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/';
 // http://ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/v1/users
 // POST
-const authenticationURI = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/';
-const authenticationURIAdministration = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/login';
+// const authenticationURI = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/';
+// const authenticationURI = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/api/';
 
 const auth = (store) => (next) => (action) => {
   const state = store.getState();

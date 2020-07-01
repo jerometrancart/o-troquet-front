@@ -1,8 +1,10 @@
 import { } from 'src/actions';
 import { NEW_PLAYER_JOINS } from 'src/actions/games/fourtwentyone/player';
+import { UPDATE_PARTY } from '../../../actions/games/fourtwentyone/player';
 
 const initialState = {
   players: [],
+  room: {},
 };
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -22,6 +24,11 @@ const reducer = (state = initialState, action = {}) => {
         players: newPlayers,
       };
     }
+    case UPDATE_PARTY:
+      return {
+        ...state,
+        room: action.room,
+      };
     default:
 
       return state;

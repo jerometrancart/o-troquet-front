@@ -1,13 +1,18 @@
 import { connect } from 'react-redux';
 
 import scoreboard from 'src/components/GameboardPage/Fourtwentyone/scoreboard.js';
-// import { webSocketConnect } from 'src/actions/chatrooms/fourtwentyone';
+import { updateParty } from 'src/actions/games/fourtwentyone/player';
 
 const mapStateToProps = (state) => ({
   players: state.fourtwentyoneControls.players,
+  roomId: state.fourtwentyoneChats.roomId,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch) => ({
+  updateParty: () => {
+    dispatch(updateParty());
+  },
+});
 
 export default connect(
   mapStateToProps,

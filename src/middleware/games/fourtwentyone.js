@@ -1,4 +1,15 @@
-import { ROLL_DICE, TOGGLE_BLOCK, NEXT_PLAYER, rollDice, toggleBlock, nextPlayer, START_GAME, LISTEN_GAME, listenGame } from 'src/actions/games/fourtwentyone/player';
+import {
+  ROLL_DICE,
+  TOGGLE_BLOCK,
+  NEXT_PLAYER,
+  rollDice,
+  toggleBlock,
+  nextPlayer,
+  START_GAME,
+  LISTEN_GAME,
+  listenGame,
+  updateParty,
+} from 'src/actions/games/fourtwentyone/player';
 import { socketCanal } from 'src/selectors';
 import axios from 'axios';
 import jwt from 'jwt-decode';
@@ -8,7 +19,7 @@ import jwt from 'jwt-decode';
 // POST
 const authenticationURI = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/login_check';
 const authenticationURIAdministration = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/login';
-let listenerAdded = false ;
+let gameListenerAdded = false ;
 
 const controls = (store) => (next) => (action) => {
   const state = store.getState();
@@ -49,26 +60,27 @@ const controls = (store) => (next) => (action) => {
     case START_GAME:
       console.log('START GAME');
       action.roomId = state.fourtwentyoneChats.roomId;
-      socketCanal.emit('start_game', action.roomId);
-      store.dispatch(listenGame(action.roomId));
+      action.player = state.user.userToken.username;
+      socketCanal.emit('start_game', action);
+      store.dispatch(listenGame());
       next(action);
       break;
 
     case LISTEN_GAME:
-      if (!listenerAdded) {
-        socketCanal.on('GAME_STARTED', () => {
-          console.log('GAME STARTED FROM SERVER');
-
+      if (!gameListenerAdded) {
+        socketCanal.on('GAME_STARTED', (player) => {
+          console.log('GAME STARTED BY ', player);
         
 
-
+        });
+        socketCanal.on('PARTY_UPDATED', (room) => {
+          store.dispatch(updateParty(room));
         });
 
 
 
 
-
-        listenerAdded = true;
+        gameListenerAdded = true;
       }
       next(action);
       break;

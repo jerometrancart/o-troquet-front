@@ -4,6 +4,7 @@ export const NEXT_PLAYER = 'NEXT_PLAYER';
 export const START_GAME = 'START_GAME';
 export const LISTEN_GAME = 'LISTEN_GAME';
 export const NEW_PLAYER_JOINS = 'NEW_PLAYER_JOINS';
+export const UPDATE_PARTY = 'UPDATE_PARTY';
 
 
 export const rollDice = () => ({
@@ -19,9 +20,10 @@ export const nextPlayer = () => ({
   type: NEXT_PLAYER,
 });
 
-export const startGame = (roomId) => ({
+export const startGame = (roomId, player) => ({
   type: START_GAME,
   roomId,
+  player,
 });
 
 export const listenGame = (roomId) => ({
@@ -34,3 +36,7 @@ export const newPlayerJoins = (player) => ({
   player,
 });
 
+export const updateParty = (room) => ({
+  type: UPDATE_PARTY,
+  room,
+});

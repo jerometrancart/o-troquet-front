@@ -38,8 +38,9 @@ export const setMessage = (message) => ({
   message,
 });
 
-export const webSocketGetRoom = () => ({
+export const webSocketGetRoom = (name) => ({
   type: WEBSOCKET_GET_ROOM,
+  name,
 });
 
 export const webSocketCreateRoom = () => ({

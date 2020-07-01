@@ -14,7 +14,7 @@ import {
   WEBSOCKET_LISTEN_ROOM,
   webSocketListenRoom,
 } from 'src/actions/chatrooms/fourtwentyone';
-import { newPlayerJoins } from 'src/actions/games/fourtwentyone/player';
+import { newPlayerJoins, updateParty} from 'src/actions/games/fourtwentyone/player';
 import GameboardPage from 'src/containers/GameboardPage/Fourtwentyone';
 import {
   tinyURL,
@@ -33,7 +33,7 @@ const url = 'http://localhost:3001';
 let listeneradded = false;
 
 const socket = (store) => (next) => (action) => {
-  console.log('dans socket middleware : ', action);
+  // console.log('dans socket middleware : ', action);
   switch (action.type) {
     case WEBSOCKET_CONNECT: {
       console.log('websocket lancé');
@@ -72,6 +72,7 @@ const socket = (store) => (next) => (action) => {
         message.id = getNextId(state.fourtwentyoneChats.messages);
         store.dispatch(receiveMessage({ content: `${message.author} joined`, author: 'Bartender', id: message.id }));
         store.dispatch(newPlayerJoins(message.author));
+        store.dispatch(updateParty());
 
         // socketCanal.emit('send_message_client_to_server', state.fourtwentyoneChats.roomId, { content: `${message.author} joined`, author: 'Bartender' });
       });
@@ -90,8 +91,8 @@ const socket = (store) => (next) => (action) => {
       // });
 
       // say who disconnects
-      socketCanal.on('user-disconnected', (name) => {
-        store.dispatch(receiveMessage({ author: name, content: ' disconnected' }));
+      socketCanal.on('user_disconnected', (message) => {
+        store.dispatch(receiveMessage({ author: 'Bartender', content: `${message.author} left` }));
       });
 
       listeneradded = true;
@@ -167,7 +168,6 @@ const socket = (store) => (next) => (action) => {
       const state = store.getState();
       // je dis au socket que je suis arrivé
       socketCanal.emit('new_user', state.user.userToken.username);
-
       // je demande au socket de me créer une chatroom
       socketCanal.emit('create_room', state.user.userToken.username);
       // j'écoute la réponse
@@ -184,6 +184,7 @@ const socket = (store) => (next) => (action) => {
       next(action);
       break;
     }
+// ====================================================================================================== //
     case WEBSOCKET_GET_ROOM: {
       // if ((socketCanal === undefined)) {
       //   socketCanal = window.io;
@@ -191,12 +192,14 @@ const socket = (store) => (next) => (action) => {
       // else if ((socketCanal.connected === false)) {
       //   socketCanal = window.io;
       // }
+      const state = store.getState();
+      action.name = state.user.userToken.username;
       console.log('id socket : ', socketCanal.id);
       // socketCanal.emit('available_rooms');
       // socketCanal.on('available_rooms', (rooms) => {
       //   console.log('available_rooms returned from server :', rooms);
       // });
-      socketCanal.emit('get_room');
+      socketCanal.emit('get_room', action.name);
       socketCanal.on('your_room', (yourRoomId) => {
         console.log('i\'ve found you a room : ', yourRoomId);
         store.dispatch(webSocketJoinRoom(yourRoomId));
@@ -207,6 +210,7 @@ const socket = (store) => (next) => (action) => {
       });
       break;
     }
+// ====================================================================================================== //
     case WEBSOCKET_LEAVE_ROOMS: {
 
       // const room = io(`/gameboard/fourtwentyone/${path}`);
