@@ -68,11 +68,11 @@ const controls = (store) => (next) => (action) => {
 
     case LISTEN_GAME:
       if (!gameListenerAdded) {
-        socketCanal.on('GAME_STARTED', (player) => {
-          console.log('GAME STARTED BY ', player);
+        // socketCanal.on('GAME_STARTED', (player) => {
+        //   console.log('GAME STARTED BY ', player);
         
 
-        });
+        // });
         socketCanal.on('PARTY_UPDATED', (room) => {
           store.dispatch(updateParty(room));
         });

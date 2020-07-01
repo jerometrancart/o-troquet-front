@@ -95,6 +95,11 @@ const socket = (store) => (next) => (action) => {
         store.dispatch(receiveMessage({ author: 'Bartender', content: `${message.author} left` }));
       });
 
+      socketCanal.on('GAME_STARTED', (player) => {
+        console.log('GAME STARTED BY ', player);
+      
+
+      });
       listeneradded = true;
     }
       // on écoute un événement, ça fonctionne comme les écouteurs d'événements qu'on connait bien
