@@ -1,17 +1,20 @@
 // ici je crée un second reducer qui gère toutes les infos liées au user
-// import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK } from 'src/actions/user';
+// import { CHANGE_VALUE, eLOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK } from 'src/actions/user';
 import BLACKJACK from 'src/assets/images/blackjack.png';
 import Heart from 'src/assets/images/heart.png';
 
-import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK, ALERT_SHOW } from "src/actions/user";
+import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK, ALERT_SHOW, TOGGLE_OPEN, TOGGLE_CLOSE } from 'src/actions/user';
 import { CHECK_ROOM } from 'src/actions/chatrooms/fourtwentyone';
 import { WEBSOCKET_CONNECT } from "../actions/chatrooms/fourtwentyone";
 
 // import { } from 'src/actions';
 
 export const initialState = {
+  open: false,
   username: '',
   password: '',
+  profileUsername: '',
+  profileEmail: '',
   isLogged: false,
   isAdmin: false,
   loading: true,
@@ -155,7 +158,7 @@ const reducer = (state = initialState, action = {}) => {
         userId: '',
       };
     case CHECK:
-      console.log(' dans le reducer user, CHECK va mettre state.user.loading à false, on va avoir le contrôle')
+      console.log(' dans le reducer user, CHECK va mettre state.user.loading à false, on va avoir le contrôle');
       return {
         ...state,
         // loading: true,
@@ -178,6 +181,17 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         roomId: state.fourtwentyoneChats.roomId,
         loading: false,
+      };
+    case TOGGLE_OPEN:
+      console.log(state.open);
+      return {
+        ...state,
+        open: true,
+      };
+    case TOGGLE_CLOSE:
+      return {
+        ...state,
+        open: false,
       };
     default:
       return state;

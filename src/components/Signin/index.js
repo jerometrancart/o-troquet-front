@@ -24,10 +24,10 @@ const Signin = ({ isLogged, register, show, variant, textAlert }) => {
       <h2 className="form-title">Je m'inscris </h2>
       <form autoComplete="on" className="signin-form-element" onSubmit={handleSignin}>
 
-        <div className="oauth">
+{/*         <div className="oauth">
           <Button circular color="facebook" icon="facebook" />
           <Button circular color="google plus" icon="google plus g" />
-        </div>
+        </div> */}
         {/* show, si j'ai une alerte à afficher,
         quand le formulaire est soumis avec succès,
         quand le mdp n'est pas valide, quand le compte

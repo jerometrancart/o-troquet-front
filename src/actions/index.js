@@ -8,7 +8,7 @@ export const REGISTER = 'REGISTER';
 export const PROFIL = 'PROFIL';
 export const ACHIEVEMENT = 'ACHIEVEMENT';
 export const STATS = 'STATS';
-
+export const TOGGLE_OPEN = 'TOGGLE_OPEN';
 
 export const changeValue = (name, value) => ({
   type: CHANGE_VALUE,
@@ -52,4 +52,8 @@ export const Profile = () => ({
 
 export const Stats = () => ({
   type: STATS,
+});
+
+export const toggleOpen = () => ({
+  type: TOGGLE_OPEN,
 });

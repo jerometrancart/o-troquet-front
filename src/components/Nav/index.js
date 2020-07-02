@@ -44,12 +44,10 @@ const Nav = (friendList) => {
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
     }),
-  ).isRequired, 
+  ).isRequired,
 }; */
 
-
-
-    /* Je recupère au dessus le tableau depuis src/data */
+/* Je recupère au dessus le tableau depuis src/data */
 
 /* const Nav = ( { menuItems, username, isLogged, /* check */ /* } ) => (
   <nav className="menu">
