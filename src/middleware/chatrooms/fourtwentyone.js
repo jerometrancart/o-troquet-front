@@ -69,13 +69,13 @@ const socket = (store) => (next) => (action) => {
         }
       
         // listen to new users joining and manage their messages differently
-        socketCanal.on('new_user_server_to_client', (message) => {
+        socketCanal.on('new_user_server_to_client', (room, message) => {
           const state = store.getState();
           console.log('new user ', message.author);
           message.id = getNextId(state.fourtwentyoneChats.messages);
           store.dispatch(receiveMessage({ content: `${message.author} joined`, author: 'Bartender', id: message.id }));
           store.dispatch(newPlayerJoins(message.author));
-          store.dispatch(updateParty());
+          store.dispatch(updateParty(room));
 
           // socketCanal.emit('send_message_client_to_server', state.fourtwentyoneChats.roomId, { content: `${message.author} joined`, author: 'Bartender' });
         });
@@ -100,11 +100,11 @@ const socket = (store) => (next) => (action) => {
 
         socketCanal.on('GAME_STARTED', (player) => {
           console.log('GAME STARTED BY ', player);
-        
+        });
 
-
-
-
+        socketCanal.on('UPDATE_PARTY', (room) => {
+          store.dispatch(updateParty(room));
+          console.log('la room a été mise à jour', room);
         });
 
         socketCanal.on('available_rooms', (rooms) => {
@@ -126,7 +126,7 @@ const socket = (store) => (next) => (action) => {
       // i get my state, to recognize my username
       const state = store.getState();
       action.roomId = state.fourtwentyoneChats.roomId;
-      console.log('ICI  !!!!!!!!!!!!!!!! : ', action.roomId);
+      // console.log('ICI  !!!!!!!!!!!!!!!! : ', action.roomId);
       // i emit an action the server will recognize and broadcast, with a message
       const id = getNextId(state.fourtwentyoneChats.messages);
       socketCanal.emit('new_user_client_to_server', state.fourtwentyoneChats.roomId, { content: ' joined', author: state.user.userToken.username, id });
@@ -189,7 +189,8 @@ const socket = (store) => (next) => (action) => {
       socketCanal.emit('create_room', state.user.userToken.username);
       // j'écoute la réponse
       socketCanal.on('room_created', (room) => {
-        console.log('roomId returned from server : ', room);
+        console.log('room returned from server : ', room);
+
         // je rejoins la room en question
         // socketCanal.join(room.id);
         // je dois quitter les éventuelles autres rooms

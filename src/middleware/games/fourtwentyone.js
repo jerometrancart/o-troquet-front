@@ -60,6 +60,8 @@ const controls = (store) => (next) => (action) => {
     // GxPv4K7hcmRq
     case START_GAME:
       // console.log('START GAME');
+      action.room = state.fourtwentyoneControls.room;
+      // action.author = state.user.userToken.username;
       action.roomId = state.fourtwentyoneChats.roomId;
       action.player = state.user.userToken.username;
       socketCanal.emit('start_game', action);
@@ -74,15 +76,21 @@ const controls = (store) => (next) => (action) => {
         
 
         // });
-        socketCanal.on('UPDATE_PARTY', (room) => {
-          store.dispatch(updateParty(room));
-        });
+
+        
+        // socketCanal.on('UPDATE_PARTY', (room) => {
+        //   // store.dispatch(updateParty(room));
+        //   console.log('la room a été mise à jour', room);
+        // action.room = state.fourtwentyoneControls.room;
+        //   console.log(action);
+        // });
 
 
 
 
         gameListenerAdded = true;
       }
+      console.log('action dans middleware games fourtwentyone : ', action);
       next(action);
       break;
     default:

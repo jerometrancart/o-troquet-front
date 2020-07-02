@@ -24,14 +24,13 @@ https://codepen.io/omascaros/pen/CBapm
 */
 
 // == Composant
-const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocketDisconnect, loading, hasError }) => {
+const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocketDisconnect, webSocketConnect, loading, hasError }) => {
   // hook d'effet : s'applique après le chargement de l'application
 
   // const location = useLocation();
   useEffect(checkIsLogged, []);
   useEffect(getRandomBackgroundImage, []);
-
-  // useEffect(webSocketDisconnect, []);
+  useEffect(webSocketConnect, []);
 
   // const history = useHistory();
   // console.log(history);
@@ -138,6 +137,7 @@ App.propTypes = {
   checkIsLogged: PropTypes.func.isRequired,
   roomId: PropTypes.string,
   webSocketDisconnect: PropTypes.func.isRequired,
+  webSocketConnect: PropTypes.func.isRequired,
 };
 
 App.defaultProps = {

@@ -39,7 +39,7 @@ const auth = (store) => (next) => (action) => {
       { withCredentials: true })
         .then((response) => {
           // debugger
-          console.log(response);
+          // console.log(response);
           // on ne garde pas le mot de passe de l'utilisateur en dans le state !
           const actionToDeletePassword = changeValue('password', '');
           store.dispatch(actionToDeletePassword);
@@ -134,7 +134,7 @@ damien
       break;
     }
     case AUTH_SUCCESS: {
-      console.log('CHECK a trouvé un token et dispatché authSuccess dans le store ', action);
+      // console.log('CHECK a trouvé un token et dispatché authSuccess dans le store ', action);
       // authSuccess doit vérifier si oui ou non nous avons une room en url
       const roomId = window.location.pathname.slice(25);
       if (roomId !== '') {

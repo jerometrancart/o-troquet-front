@@ -26,9 +26,9 @@ export const startGame = (roomId, player) => ({
   player,
 });
 
-export const listenGame = (roomId) => ({
+export const listenGame = (room) => ({
   type: LISTEN_GAME,
-  roomId,
+  room,
 });
 
 export const newPlayerJoins = (player) => ({

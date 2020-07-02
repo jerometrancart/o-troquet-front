@@ -1,15 +1,15 @@
 import { } from 'src/actions';
-import { NEW_PLAYER_JOINS } from 'src/actions/games/fourtwentyone/player';
-import { UPDATE_PARTY } from '../../../actions/games/fourtwentyone/player';
+import { NEW_PLAYER_JOINS, UPDATE_PARTY } from 'src/actions/games/fourtwentyone/player';
 
 const initialState = {
   players: [],
   room: {},
+  loading: true,
 };
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case NEW_PLAYER_JOINS: {
-      console.log(action.player);
+      console.log('new player joins : ', action.player);
       // console.log(state.players);
       const newPlayers = [
         ...state.players,
@@ -25,9 +25,11 @@ const reducer = (state = initialState, action = {}) => {
       };
     }
     case UPDATE_PARTY:
+      console.log(action.room);
       return {
         ...state,
         room: action.room,
+        loading: false,
       };
     default:
 

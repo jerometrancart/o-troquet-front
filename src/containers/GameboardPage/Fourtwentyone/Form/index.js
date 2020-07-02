@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => ({
     // dispatch(sendMessage());
   },
   setMessage: (value) => {
-    console.log('Dans setMessage, je dispatch mon action', value);
+    // console.log('Dans setMessage, je dispatch mon action', value);
     dispatch(setMessage(value));
   },
 });
