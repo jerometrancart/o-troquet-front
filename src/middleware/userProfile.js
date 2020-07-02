@@ -1,6 +1,7 @@
 import {
   changeValue,
   READ,
+  UPDATE,
 } from 'src/actions/user';
 
 import axios from 'axios';
@@ -59,11 +60,11 @@ const userProfile = (store) => (next) => (action) => {
   const token = localStorage.tokenOTroquet;
   // debugger;
   const userURI = `http://${authenticationURI}v1/users/${localStorage.userId}`;
+  const avatarURI = 'http://ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/uploads/avatars/';
   // Switch
   switch (action.type) {
     //Action
     case READ: {
-      console.log(token);
       // Axios request
       axios.get(userURI,
         /* token, */
@@ -76,16 +77,22 @@ const userProfile = (store) => (next) => (action) => {
         // Answer + Callback
         .then((response) => {
           //debugger
-          console.log(response.data.success[0].username);
           const actionToLoadUsername = changeValue('username', response.data.success[0].username);
           store.dispatch(actionToLoadUsername);
           const actionToLoadEmail = changeValue('email', response.data.success[0].email);
           store.dispatch(actionToLoadEmail);
+          const avatar = response.data.success[0].avatar;
+          const actionToLoadAvatar = changeValue('avatar', `${avatarURI}${avatar}`);
+          store.dispatch(actionToLoadAvatar);
+          console.log(state.user.avatar);
         })
         .catch((error) => {
           console.error(error);
         });
       next(action);
+      break;
+    }
+    case UPDATE: {
       break;
     }
     default:

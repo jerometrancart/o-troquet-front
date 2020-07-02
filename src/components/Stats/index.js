@@ -7,7 +7,7 @@ import Achievement from './Achievement';
 const Stats = ({ achievements }) => (
   <div className="stats">
     <nav className="onglets">
-      <a>Statistiques</a>
+      <h2>Statistiques</h2>
     </nav>
     <div>
       <ul>parties jouées :</ul>

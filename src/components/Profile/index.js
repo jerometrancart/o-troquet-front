@@ -4,7 +4,7 @@ import { Button, Form, Grid, Message } from 'semantic-ui-react';
 import './style.scss';
 import PropTypes from 'prop-types';
 
-const Profile = ({ email, username, open, toggleOpen, toggleClose, update,/* show, variant, textAlert */
+const Profile = ({ email, username, avatar, open, toggleOpen, toggleClose, update,/* show, variant, textAlert */
 }) => {
   const handleUpdate= (evt) => {
     evt.preventDefault();
@@ -16,12 +16,12 @@ const Profile = ({ email, username, open, toggleOpen, toggleClose, update,/* sho
         <div className="profile--page1">
           <h2 className="profile--title">Mon profil</h2>
           <img
-          className="ProfilPicture"
-          /* src={avatar} */
-          alt=""
+            className="profile--picture"
+            src={avatar}
+            alt=""
           />
-          <span className="profile--username">{username}</span>
-          <span className="profile--email">{email}</span>
+          <p className="profile--text"><span className="profile--text--lorem">Pseudo : </span>{username}</p>
+          <p className="profile--text"><span className="profile--text--lorem">E-mail : </span>{email}</p>
           <Button color="blue" className="center aligned profile--button"> Supprimer mon compte</Button>
           <Button color="blue" onClick={toggleOpen} className="center aligned profile--button"> Modifier mes informations </Button>
         </div>

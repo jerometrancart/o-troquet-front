@@ -14,6 +14,7 @@ export const initialState = {
   username: '',
   password: '',
   email: '',
+  avatar: '',
   isLogged: false,
   isAdmin: false,
   loading: true,
