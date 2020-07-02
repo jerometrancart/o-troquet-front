@@ -1,5 +1,6 @@
 import { RECEIVE_MESSAGE, SET_MESSAGE, SEND_MESSAGE, WEBSOCKET_JOIN_ROOM, WEBSOCKET_CREATE_ROOM, WEBSOCKET_CONNECT } from 'src/actions/chatrooms/fourtwentyone';
 import { AUTH_SUCCESS } from 'src/actions/user';
+
 const initialState = {
   text: '',
   messages: [

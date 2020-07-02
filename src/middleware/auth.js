@@ -125,7 +125,7 @@ damien
         store.dispatch(actionToGetId); */
         store.dispatch(authSuccess(localStorage.tokenOTroquet, user));
         store.dispatch(getFriends());
-        // store.dispatch(checkRoom());
+        store.dispatch(webSocketConnect());
       }
       else {
         // window.location = ('http://localhost:8080')
