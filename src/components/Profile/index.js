@@ -29,7 +29,7 @@ const Profile = ({ email, username, open, toggleOpen, toggleClose, update,/* sho
     );
   }
   return (
-    <div className="profile">
+    <div className="profile" id="profile">
       <div className="profile--page2">
         <Grid className="center aligned">
           <h2 className="profile--title">Modifier mon compte </h2>
