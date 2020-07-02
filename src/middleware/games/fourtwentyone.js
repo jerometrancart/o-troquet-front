@@ -52,13 +52,14 @@ const controls = (store) => (next) => (action) => {
       const targetedDie = action.evt.currentTarget;
       console.log(targetedDie);
       targetedDie.classList.toggle('blocked');
+      socketCanal.emit('die_blocked');
       next(action);
 
       break;
     }
     // GxPv4K7hcmRq
     case START_GAME:
-      console.log('START GAME');
+      // console.log('START GAME');
       action.roomId = state.fourtwentyoneChats.roomId;
       action.player = state.user.userToken.username;
       socketCanal.emit('start_game', action);
@@ -73,7 +74,7 @@ const controls = (store) => (next) => (action) => {
         
 
         // });
-        socketCanal.on('PARTY_UPDATED', (room) => {
+        socketCanal.on('UPDATE_PARTY', (room) => {
           store.dispatch(updateParty(room));
         });
 

@@ -44,8 +44,8 @@ const auth = (store) => (next) => (action) => {
           const actionToDeletePassword = changeValue('password', '');
           store.dispatch(actionToDeletePassword);
           if (response.data.token) {
-            console.log(response.data.token);
-            console.log(response.data.metadata.user_id);
+            // console.log(response.data.token);
+            // console.log(response.data.metadata.user_id);
             // const token = ;
             const user = jwt(response.data.token); // decode your token here
             localStorage.setItem('tokenOTroquet', response.data.token);
@@ -128,6 +128,7 @@ damien
         // store.dispatch(checkRoom());
       }
       else {
+        // window.location = ('http://localhost:8080')
         next(action);
       }
       break;

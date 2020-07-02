@@ -24,7 +24,7 @@ const userFriends = (store) => (next) => (action) => {
 
   switch (action.type) {
     case GET_FRIENDS: {
-      console.log(token);
+      // console.log(token);
       axios.get(friendsURI,
         /* token, */
         {

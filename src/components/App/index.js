@@ -92,10 +92,10 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
                   isLogged={isLogged}
                 />
               )}
-            {/* {!isLogged
+            {!isLogged
               && (
               <Redirect to="/" />
-              )} */}
+              )}
           </Route>
           <Route exact path="/legal">
             <Legal />

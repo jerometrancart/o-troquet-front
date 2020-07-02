@@ -156,11 +156,13 @@ const reducer = (state = initialState, action = {}) => {
         userId: '',
       };
     case CHECK:
-      console.log(' dans le reducer user, CHECK va mettre state.user.loading à false, on va avoir le contrôle')
+      console.log(' dans le reducer user, CHECK va mettre state.user.loading à false, on va avoir le contrôle');
+      console.log(state);
       return {
         ...state,
         // loading: true,
         loading: false,
+        isLogged: false,
       };
     case ALERT_SHOW:
       return {
@@ -172,7 +174,7 @@ const reducer = (state = initialState, action = {}) => {
     case WEBSOCKET_CONNECT:
       return {
         ...state,
-        gameId: action.gameId,
+        roomId: action.roomId,
       };
     case CHECK_ROOM:
       return {

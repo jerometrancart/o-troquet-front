@@ -5,7 +5,7 @@ import Friend from './Friend';
 import './style.scss';
 
 const Friendlist = ({ friends, curUsername, isLogged,}) => {
-  console.log(friends);
+  // console.log(friends);
   return (
     <ul className="friendList">
       {/* Je recupère au dessus friendlist depuis le reducer
@@ -28,6 +28,10 @@ Friendlist.propTypes = {
   // friendDetails: PropTypes.object.isRequired,
   curUsername: PropTypes.string.isRequired,
   isLogged: PropTypes.bool.isRequired,
+};
+
+Friendlist.defaultProps = {
+  friends: [],
 };
 
 export default Friendlist;

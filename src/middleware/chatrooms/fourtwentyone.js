@@ -47,61 +47,73 @@ const socket = (store) => (next) => (action) => {
       // }
       // socketCanal = window.io;
       if (!listeneradded) {
-      if (action.roomId !== undefined) {
-        socketCanal.emit('check_room_client_to_server', action.roomId);
-        socketCanal.on('check_room_server_to_client_ok', () => {
-          // console.log('check_room_server_to_client_ok');
-          // window.io.emit('check_room_client_to_server', roomId);
-          // window.io.on('check_room_server_to_client_ok', () => {
-          // store.dispatch(webSocketListenRoom());
-          next(action);
-        });
-        socketCanal.on('check_room_server_to_client_not_ok', () => {
-          // window.io.on('check_room_server_to_client_not_ok', () => {
-          // la room n'existe pas, message d'erreur à afficher quelque part
-          console.log('la room n\'existe pas, dsl, faites autre chose de votre vie');
-          // store.dispatch(webSocketDisconnect());
-          action.roomId = '';
-        });
-      }
-     
-       // listen to new users joining and manage their messages differently
-       socketCanal.on('new_user_server_to_client', (message) => {
-        const state = store.getState();
-        console.log('new user ', message.author);
-        message.id = getNextId(state.fourtwentyoneChats.messages);
-        store.dispatch(receiveMessage({ content: `${message.author} joined`, author: 'Bartender', id: message.id }));
-        store.dispatch(newPlayerJoins(message.author));
-        store.dispatch(updateParty());
-
-        // socketCanal.emit('send_message_client_to_server', state.fourtwentyoneChats.roomId, { content: `${message.author} joined`, author: 'Bartender' });
-      });
-
-
-      // listen to incoming messages from general connection
-      socketCanal.on('send_message_server_to_client', (message) => {
-        console.log('un message a été reçu ', message);
-        // je veux stocker le nouveau message reçu dans mon state
-        store.dispatch(receiveMessage(message));
-      });
-
-      // say who connects
-      // socketCanal.on('user-connected', (name) => {
-      //   store.dispatch(receiveMessage({ author: name, content: ' connected' }));
-      // });
-
-      // say who disconnects
-      socketCanal.on('user_disconnected', (message) => {
-        store.dispatch(receiveMessage({ author: 'Bartender', content: `${message.author} left` }));
-      });
-
-      socketCanal.on('GAME_STARTED', (player) => {
-        console.log('GAME STARTED BY ', player);
+        if (action.roomId !== undefined) {
+          console.log(action.roomId);
+          socketCanal.emit('check_room_client_to_server', action.roomId);
+          socketCanal.on('check_room_server_to_client_ok', () => {
+            console.log('check_room_server_to_client_ok');
+            // window.io.emit('check_room_client_to_server', roomId);
+            // window.io.on('check_room_server_to_client_ok', () => {
+            // store.dispatch(webSocketListenRoom());
+            next(action);
+          });
+          socketCanal.on('check_room_server_to_client_not_ok', () => {
+            // window.io.on('check_room_server_to_client_not_ok', () => {
+            // la room n'existe pas, message d'erreur à afficher quelque part
+            console.log('la room n\'existe pas, dsl, faites autre chose de votre vie');
+            // store.dispatch(webSocketDisconnect());
+            action.roomId = '';
+            next(action);
+            window.history.back();
+          });
+        }
       
+        // listen to new users joining and manage their messages differently
+        socketCanal.on('new_user_server_to_client', (message) => {
+          const state = store.getState();
+          console.log('new user ', message.author);
+          message.id = getNextId(state.fourtwentyoneChats.messages);
+          store.dispatch(receiveMessage({ content: `${message.author} joined`, author: 'Bartender', id: message.id }));
+          store.dispatch(newPlayerJoins(message.author));
+          store.dispatch(updateParty());
 
-      });
-      listeneradded = true;
-    }
+          // socketCanal.emit('send_message_client_to_server', state.fourtwentyoneChats.roomId, { content: `${message.author} joined`, author: 'Bartender' });
+        });
+
+
+        // listen to incoming messages from general connection
+        socketCanal.on('send_message_server_to_client', (message) => {
+          console.log('un message a été reçu ', message);
+          // je veux stocker le nouveau message reçu dans mon state
+          store.dispatch(receiveMessage(message));
+        });
+
+        // say who connects
+        // socketCanal.on('user-connected', (name) => {
+        //   store.dispatch(receiveMessage({ author: name, content: ' connected' }));
+        // });
+
+        // say who disconnects
+        socketCanal.on('user_disconnected', (message) => {
+          store.dispatch(receiveMessage({ author: 'Bartender', content: `${message.author} left` }));
+        });
+
+        socketCanal.on('GAME_STARTED', (player) => {
+          console.log('GAME STARTED BY ', player);
+        
+
+
+
+
+        });
+
+        socketCanal.on('available_rooms', (rooms) => {
+          console.log('available_rooms returned from server :', rooms);
+        });
+
+
+        listeneradded = true;
+      }
       // on écoute un événement, ça fonctionne comme les écouteurs d'événements qu'on connait bien
       // document.addEventListener('click', () => { })
       // ici j'envoie un message
