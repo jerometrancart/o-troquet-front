@@ -76,10 +76,10 @@ const userProfile = (store) => (next) => (action) => {
         // Answer + Callback
         .then((response) => {
           //debugger
-          console.log(response.data.success[0].Profileusername);
-          const actionToLoadUsername = changeValue('profileUsername', response.data.success.ProfileUsername);
+          console.log(response.data.success[0].username);
+          const actionToLoadUsername = changeValue('username', response.data.success[0].username);
           store.dispatch(actionToLoadUsername);
-          const actionToLoadEmail = changeValue('profileEmail', response.data.success.ProfileEmail);
+          const actionToLoadEmail = changeValue('email', response.data.success[0].email);
           store.dispatch(actionToLoadEmail);
         })
         .catch((error) => {

@@ -4,20 +4,24 @@ import { Button, Form, Grid, Message } from 'semantic-ui-react';
 import './style.scss';
 import PropTypes from 'prop-types';
 
-const Profile = ({ profileEmail, profileUsername, open, toggleOpen, toggleClose, /* show, variant, textAlert */
+const Profile = ({ email, username, open, toggleOpen, toggleClose, update,/* show, variant, textAlert */
 }) => {
+  const handleUpdate= (evt) => {
+    evt.preventDefault();
+    update();
+  };
   if (!open) {
     return (
       <div className="profile">
         <div className="profile--page1">
-          <h2 className="profile--title">Profil</h2>
+          <h2 className="profile--title">Mon profil</h2>
           <img
           className="ProfilPicture"
           /* src={avatar} */
           alt=""
           />
-          <span className="profile--username">{profileUsername}</span>
-          <span className="profile--email">{profileEmail}</span>
+          <span className="profile--username">{username}</span>
+          <span className="profile--email">{email}</span>
           <Button color="blue" className="center aligned profile--button"> Supprimer mon compte</Button>
           <Button color="blue" onClick={toggleOpen} className="center aligned profile--button"> Modifier mes informations </Button>
         </div>
@@ -36,10 +40,12 @@ const Profile = ({ profileEmail, profileUsername, open, toggleOpen, toggleClose,
             <Field
               name="username"
               placeholder="Pseudo"
+              value={username}
             />
             <Field
               name="email"
               placeholder="E-mail"
+              value={email}
             />
             <Field
               type="password"
@@ -56,7 +62,7 @@ const Profile = ({ profileEmail, profileUsername, open, toggleOpen, toggleClose,
               name="new-passwordVerify"
               placeholder="Confirmer le mot de passe"
             />
-            <Button color="blue" className="center aligned profile--button"> Modifier </Button>
+            <Button color="blue" type="submit" className="center aligned profile--button" onSubmit={handleUpdate}> Modifier </Button>
             <Button color="blue" onClick={toggleClose} className="center aligned profile--button"> Retour </Button>
           </form>
         </Grid>

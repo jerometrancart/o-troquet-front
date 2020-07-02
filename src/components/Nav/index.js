@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import Stats from 'src/containers/Stats';
 
 // Composants
-const Nav = (friendList) => {
+const Nav = (friendList, toggleClose) => {
   const [StatsModal, toggleStatsModal] = useModali({
     animated: true,
     centered: true,

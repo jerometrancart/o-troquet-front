@@ -9,6 +9,11 @@ body {
   font-size: 16px;
 }
 
+@media (min-width: 1025px) {
+.modali-open {
+    padding-right: 0 !important; 
+}
+}
 .main {
   height: 100vh;
 }

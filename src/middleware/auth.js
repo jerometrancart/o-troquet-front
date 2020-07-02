@@ -8,6 +8,7 @@ import { LOGIN,
   LOGOUT,
   getFriends,
   AUTH_SUCCESS,
+  read,
 } from 'src/actions/user';
 import { webSocketDisconnect, webSocketListenRoom, webSocketConnect, checkRoom } from 'src/actions/chatrooms/fourtwentyone';
 
@@ -65,6 +66,7 @@ const auth = (store) => (next) => (action) => {
             store.dispatch(actionToSaveToken);
             store.dispatch(authSuccess(response.data.token, user));
             store.dispatch(getFriends());
+            store.dispatch(read());
           }
           else {
             if (response.data.metadata.banned === true) {
@@ -116,6 +118,7 @@ damien
 729Cbk192!
 */
       store.dispatch(getFriends());
+      store.dispatch(read());
       next(action);
       break;
     }
@@ -128,6 +131,7 @@ damien
         store.dispatch(actionToGetId); */
         store.dispatch(authSuccess(localStorage.tokenOTroquet, user));
         store.dispatch(getFriends());
+        store.dispatch(read());
         // store.dispatch(checkRoom());
       }
       else {

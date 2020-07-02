@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import { toggleOpen, toggleClose } from 'src/actions/user';
+import { toggleOpen, toggleClose, update } from 'src/actions/user';
 import Profile from 'src/components/Profile';
 
 const mapStateToProps = (state) => ({
-  profileUsername: state.user.profileUsername,
-  profileEmail: state.user.profileEmail,
+  username: state.user.username,
+  email: state.user.email,
   open: state.user.open,
   /* avatar: state.user.avatar, */
 });
@@ -16,6 +16,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   toggleClose: () => {
     const action = toggleClose();
+    dispatch(action);
+  },
+  update: () => {
+    const action = update();
     dispatch(action);
   },
 });

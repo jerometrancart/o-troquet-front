@@ -1,10 +1,8 @@
 import { connect } from 'react-redux';
-
+import { toggleClose } from 'src/actions/user';
 import Nav from 'src/components/Nav';
 
 // import { check } from 'src/actions/user';
-
-
 
 const mapStateToProps = (state) => ({
   username: state.user.userToken.username,
@@ -12,7 +10,10 @@ const mapStateToProps = (state) => ({
   menuItems: state.user.menuItems,
 });
 const mapDispatchToProps = (dispatch) => ({
-   
+  toggleClose: () => {
+    const action = toggleClose();
+    dispatch(action);
+  },
 });
 
 export default connect(
