@@ -129,8 +129,6 @@ const socket = (store) => (next) => (action) => {
       // i get my state, to recognize my username
       const state = store.getState();
       action.roomId = state.fourtwentyoneChats.roomId;
-      // console.log('ICI  !!!!!!!!!!!!!!!! : ', action.roomId);
-      // i emit an action the server will recognize and broadcast, with a message
       const id = getNextId(state.fourtwentyoneChats.messages);
       socketCanal.emit('new_user_client_to_server', state.fourtwentyoneChats.roomId, { content: ' joined', author: state.user.userToken.username, id });
       
