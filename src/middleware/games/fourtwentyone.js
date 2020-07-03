@@ -19,7 +19,7 @@ import jwt from 'jwt-decode';
 // POST
 const authenticationURI = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/login_check';
 const authenticationURIAdministration = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/login';
-let gameListenerAdded = false ;
+let gameListenerAdded = false;
 
 const controls = (store) => (next) => (action) => {
   const state = store.getState();
