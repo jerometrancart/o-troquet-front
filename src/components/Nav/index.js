@@ -3,7 +3,6 @@ import React from 'react';
 import Modali, { useModali } from 'modali';
 import Friendlist from 'src/containers/Friendlist';
 import Profile from 'src/containers/Profile';
-
 import './style.scss';
 import PropTypes from 'prop-types';
 import Stats from 'src/containers/Stats';

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 const Profile = ({ email, username, avatar, open, toggleOpen, toggleClose, updateUser,/* show, variant, textAlert */
 }) => {
-  const handleUpdateUser= (evt) => {
+  const handleUpdateUser = (evt) => {
     evt.preventDefault();
     updateUser();
   };

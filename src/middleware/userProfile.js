@@ -5,6 +5,7 @@ import {
   UPDATE_USER,
   login,
   getFriends,
+  toggleClose,
 } from 'src/actions/user';
 
 import axios from 'axios';
@@ -98,9 +99,9 @@ const userProfile = (store) => (next) => (action) => {
       next(action);
       break;
     }
-    // les champs new-password et verify-password sont facultatifs
-    // si la valeur du champ new-password est remplie, il doit contenir au moins
-    // 1 maj, 1 min, 1 chiffre et 1 caractère spécial
+    // les champs new-password et verify-password sont facultatifs CHECK
+    // si la valeur du champ new-password est remplie, il doit contenir au moins CHECK
+    // 1 maj, 1 min, 1 chiffre et 1 caractère spécial CHECK
     // la valeur de new-password doit toujours être égale à la valeur du champ verify-password CHECK
     // le back attend un username, un email, un password dans une première requête CHECK
     // nous voulons lui envoyer : la valeur du champ username, la valeur du champ email CHECK
@@ -144,6 +145,7 @@ const userProfile = (store) => (next) => (action) => {
             // et en redemander un nouveau, ce qui ne pose pas de problème puisque dans ce if, les
             // champ suivis sont username, password et email, on peut donc relancer login
             store.dispatch(login());
+            store.dispatch(toggleClose());
             // si tout s'est bien passé, on renvoie une requête pour tout afficher en front
             // le code ci-dessous sert à configurer une alerte semantic-ui plus tard
             // const actionToSaveUpdateResponse = changeValue('register_response', response.data);
@@ -204,6 +206,7 @@ const userProfile = (store) => (next) => (action) => {
                 const actionToSaveNewPassword = changeValue('password', newPassword);
                 store.dispatch(actionToSaveNewPassword);
                 store.dispatch(login());
+                store.dispatch(toggleClose());
 
               // le code ci-dessous sert à configurer une alerte semantic-ui plus tard
               // const actionToSaveUpdateResponse = changeValue('register_response', response.data);
