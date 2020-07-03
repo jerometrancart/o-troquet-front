@@ -199,7 +199,7 @@ damien
     case LOGOUT: {
       localStorage.removeItem('tokenOTroquet');
       console.log('middleware auth je veux me déconnecter');
-      webSocketDisconnect();
+      store.dispatch(webSocketDisconnect());
 
       next(action);
       break;

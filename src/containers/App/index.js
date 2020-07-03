@@ -13,7 +13,8 @@ const mapStateToProps = (state) => {
     roomId: state.fourtwentyoneChats.roomId,
     room: state.fourtwentyoneControls.room,
     loading: state.user.loading,
-    hasError: state.user.hasError,
+    // hasError: state.user.hasError,
+    hasError: state.fourtwentyoneChats.hasError,
   };
 };
 

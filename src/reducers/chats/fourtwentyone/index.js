@@ -17,6 +17,7 @@ const initialState = {
   ],
   rooms: [],
   roomId: '',
+  hasError: false,
 };
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -71,6 +72,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         roomId: action.roomId,
+        hasError: action.hasError,
       };
     default:
       return state;

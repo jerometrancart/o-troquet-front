@@ -20,11 +20,11 @@ const Scoreboard = ({ children, room, players, loading }) => {
         <>
           <div className="scores">
             { players.map((player) => (
-              <p key={player.name}> {player.name} - {player.score}</p>
+              <p key={player.id}> {player.name} - {player.score}</p>
             ))}
           </div>
         </>
-          )}
+      )}
       {/* /*<>
         <p key={room.users[0].name}> {room.users[0].name} - {room.users[0].score}</p>
         <p key={room.users[1].name}> {room.users[1].name} - {room.users[1].score}</p>
@@ -41,13 +41,13 @@ const Scoreboard = ({ children, room, players, loading }) => {
 
 Scoreboard.propTypes = {
   room: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
 
     users: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       score: PropTypes.number.isRequired,
-    })).isRequired,
+    })),
 
     pot: PropTypes.number.isRequired,
 
@@ -72,12 +72,9 @@ Scoreboard.propTypes = {
   loading: PropTypes.bool.isRequired,
 };
 
-/* Scoreboard.defaultProps = { */
-//  children: (
-//    <div className="scoreboard--children">Scoreboard children</div>
-//  ),
-/* }; */
-
+Scoreboard.defaultProps = { 
+  users: [],
+};
 export default Scoreboard;
 /*
 {/* console.log('je veux transposer mes messages vers un tableau jsx', messages) */

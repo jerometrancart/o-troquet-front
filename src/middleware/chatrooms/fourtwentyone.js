@@ -15,6 +15,7 @@ import {
   webSocketListenRoom,
 } from 'src/actions/chatrooms/fourtwentyone';
 import { newPlayerJoins, updateParty} from 'src/actions/games/fourtwentyone/player';
+import { changeValue } from 'src/actions/user';
 import GameboardPage from 'src/containers/GameboardPage/Fourtwentyone';
 import {
   tinyURL,
@@ -61,20 +62,28 @@ const socket = (store) => (next) => (action) => {
           socketCanal.on('check_room_server_to_client_not_ok', () => {
             // window.io.on('check_room_server_to_client_not_ok', () => {
             // la room n'existe pas, message d'erreur à afficher quelque part
-            console.log('la room n\'existe pas, dsl, faites autre chose de votre vie');
+            console.log('la room n\'existe pas, dsl');
             // store.dispatch(webSocketDisconnect());
             action.roomId = '';
+            action.hasError = true;
+            // window.onpopstate(() => {
+            //   history.pushState('/gameselect/404');
+            //   history.back
+            // });
+            // window.location = ('/gameselect/404');
+            // window.history.replaceState({}, '404 fais gaffe dude', '/gameselect');
+            // window.history.back();
             next(action);
-            window.history.back();
+            // store.dispatch(window.history.replaceState('404', '/'));
           });
         }
       
         // listen to new users joining and manage their messages differently
         socketCanal.on('new_user_server_to_client', (room, message) => {
-          const state = store.getState();
+          // const state = store.getState();
           console.log('new user ', message.author);
           message.id = getNextId(state.fourtwentyoneChats.messages);
-          store.dispatch(receiveMessage({ content: `${message.author} joined`, author: 'Bartender', id: message.id }));
+          // store.dispatch(receiveMessage({ content: `${message.author} joined`, author: 'Bartender', id: message.id }));
           store.dispatch(newPlayerJoins(message.author));
           store.dispatch(updateParty(room));
 
@@ -95,16 +104,26 @@ const socket = (store) => (next) => (action) => {
         // });
 
         // say who disconnects
-        socketCanal.on('user_disconnected', (message) => {
-          store.dispatch(receiveMessage({ author: 'Bartender', content: `${message.author} left` }));
-        });
+        // socketCanal.on('user_disconnected', (message) => {
+        //   store.dispatch(receiveMessage({ author: 'Bartender', content: `${message.author} left` }));
+        // });
 
         socketCanal.on('GAME_STARTED', (player) => {
           console.log('GAME STARTED BY ', player);
         });
 
         socketCanal.on('UPDATE_PARTY', (room, message) => {
+          console.log('room ICI    ============>>>>>>>>>>', room);
           store.dispatch(updateParty(room));
+
+          // store.dispatch(() => {
+          //   setTimeout(
+          //   updateParty(room), 1000,
+          //   );
+          // });
+
+
+          // store.dispatch(changeValue('loading', true));
           store.dispatch(receiveMessage(message));
           console.log('la room a été mise à jour', room);
         });
@@ -127,12 +146,12 @@ const socket = (store) => (next) => (action) => {
 // ====================================================================================================== //
     case WEBSOCKET_LISTEN_ROOM: {
       // i get my state, to recognize my username
+      // useEffect on /gameboard [roomId]
       const state = store.getState();
       action.roomId = state.fourtwentyoneChats.roomId;
       const id = getNextId(state.fourtwentyoneChats.messages);
+      // sending event into socket server for 
       socketCanal.emit('new_user_client_to_server', state.fourtwentyoneChats.roomId, { content: ' joined', author: state.user.userToken.username, id });
-      
-     
       next(action);
       break;
     }
@@ -149,11 +168,12 @@ const socket = (store) => (next) => (action) => {
         socketCanal.disconnect();
         socketCanal.close();
       }
+      next(action);
       break;
     }
 // ====================================================================================================== //
     case SEND_MESSAGE: {
-      console.log('on demande d\'envoyer un message, je traduis comment ça doit se faire dans le middleware');
+      // console.log('on demande d\'envoyer un message, je traduis comment ça doit se faire dans le middleware');
       // debugger;
       // ici j'envoie un message
       // sur le canal d'échange socket j'ai accès à une méthode emit pour émettre un évènements

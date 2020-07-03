@@ -30,7 +30,7 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
   // const location = useLocation();
   useEffect(checkIsLogged, []);
   useEffect(getRandomBackgroundImage, []);
-  useEffect(webSocketConnect, []);
+  useEffect(webSocketConnect);
 
   // const history = useHistory();
   // console.log(history);
@@ -51,11 +51,10 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
       && (
       <Nav />
       )}
-        {!loading && hasError && (
-          <p className="error">Une erreur s'est produite. Veuillez réessayer plus tard.</p>
+        {hasError && (
+          <p className="errorPage">404 fais gaffe dude</p>
         )}
         {!loading && !hasError && (
-
         <Switch>
           <Route exact path="/">
             {!isLogged
@@ -84,13 +83,13 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
                 <Redirect to="/" />
                 )}
           </Route>
-          <Route path="/gameboard/fourtwentyone/:roomId">
+          <Route exact path="/gameboard/fourtwentyone/:roomId">
             {isLogged
-              && (
+              && !hasError && (
                 <GameboardPage
                   isLogged={isLogged}
                 />
-              )}
+            )}
             {!isLogged
               && (
               <Redirect to="/" />

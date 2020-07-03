@@ -10,6 +10,8 @@ import {
   listenGame,
   updateParty,
 } from 'src/actions/games/fourtwentyone/player';
+import { WEBSOCKET_CONNECT } from 'src/actions/chatrooms/fourtwentyone';
+import { changeValue } from 'src/actions/user';
 import { socketCanal } from 'src/selectors';
 import axios from 'axios';
 import jwt from 'jwt-decode';
@@ -65,7 +67,7 @@ const controls = (store) => (next) => (action) => {
       action.roomId = state.fourtwentyoneChats.roomId;
       action.player = state.user.userToken.username;
       socketCanal.emit('start_game', action);
-      store.dispatch(listenGame());
+      // store.dispatch(listenGame());
       next(action);
       break;
 
@@ -93,6 +95,11 @@ const controls = (store) => (next) => (action) => {
       console.log('action dans middleware games fourtwentyone : ', action);
       next(action);
       break;
+    case WEBSOCKET_CONNECT: {
+      // store.dispatch(changeValue('loading', true));
+      next(action);
+      break;
+    }
     default:
       next(action);
   }
