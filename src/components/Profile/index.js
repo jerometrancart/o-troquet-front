@@ -4,11 +4,11 @@ import { Button, Form, Grid, Message } from 'semantic-ui-react';
 import './style.scss';
 import PropTypes from 'prop-types';
 
-const Profile = ({ email, username, avatar, open, toggleOpen, toggleClose, update,/* show, variant, textAlert */
+const Profile = ({ email, username, avatar, open, toggleOpen, toggleClose, updateUser,/* show, variant, textAlert */
 }) => {
-  const handleUpdate= (evt) => {
+  const handleUpdateUser= (evt) => {
     evt.preventDefault();
-    update();
+    updateUser();
   };
   if (!open) {
     return (
@@ -33,7 +33,7 @@ const Profile = ({ email, username, avatar, open, toggleOpen, toggleClose, updat
       <div className="profile--page2">
         <Grid className="center aligned">
           <h2 className="profile--title">Modifier mon compte </h2>
-          <form className="profil--page2--form">
+          <form className="profil--page2--form" onSubmit={handleUpdateUser}>
             {/* <Message className={show} color={variant}>
               {textAlert}
             </Message> */}
@@ -49,20 +49,20 @@ const Profile = ({ email, username, avatar, open, toggleOpen, toggleClose, updat
             />
             <Field
               type="password"
-              name="old-password"
+              name="password"
               placeholder="Mot de passe actuel"
             />
             <Field
               type="password"
-              name="new-password"
+              name="newPassword"
               placeholder="Nouveau mot de passe"
             />
             <Field
               type="password"
-              name="new-passwordVerify"
+              name="newPasswordVerify"
               placeholder="Confirmer le mot de passe"
             />
-            <Button color="blue" type="submit" className="center aligned profile--button" onSubmit={handleUpdate}> Modifier </Button>
+            <Button color="blue" type="submit" className="center aligned profile--button"> Modifier </Button>
             <Button color="blue" onClick={toggleClose} className="center aligned profile--button"> Retour </Button>
           </form>
         </Grid>

@@ -13,6 +13,7 @@ export const initialState = {
   open: false,
   username: '',
   password: '',
+  newPassword: '',
   email: '',
   avatar: '',
   isLogged: false,

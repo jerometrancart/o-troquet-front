@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { toggleOpen, toggleClose, update } from 'src/actions/user';
+import { toggleOpen, toggleClose, updateUser } from 'src/actions/user';
 import Profile from 'src/components/Profile';
 
 const mapStateToProps = (state) => ({
@@ -18,8 +18,8 @@ const mapDispatchToProps = (dispatch) => ({
     const action = toggleClose();
     dispatch(action);
   },
-  update: () => {
-    const action = update();
+  updateUser: () => {
+    const action = updateUser();
     dispatch(action);
   },
 });

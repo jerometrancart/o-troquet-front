@@ -16,11 +16,11 @@ import axios from 'axios';
 import jwt from 'jwt-decode';
 // http:ec2-100-26-57-91.compute-1.amazonaws.com/
 // damien vpn, where backend was coding
-// const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/';
+const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/';
 // http://ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/v1/users
 // POST
 // actual server adress to write the routes endpoints at the end
-const authenticationURI = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/api/';
+// const authenticationURI = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/api/';
 const authenticationURIAdministration = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/login';
 
 // a middleware is always a triple arrow
@@ -117,8 +117,9 @@ http://ec2-35-153-19-27.compute-1.amazonaws.com/phpmyadmin/
 damien
 729Cbk192!
 */
-      store.dispatch(getFriends());
-      store.dispatch(read());
+      if (localStorage.userId) {
+        store.dispatch(getFriends());
+        store.dispatch(read());}
       next(action);
       break;
     }

@@ -11,7 +11,7 @@ export const GET_FRIENDS = 'GET_FRIENDS';
 export const READ = 'READ';
 export const TOGGLE_OPEN = 'TOGGLE_OPEN';
 export const TOGGLE_CLOSE = 'TOGGLE_CLOSE';
-export const UPDATE = 'UPDATE';
+export const UPDATE_USER = 'UPDATE_USER';
 
 export const changeValue = (name, value) => ({
   type: CHANGE_VALUE,
@@ -73,6 +73,6 @@ export const toggleClose = () => ({
   type: TOGGLE_CLOSE,
 });
 
-export const update = () => ({
-  type: UPDATE,
+export const updateUser = () => ({
+  type: UPDATE_USER,
 });
