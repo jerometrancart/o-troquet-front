@@ -1,4 +1,6 @@
+@use 'sass:color';
 @import 'src/styles/vars';
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 .gameScreen {
   background-color: $table-color;
@@ -6,18 +8,26 @@
   width: 100vw;
   height: calc(100vh-#{$header-height}-#{$footer-height});
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
+  align-items: center;
 }
 
 .gameBoard {
   position: relative;
   display: flex;
-  justify-content: flex-end; 
+  justify-content: center; 
 }
 
-.pannel {
+.right-panel {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 80vh;
+  width: 30%;
+  margin-top: 10vh;
 }
 
 .board {
@@ -27,15 +37,63 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: calc(100vh-#{$header-height}-#{$footer-height}-200px);
-  height: calc(100vh-#{$header-height}-#{$footer-height}-200px);
+  width: 60vh;
+  height: 60vh;
   border-radius: 50%;
-  border: 10px solid white;
-  background-color: $board-color;
+  border: 20px solid #AF9164;
+  background-color: $board;
   color: white;
 }
 
-.scoreboard, .controls, .chatrooms {
-  width: calc(100vh-#{$header-height}-#{$footer-height}-200px);
+.scoreboard {
+  width: 80%;
+  height: 20vh;
+  display: block;
+  background-color: rgba(247, 243, 227, 0.8);
+  color: $main-color;
+  font-family: 'Indie Flower', cursive;
+
+  padding: 2%;
+  box-shadow: 2px 4px 6px #444;
+  -moz-box-shadow: 2px 4px 6px #444;
+  -webkit-box-shadow: 2px 4px 6px #444;
+  transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -webkit-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  border-bottom-right-radius: 60px 10px;
+  &--title {
+    font-family: 'Indie Flower', cursive;
+  }
+}
+
+.controls {
+  height: 5vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  &--button {
+    font-size: 1rem;
+    &:hover {
+      background-color: $main-color;
+      color: white;
+    }
+  }
+}
+
+.controls--buttons{
+  
+}
+
+.combos {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  
+}
+
+.roll-button {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
 }

@@ -3,7 +3,8 @@
 .footer {
   border-top: 1px solid $text-color;
   width: 100%;
-  height: $footer-height;
+  // height: $footer-height;
+  height: 10vh;
   display: flex;
   justify-content: space-around;
   background-color: $main-color;

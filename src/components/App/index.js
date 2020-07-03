@@ -29,7 +29,6 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
 
   // const location = useLocation();
   useEffect(checkIsLogged, []);
-
   useEffect(getRandomBackgroundImage, []);
 
   // useEffect(webSocketDisconnect, []);
@@ -44,6 +43,7 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
   // }, [roomId]);
 
   return (
+
     <div className="main">
 
       <Header />
@@ -56,6 +56,7 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
           <p className="error">Une erreur s'est produite. Veuillez réessayer plus tard.</p>
         )}
         {!loading && !hasError && (
+
         <Switch>
           <Route exact path="/">
             {!isLogged

@@ -41,7 +41,6 @@ const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webS
     webSocketListenRoom();
   }, [roomId]);
 
-
   return (
     <div className="gameScreen">
       <h2>--- 421 --- room : {roomId}</h2>
@@ -53,14 +52,14 @@ const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webS
             <Die dieId="third-die" toggleBlock={toggleBlock} />
           </Dice>
         </Board>
-        <div className="right panel">
-          <Scoreboard>
-            <Infos />
-            <Players />
-          </Scoreboard>
-          <Controls rollDice={rollDice} />
-          <Chatrooms />
-        </div>
+      </div>
+      <div className="right-panel">
+        <Scoreboard>
+          <Infos />
+          <Players />
+        </Scoreboard>
+        <Controls rollDice={rollDice} />
+        <Chatrooms />
       </div>
     </div>
   );

@@ -117,9 +117,11 @@ http://ec2-35-153-19-27.compute-1.amazonaws.com/phpmyadmin/
 damien
 729Cbk192!
 */
+      // Uniquement si le userId est défini, pour éviter les erreurs en console et les undefined
       if (localStorage.userId) {
         store.dispatch(getFriends());
         store.dispatch(read());}
+
       next(action);
       break;
     }

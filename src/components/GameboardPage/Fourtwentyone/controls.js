@@ -31,10 +31,14 @@ const Controls = ({ children, rollDice, nextPlayer }) => {
 
   return (
     <div className="controls">
-      Controls
-      {children}
-      <button type="button" id="roll-button" onClick={rollDice}>Roll Dice</button>
-      <button type="button" id="next-player-button" onClick={nextPlayer}>Next player</button>
+      {/* Controls
+      {children} */}
+      <div className="buttonbar">
+        <button className="roll-button controls--button" type="button" id="roll-button" onClick={rollDice}>Roll Dice</button>
+        <button className="next-player-button controls--button" type="button" id="next-player-button" onClick={nextPlayer}>Next player</button>
+        <button className="rules controls--button" type="button" id="rules">Règles</button>
+        <button className="combos controls--button" type="button" id="combos">Combinaisons</button>
+      </div>
     </div>
   );
 };

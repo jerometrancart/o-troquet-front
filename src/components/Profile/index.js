@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Field from 'src/containers/Login/Field';
 import { Button, Form, Grid, Message } from 'semantic-ui-react';
 import './style.scss';
@@ -75,5 +76,6 @@ const Profile = ({ email, username, avatar, open, toggleOpen, toggleClose, updat
 //  profileEmail:PropTypes.string.isRequired,
 //  ProfileUsername: PropTypes.string.isRequired,
 // };
+
 
 export default Profile;

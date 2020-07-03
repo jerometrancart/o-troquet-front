@@ -37,12 +37,13 @@ const GamesListPage = ({ isLogged, username, webSocketConnect, webSocketDisconne
       <div className="playModes">
         <div className="modes">
           {/* <Link to="/gameboard/fourtwentyone"> */}
-          <Button className="center aligned" onClick={webSocketGetRoom}>Quick play
-          {/* <Button className="center aligned" onClick={webSocketJoinRoom.bind(this, roomId)}>Quick play */}
+          <Button color="brown" className="center aligned" onClick={webSocketGetRoom}>Quick play
+            {/* <Button className="center aligned"
+            onClick={webSocketJoinRoom.bind(this, roomId)}>Quick play */}
           </Button>
           {/* </Link> */}
           {/* <Link to="/"> */}
-          <Button className="center aligned" onClick={webSocketCreateRoom}>Invite friends
+          <Button color="brown" className="center aligned" onClick={webSocketCreateRoom}>Invite friends
           </Button>
           {/* </Link> */}
         </div>

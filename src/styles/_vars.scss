@@ -10,14 +10,16 @@ $text-color: #F2EBCF;
 $blocked-dice-color: #CC2839;
 
 /* Dé noir / points blancs */
-$dice-color: #09090B;
-$dot-color: #fefefe;
-$cafe : #BBA177;
+/* $dice-color: #09090B;
+$dot-color: #fefefe; */
+$brown : #975B33;
 $grey : #5C5874;
+// $board : #16302B;
+$board : #25573A;
 
 /* Dé blanc / points noirs */
-/*$dice-color: #fefefe; */
-/*$dot-color: #676767; */
+$dice-color: #fefefe; 
+$dot-color: #1f1e1e; 
 
 
 $breakpoint-tablet: 1050px;

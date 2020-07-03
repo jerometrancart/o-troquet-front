@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 // import { Image } from 'semantic-ui-react';
 // import Avatar from 'src/assets/images/avatars/001-modern.svg';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 import './style.scss';
 
@@ -17,11 +19,15 @@ const Header = ({ username, logout, isLogged, }) => (
     n'apparaissent que quand tu es loggé */}
     {isLogged
     && (
-      <div className="user-id">
+    <div className="user">
+      
+      <div className="user--message">
         {/* <Image src={Avatar} classname="avatar" alt="avatarJoueur" size="small" avatar /> */}
-        <p>Bonjour <span className="userPseudo">{username}</span> ^^</p>
-        <Link to="/" onClick={logout} className="logout-link">Logout</Link>
+        <p className="user--message--hello"> Bonjour, <span className="user--message--pseudo">{username}</span></p>
+        <Link to="/" onClick={logout} className="user--message--logout">Logout</Link>
       </div>
+      <FontAwesomeIcon className="user--icon" icon={faUserCircle} />
+    </div>
     )}
   </div>
 );

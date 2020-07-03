@@ -5,15 +5,30 @@
 .menu {
   background-color : $text-color;
   width: 15%;
-  height: 100vh;
+  height: 80vh;
   position: fixed;
   top: 0;
   left: 0;
+
   border-right: 2px solid #ddd0bb;;
+
+/*   border: 3px, solid, color.adjust($brown, $lightness: 20%); */
+
   display: flex;
   flex-direction: column;
   align-content: center;
-  padding-top: 10vh;
+  margin-top: 10vh;
+  
+  &-toggler {
+    border-radius: 50%;
+    border: 0;
+    height: 2rem;
+    width: 2rem;
+    padding: 2px;
+    &:hover {
+      color: $brown;
+    }
+  }
 
   &-link {
       display: block;
@@ -22,13 +37,14 @@
       text-decoration: none;
       color: $grey;
       text-align: center;
+      font-weight: bold;
       &:hover {
-        color: $cafe;
+        color: $brown;
       }
       // border-top: 1px, solid, $cafe;
 
       &--current {
-        color: $cafe;
+        color: $brown;
       }; 
   }
 }
