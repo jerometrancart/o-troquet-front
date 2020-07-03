@@ -1,8 +1,8 @@
 // import des librairies
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form, Grid, Message } from "semantic-ui-react";
-import { Link, useHistory, Redirect } from 'react-router-dom';
+import { Button, Form, Grid, Message } from 'semantic-ui-react';
+import { Link, useHistory } from 'react-router-dom';
 import Modali, { useModali } from 'modali';
 
 // import composants

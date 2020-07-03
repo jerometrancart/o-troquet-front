@@ -8,24 +8,28 @@ import { LOGIN,
   LOGOUT,
   getFriends,
   AUTH_SUCCESS,
+  read,
 } from 'src/actions/user';
 import { webSocketDisconnect, webSocketListenRoom, webSocketConnect, checkRoom } from 'src/actions/chatrooms/fourtwentyone';
 
-
 import axios from 'axios';
 import jwt from 'jwt-decode';
-
-// const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/';
+// http:ec2-100-26-57-91.compute-1.amazonaws.com/
+// damien vpn, where backend was coding
+const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/';
 // http://ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/v1/users
 // POST
-const authenticationURI = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/';
-const authenticationURIAdministration = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/login';
+// actual server adress to write the routes endpoints at the end
+// const authenticationURI = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/api/';
+const authenticationURIAdministration = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/login';
 
+// a middleware is always a triple arrow
 const auth = (store) => (next) => (action) => {
   const state = store.getState();
   switch (action.type) {
     case LOGIN: {
       const data = {
+        // we send the value typed by the user
         username: state.user.username,
         password: state.user.password,
       };
@@ -62,6 +66,7 @@ const auth = (store) => (next) => (action) => {
             store.dispatch(actionToSaveToken);
             store.dispatch(authSuccess(response.data.token, user));
             store.dispatch(getFriends());
+            store.dispatch(read());
           }
           else {
             if (response.data.metadata.banned === true) {
@@ -112,6 +117,10 @@ http://ec2-35-153-19-27.compute-1.amazonaws.com/phpmyadmin/
 damien
 729Cbk192!
 */
+      // Uniquement si le userId est défini, pour éviter les erreurs en console et les undefined
+      if (localStorage.userId) {
+        store.dispatch(getFriends());
+        store.dispatch(read());}
 
       next(action);
       break;
@@ -125,6 +134,7 @@ damien
         store.dispatch(actionToGetId); */
         store.dispatch(authSuccess(localStorage.tokenOTroquet, user));
         store.dispatch(getFriends());
+        store.dispatch(read());
         // store.dispatch(checkRoom());
       }
       else {

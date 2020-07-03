@@ -4,14 +4,25 @@ import React from 'react';
 import Modali, { useModali } from 'modali';
 import Friendlist from 'src/containers/Friendlist';
 import Profile from 'src/containers/Profile';
-
 import './style.scss';
 import PropTypes from 'prop-types';
-
 import { NavLink } from 'react-router-dom';
 import { Plus } from 'react-feather';
-
 import Stats from 'src/containers/Stats';
+
+
+// Composants
+const Nav = (friendList) => {
+  const [StatsModal, toggleStatsModal] = useModali({
+    animated: true,
+    centered: true,
+  });
+
+  const [ProfilModal, toggleProfilModal] = useModali({
+    animated: true,
+    centered: true,
+  });
+
 
 // Composants
 /* const Nav = (friendList) => {
@@ -39,7 +50,12 @@ import Stats from 'src/containers/Stats';
 }; */
 
 /* Je recupère au dessus le tableau depuis src/data */
+
+
+/* const Nav = ( { menuItems, username, isLogged, /* check */ /* } ) => (
+
 const Nav = ( { menuItems, username, isLogged, } ) => (
+
   <nav className="menu">
     <button type="button" className="menu-toggler"> <Plus color="#5C5874" size="100%" /></button>
     <NavLink
@@ -71,6 +87,6 @@ Nav.propTypes = {
   ).isRequired,
   username: PropTypes.string.isRequired,
   isLogged: PropTypes.bool.isRequired,
-};
+}; */
 
 export default Nav;
