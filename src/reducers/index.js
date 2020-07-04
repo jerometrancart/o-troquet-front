@@ -1,7 +1,7 @@
 import { createStore, combineReducers } from 'redux';
 import login from './login';
 import user from './user';
-import fourtwentyoneControls from './games/fourtwentyone/controls';
+import fourtwentyoneControls from './games/fourtwentyone/controls.js';
 
 import fourtwentyoneChats from './chats/fourtwentyone';
 

@@ -20,7 +20,7 @@ const Form = ({ inputValue, sendMessage, setMessage }) => {
     // modifier le state déclenche tous les subscribes mis en place par react redux dans mes container
     // le state est à nouveau lu et les props rediffusées
     // l'inputValue qui arrive dans ce composant a changé
-    console.log('je veux changer la valeur du champs, voici la nouvelle valeur : ', event.target.value);
+    // console.log('je veux changer la valeur du champs, voici la nouvelle valeur : ', event.target.value);
     setMessage(event.target.value);
     // inputValue = event.target.value,
   };

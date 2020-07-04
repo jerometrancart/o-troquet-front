@@ -7,14 +7,14 @@ import Die from 'src/containers/GameboardPage/Fourtwentyone/die';
 import Chatrooms from 'src/containers/GameboardPage/Fourtwentyone/chatrooms';
 import Board from './board';
 import Dice from './dice';
-import Scoreboard from './scoreboard';
+import Scoreboard from 'src/containers/GameboardPage/Fourtwentyone/scoreboard';
 import Infos from './infos';
 import Players from './players';
 
 import './style.scss';
 
 // const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webSocketDisconnect, webSocketListenRoom, roomId }) => {
-const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webSocketDisconnect, webSocketListenRoom }) => {
+const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webSocketDisconnect, webSocketListenRoom, startGame, room}) => {
   /*
   if (!isLogged) {
     return <Redirect to="/" />;
@@ -34,7 +34,7 @@ const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webS
 
   useEffect(() => {
     webSocketConnect();
-    return webSocketDisconnect;
+    // return webSocketDisconnect;
   }, []);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webS
 
   return (
     <div className="gameScreen">
-      <h2>--- 421 --- room : {roomId}</h2>
+      <h2>room : {roomId}</h2>
       <div className="gameBoard">
         <Board>
           <Dice>
@@ -54,11 +54,16 @@ const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webS
         </Board>
       </div>
       <div className="right-panel">
-        <Scoreboard>
+        <Scoreboard
+          room={room}
+        >
           <Infos />
           <Players />
         </Scoreboard>
-        <Controls rollDice={rollDice} />
+        <Controls
+          rollDice={rollDice}
+          startGame={startGame}
+        />
         <Chatrooms />
       </div>
     </div>
@@ -71,8 +76,37 @@ GameboardPage.propTypes = {
   toggleBlock: PropTypes.bool,
   webSocketConnect: PropTypes.func.isRequired,
   webSocketDisconnect: PropTypes.func.isRequired,
-  roomId: PropTypes.string.isRequired,
+  // roomId: PropTypes.string.isRequired,
   webSocketListenRoom: PropTypes.func.isRequired,
+  startGame: PropTypes.func.isRequired,
+  // room: PropTypes.shape({
+  //   id: PropTypes.string.isRequired,
+
+  //   users: PropTypes.arrayOf(PropTypes.shape({
+  //     name: PropTypes.string.isRequired,
+  //     score: PropTypes.number.isRequired,
+  //   })).isRequired,
+
+  //   pot: PropTypes.number.isRequired,
+
+  //   started: PropTypes.bool.isRequired,
+
+  //   firstDie: PropTypes.shape({
+  //     data: PropTypes.number.isRequired,
+  //     blocked: PropTypes.bool.isRequired,
+  //   }),
+
+  //   secondDie: PropTypes.shape({
+  //     data: PropTypes.number.isRequired,
+  //     blocked: PropTypes.bool.isRequired,
+  //   }),
+
+  //   thirdDie: PropTypes.shape({
+  //     data: PropTypes.number.isRequired,
+  //     blocked: PropTypes.bool.isRequired,
+  //   }),
+  // }).isRequired,
+
 };
 
 GameboardPage.defaultProps = {

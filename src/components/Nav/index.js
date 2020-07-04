@@ -75,6 +75,7 @@ const Nav = ( { menuItems, username, isLogged, } ) => (
       >{title}
       </NavLink>
     ))}
+    <Friendlist />
   </nav>
 );
 

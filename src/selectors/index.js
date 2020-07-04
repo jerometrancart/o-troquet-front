@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { useHistory } from 'react-router-dom';
+
 // ici on a écrit une fonction utilitaire qui retourne un résultat en fonction d'une entrée
 // dans l'univers redux une fonction utilitaire qui prend un morceau de state en entrée s'appelle un selector
 
@@ -57,3 +58,20 @@ export const redirect = (adress) => {
   const history = useHistory();
   history.push(adress);
 };
+
+const urlSocketIO = 'http://localhost:3001';
+export const socketCanal = window.io(urlSocketIO);
+
+export const authenticationURI = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/api/';
+export const authenticationURIAdministration = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/login';
+
+
+/*
+if ((socketCanal === undefined)) {
+    socketCanal = window.io(url);
+  }
+  else if ((socketCanal.connected === false)) {
+    socketCanal = window.io(url);
+}
+
+*/

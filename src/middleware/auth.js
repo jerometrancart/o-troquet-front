@@ -11,6 +11,8 @@ import { LOGIN,
   read,
 } from 'src/actions/user';
 import { webSocketDisconnect, webSocketListenRoom, webSocketConnect, checkRoom } from 'src/actions/chatrooms/fourtwentyone';
+import { authenticationURI, authenticationURIAdministration } from 'src/selectors';
+
 
 import axios from 'axios';
 import jwt from 'jwt-decode';
@@ -19,9 +21,9 @@ import jwt from 'jwt-decode';
 const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/';
 // http://ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/v1/users
 // POST
-// actual server adress to write the routes endpoints at the end
-// const authenticationURI = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/api/';
+
 const authenticationURIAdministration = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/login';
+
 
 // a middleware is always a triple arrow
 const auth = (store) => (next) => (action) => {
@@ -43,13 +45,13 @@ const auth = (store) => (next) => (action) => {
       { withCredentials: true })
         .then((response) => {
           // debugger
-          console.log(response);
+          // console.log(response);
           // on ne garde pas le mot de passe de l'utilisateur en dans le state !
           const actionToDeletePassword = changeValue('password', '');
           store.dispatch(actionToDeletePassword);
           if (response.data.token) {
-            console.log(response.data.token);
-            console.log(response.data.metadata.user_id);
+            // console.log(response.data.token);
+            // console.log(response.data.metadata.user_id);
             // const token = ;
             const user = jwt(response.data.token); // decode your token here
             localStorage.setItem('tokenOTroquet', response.data.token);
@@ -134,16 +136,19 @@ damien
         store.dispatch(actionToGetId); */
         store.dispatch(authSuccess(localStorage.tokenOTroquet, user));
         store.dispatch(getFriends());
+        store.dispatch(webSocketConnect());
         store.dispatch(read());
         // store.dispatch(checkRoom());
+
       }
       else {
+        // window.location = ('http://localhost:8080')
         next(action);
       }
       break;
     }
     case AUTH_SUCCESS: {
-      console.log('CHECK a trouvé un token et dispatché authSuccess dans le store ', action);
+      // console.log('CHECK a trouvé un token et dispatché authSuccess dans le store ', action);
       // authSuccess doit vérifier si oui ou non nous avons une room en url
       const roomId = window.location.pathname.slice(25);
       if (roomId !== '') {
@@ -153,7 +158,7 @@ damien
         store.dispatch(webSocketConnect(roomId));
         // console.log(socket);
         // const socket = window.io('http://localhost:3001');
-        next(action);
+        // next(action);
       }
       // )
       next(action);
@@ -208,7 +213,7 @@ damien
     case LOGOUT: {
       localStorage.removeItem('tokenOTroquet');
       console.log('middleware auth je veux me déconnecter');
-      webSocketDisconnect();
+      store.dispatch(webSocketDisconnect());
 
       next(action);
       break;

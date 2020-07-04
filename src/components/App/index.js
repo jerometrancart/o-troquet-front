@@ -24,14 +24,13 @@ https://codepen.io/omascaros/pen/CBapm
 */
 
 // == Composant
-const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocketDisconnect, loading, hasError }) => {
+const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocketDisconnect, webSocketConnect, loading, hasError }) => {
   // hook d'effet : s'applique après le chargement de l'application
 
   // const location = useLocation();
   useEffect(checkIsLogged, []);
   useEffect(getRandomBackgroundImage, []);
-
-  // useEffect(webSocketDisconnect, []);
+  useEffect(webSocketConnect);
 
   // const history = useHistory();
   // console.log(history);
@@ -52,11 +51,10 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
       && (
       <Nav />
       )}
-        {!loading && hasError && (
-          <p className="error">Une erreur s'est produite. Veuillez réessayer plus tard.</p>
+        {hasError && (
+          <p className="errorPage">404 fais gaffe dude</p>
         )}
         {!loading && !hasError && (
-
         <Switch>
           <Route exact path="/">
             {!isLogged
@@ -85,13 +83,13 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
                 <Redirect to="/" />
                 )}
           </Route>
-          <Route path="/gameboard/fourtwentyone/:roomId">
+          <Route exact path="/gameboard/fourtwentyone/:roomId">
             {isLogged
-              && (
+              && !hasError && (
                 <GameboardPage
                   isLogged={isLogged}
                 />
-              )}
+            )}
             {!isLogged
               && (
               <Redirect to="/" />
@@ -116,12 +114,12 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
             />
           </Route> */}
           <Route>
-            <p className="error">404 fais gaffe dude</p>
+            <p className="errorPage">404 fais gaffe dude</p>
           </Route>
         </Switch>
         )}
         {loading && (
-          <p className="loading">Veuillez patienter. Nous ouvrons la boutique ...</p>
+          <p className="loadingPage">Veuillez patienter. Nous ouvrons la boutique ...</p>
         )}
       </div>
       <Footer
@@ -138,6 +136,7 @@ App.propTypes = {
   checkIsLogged: PropTypes.func.isRequired,
   roomId: PropTypes.string,
   webSocketDisconnect: PropTypes.func.isRequired,
+  webSocketConnect: PropTypes.func.isRequired,
 };
 
 App.defaultProps = {

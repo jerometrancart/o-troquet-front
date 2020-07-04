@@ -10,10 +10,10 @@ import './chatrooms.scss';
 const Chatrooms = ({
   webSocketConnect,
 }) => (
-    <div className="chatroom">
-      <Messages className="chatroom-messages" />
-      <Form className="chatroom-input" />
-    </div>
+  <div className="chatroom">
+    <Messages className="chatroom-messages" />
+    <Form className="chatroom-input" />
+  </div>
 );
 
 Chatrooms.propTypes = {

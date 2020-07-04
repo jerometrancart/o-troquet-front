@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { rollDice } from 'src/actions/games/fourtwentyone/player';
+import { rollDice, startGame } from 'src/actions/games/fourtwentyone/player';
 
 import GameboardPage from 'src/components/GameboardPage/Fourtwentyone';
 
@@ -12,8 +12,9 @@ import { login, logout } from '../../../actions';
 const mapStateToProps = (state, ownProps) => ({
   isLogged: state.user.isLogged,
   roomId: ownProps.match.params.roomId,
+  room: state.fourtwentyoneControls.room,
+  players: state.fourtwentyoneControls.room.users,
 });
-
 
 const mapDispatchToProps = (dispatch) => ({
   rollDice: () => {
@@ -27,6 +28,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   webSocketListenRoom: () => {
     dispatch(webSocketListenRoom());
+  },
+  startGame: () => {
+    dispatch(startGame());
   },
 });
 

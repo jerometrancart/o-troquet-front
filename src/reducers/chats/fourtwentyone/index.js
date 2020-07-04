@@ -1,5 +1,6 @@
-import { RECEIVE_MESSAGE, SET_MESSAGE, SEND_MESSAGE, WEBSOCKET_JOIN_ROOM, WEBSOCKET_CREATE_ROOM } from 'src/actions/chatrooms/fourtwentyone';
+import { RECEIVE_MESSAGE, SET_MESSAGE, SEND_MESSAGE, WEBSOCKET_JOIN_ROOM, WEBSOCKET_CREATE_ROOM, WEBSOCKET_CONNECT } from 'src/actions/chatrooms/fourtwentyone';
 import { AUTH_SUCCESS } from 'src/actions/user';
+
 const initialState = {
   text: '',
   messages: [
@@ -16,6 +17,7 @@ const initialState = {
   ],
   rooms: [],
   roomId: '',
+  hasError: false,
 };
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -65,6 +67,12 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         roomId: window.location.pathname.slice(25),
+      };
+    case WEBSOCKET_CONNECT:
+      return {
+        ...state,
+        roomId: action.roomId,
+        hasError: action.hasError,
       };
     default:
       return state;

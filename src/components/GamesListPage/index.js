@@ -17,7 +17,7 @@ const GamesListPage = ({ isLogged, username, webSocketConnect, webSocketDisconne
   }
   */
   const history = useHistory();
-  console.log(history);
+  // console.log(history);
 
   useEffect(() => {
     if (roomId !== '') {
@@ -25,12 +25,15 @@ const GamesListPage = ({ isLogged, username, webSocketConnect, webSocketDisconne
     }
   }, [roomId]);
 
+  useEffect(webSocketConnect, []);
+  
   // useEffect(webSocketDisconnect);
-  useEffect(() => {
-    // only at first rendering
-    console.log('je veux me connecter au websocket socket.io');
-    webSocketConnect();
-  }, []);
+  // useEffect(() => {
+  //   // console.log('je veux me connecter au websocket socket.io');
+  //   webSocketConnect();
+  // });
+
+
   return (
     <>
       <h2 className="welcome">Bienvenue <span className="userPseudo">{username}</span>, qu'est-ce qu'on te sert ?</h2>
