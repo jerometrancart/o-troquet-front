@@ -19,8 +19,7 @@ import jwt from 'jwt-decode';
 // const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/login_check';
 // http://ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/v1/users
 // POST
-const authenticationURI = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/login_check';
-const authenticationURIAdministration = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/login';
+
 let gameListenerAdded = false;
 
 const controls = (store) => (next) => (action) => {
@@ -37,20 +36,13 @@ const controls = (store) => (next) => (action) => {
         die.classList.toggle('even-roll');
       });
 
-      const getRandomNumber = ((min, max) => {
-        const mini = Math.ceil(min);
-        const maxi = Math.floor(max);
-        return Math.floor(Math.random() * (maxi - mini + 1)) + mini;
-      });
-
       const dice = [...document.querySelectorAll('.die-list:not(.blocked)')];
 
       dice.forEach((die) => {
         toggleClasses(die);
-        // die.dataset.roll = getRandomNumber(1, 6);
       });
       socketCanal.emit('roll_dice', action.room, action.player);
-      
+
       next(action);
 
       break;

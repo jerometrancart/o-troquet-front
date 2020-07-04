@@ -5,6 +5,7 @@ import { toggleBlock } from 'src/actions/games/fourtwentyone/player'
 
 const mapStateToProps = (state, ownProps) => ({
   blocked: state.fourtwentyoneControls.room[ownProps.dieId].blocked,
+  data: state.fourtwentyoneControls.room[ownProps.dieId].data,
 });
 const mapDispatchToProps = (dispatch, ownProps) => ({
   toggleBlock: (evt) => {

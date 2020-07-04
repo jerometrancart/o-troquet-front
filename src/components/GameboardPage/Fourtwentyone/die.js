@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const Die = ({ dieId, toggleBlock, blocked }) => {
+const Die = ({ dieId, toggleBlock, blocked, data }) => {
   return (
     <div className="die" id={dieId}>
       {/* <ol className="die-list even-roll" data-roll="1" onClick={(evt) => toggleBlock(evt)}> */}
-      <ol className={`die-list even-roll ${blocked ? 'blocked' : ''}`} data-roll="1" onClick={(evt) => toggleBlock(evt)}>
+      <ol className={`die-list even-roll ${blocked ? 'blocked' : ''}`} data-roll={data} onClick={(evt) => toggleBlock(evt)}>
         <li className="die-item" data-side="1">
           <span className="dot" />
         </li>
@@ -50,10 +50,12 @@ Die.propTypes = {
   dieId: PropTypes.string.isRequired,
   toggleBlock: PropTypes.func.isRequired,
   blocked: PropTypes.bool,
+  data: PropTypes.number,
 };
 
 Die.defaultProps = {
   blocked: false,
+  data: 2,
 
 };
 
