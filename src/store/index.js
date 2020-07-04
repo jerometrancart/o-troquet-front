@@ -5,6 +5,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import rootReducer from '../reducers';
 import auth from '../middleware/auth';
 import userFriends from '../middleware/userFriends';
+import userProfile from '../middleware/userProfile';
 import fourtwentyoneControls from '../middleware/games/fourtwentyone';
 import fourtwentyoneChat from '../middleware/chatrooms/fourtwentyone';
 
@@ -15,6 +16,7 @@ const enhancers = composeEnhancers(
   applyMiddleware(
     auth,
     userFriends,
+    userProfile,
     fourtwentyoneControls,
     fourtwentyoneChat,
   ),

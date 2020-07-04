@@ -1,6 +1,7 @@
 @import 'src/styles/vars';
 
 .footer {
+  border-top: 1px solid $text-color;
   width: 100%;
   // height: $footer-height;
   height: 10vh;
