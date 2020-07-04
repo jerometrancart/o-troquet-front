@@ -6,7 +6,7 @@ import Achievement from './Achievement';
 
 // import './style.scss";
 
-const Stats = ({ achievements }) => (
+const Stats = ({ achievements }) => {
 
   return (
     
@@ -55,8 +55,8 @@ const Stats = ({ achievements }) => (
           />
         </div>
       </div>
-    </Modali.Modal>
   );
 };
+// </Modali.Modal>
 
 export default Stats;

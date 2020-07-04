@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const Controls = ({ children, rollDice, nextPlayer, startGame }) => {
+const Controls = ({ children, rollDice, nextPlayer, startGame, started }) => {
 /*
   const toggleClasses = ((die) => {
     die.classList.toggle('odd-roll');
@@ -34,7 +34,8 @@ const Controls = ({ children, rollDice, nextPlayer, startGame }) => {
       {/* Controls
       {children} */}
       <div className="buttonbar">
-        <button className="start-button controls--button" type="button" id="start-button" onClick={startGame}>Start Game</button>
+        {!started && (<button className="start-button controls--button" type="button" id="start-button" onClick={startGame}>Start Game</button>)}
+        {started && (<button className="start-button--started controls--button" type="button" id="start-button" onClick={startGame}>Game started</button>)}
         <button className="roll-button controls--button" type="button" id="roll-button" onClick={rollDice}>Roll Dice</button>
         <button className="next-player-button controls--button" type="button" id="next-player-button" onClick={nextPlayer}>Next player</button>
         <button className="rules controls--button" type="button" id="rules">Règles</button>
@@ -48,6 +49,7 @@ Controls.propTypes = {
   children: PropTypes.node,
   rollDice: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
+  started: PropTypes.bool.isRequired,
 };
 
 Controls.defaultProps = {

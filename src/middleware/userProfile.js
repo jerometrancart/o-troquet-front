@@ -7,11 +7,11 @@ import {
   getFriends,
   toggleClose,
 } from 'src/actions/user';
-
+import { authenticationURI } from 'src/selectors';
 import axios from 'axios';
 
 
-const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/';
+// const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/';
 // const authenticationURI = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/api/';
 // je veux récupérer l'id de l'user dans le localStorage, le concaténer dans l'URL comme ceci:
 //  'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/v1/users/{id}/friends'

@@ -46,7 +46,6 @@ const Die = ({ dieId, toggleBlock }) => {
 };
 
 Die.propTypes = {
-  children: PropTypes.node,
   dieId: PropTypes.string.isRequired,
   toggleBlock: PropTypes.func.isRequired,
 };

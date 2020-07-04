@@ -12,6 +12,7 @@ import Stats from 'src/containers/Stats';
 
 
 // Composants
+/*
 const Nav = (friendList) => {
   const [StatsModal, toggleStatsModal] = useModali({
     animated: true,
@@ -22,39 +23,39 @@ const Nav = (friendList) => {
     animated: true,
     centered: true,
   });
-
+*/
 
 // Composants
-/* const Nav = (friendList) => {
+/*
+const Nav = (friendList) => {
   return (
     <nav className="menu">
       <a className="menu-link menu-link--current">Accueil</a>
       <a className="menu-link menu-link--current" onClick={toggleProfilModal}>Profil</a>
-        <Profile />
+      <Profile />
       <a className="menu-link menu-link--current" onClick={toggleStatsModal}>Statistiques / Récompenses</a>
-        <Stats />
+      <Stats />
       <a className="menu-link menu-link--current">Amis</a>
       <a className="menu-link menu-link--current">Retour au bar</a>
       <Friendlist />
     </nav>
   );
-}; */
+};
 
-/* Nav.propTypes = {
+Nav.propTypes = {
   menuItems: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
     }),
   ).isRequired,
-}; */
-
+};
+*/
 /* Je recupère au dessus le tableau depuis src/data */
 
+const Nav = ({ menuItems, username, isLogged, check } ) => (
 
-/* const Nav = ( { menuItems, username, isLogged, /* check */ /* } ) => (
-
-const Nav = ( { menuItems, username, isLogged, } ) => (
+// const Nav = ( { menuItems, username, isLogged, } ) => (
 
   <nav className="menu">
     <button type="button" className="menu-toggler"> <Plus color="#5C5874" size="100%" /></button>
@@ -88,6 +89,6 @@ Nav.propTypes = {
   ).isRequired,
   username: PropTypes.string.isRequired,
   isLogged: PropTypes.bool.isRequired,
-}; */
+};
 
 export default Nav;

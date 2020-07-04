@@ -52,14 +52,33 @@ const controls = (store) => (next) => (action) => {
     }
     case TOGGLE_BLOCK: {
       const targetedDie = action.evt.currentTarget;
-      console.log(targetedDie);
+      const targetedDieIdHtml = targetedDie.closest('.die');
+      const targetedDieId = targetedDieIdHtml.id;
+      console.log('targeted die id : ', targetedDieId);
+      // console.log('targetedDie : ', targetedDie);
       targetedDie.classList.toggle('blocked');
-      socketCanal.emit('die_blocked');
+      // socketCanal.emit('die_blocked');
+
+      action.room = state.fourtwentyoneControls.room;
+      action.room = {
+        ...action.room,
+        [targetedDieId]: {
+          // data: {action.room[targetedDieId].data},
+          data: action.room[targetedDieId].data,
+          blocked: true,
+        },
+      };
+      // action.author = state.user.userToken.username;
+      action.roomId = state.fourtwentyoneChats.roomId;
+      action.player = state.user.userToken.username;
+      console.log('on toggleBlock, action : ', action);
+      socketCanal.emit('toggle_block', action.room, action.player);
+
       next(action);
 
       break;
     }
-    // GxPv4K7hcmRq
+
     case START_GAME:
       // console.log('START GAME');
       action.room = state.fourtwentyoneControls.room;
