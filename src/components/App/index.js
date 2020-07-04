@@ -137,12 +137,14 @@ App.propTypes = {
   roomId: PropTypes.string,
   webSocketDisconnect: PropTypes.func.isRequired,
   webSocketConnect: PropTypes.func.isRequired,
+  hasError: PropTypes.bool,
 };
 
 App.defaultProps = {
   isLogged: false,
   isAdmin: false,
   roomId: '',
+  hasError: false,
 };
 
 // == Export
