@@ -44,11 +44,13 @@ const controls = (store) => (next) => (action) => {
       });
 
       const dice = [...document.querySelectorAll('.die-list:not(.blocked)')];
+
       dice.forEach((die) => {
         toggleClasses(die);
-        die.dataset.roll = getRandomNumber(1, 6);
+        // die.dataset.roll = getRandomNumber(1, 6);
       });
       socketCanal.emit('roll_dice', action.room, action.player);
+      
       next(action);
 
       break;
