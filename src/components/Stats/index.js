@@ -6,12 +6,10 @@ import Achievement from './Achievement';
 
 // import './style.scss";
 
-const Stats = ({ achievements }) => {
-  const [StatsModal, toggleStatsModal] = useModali({
-    animated: true,
-  });
+const Stats = ({ achievements }) => (
+
   return (
-    <Modali.Modal className="stats" {...StatsModal}>
+    
       <div className="stats">
         <nav className="onglets">
           <a>Statistiques</a>
