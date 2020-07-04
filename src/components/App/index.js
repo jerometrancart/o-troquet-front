@@ -48,9 +48,9 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
       <Header />
       <div className="app">
         {isLogged
-      && (
-      <Nav />
-      )}
+          && (
+            <Nav />
+          )}
         {hasError && (
           <p className="errorPage">404 fais gaffe dude</p>
         )}
