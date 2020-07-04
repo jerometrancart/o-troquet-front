@@ -22,13 +22,15 @@ import jwt from 'jwt-decode';
 const authenticationURI = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/login_check';
 const authenticationURIAdministration = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/login';
 let gameListenerAdded = false;
-let blocked = false;
 
 const controls = (store) => (next) => (action) => {
   const state = store.getState();
   switch (action.type) {
 
     case ROLL_DICE: {
+      action.player = state.user.userToken.username;
+      action.room = state.fourtwentyoneControls.room;
+
       console.log(action);
       const toggleClasses = ((die) => {
         die.classList.toggle('odd-roll');
@@ -46,7 +48,7 @@ const controls = (store) => (next) => (action) => {
         toggleClasses(die);
         die.dataset.roll = getRandomNumber(1, 6);
       });
-
+      socketCanal.emit('roll_dice', action.room, action.player);
       next(action);
 
       break;
@@ -59,7 +61,6 @@ const controls = (store) => (next) => (action) => {
       // console.log('targetedDie : ', targetedDie);
       targetedDie.classList.toggle('blocked');
       // socketCanal.emit('die_blocked');
-      
 
       action.room = state.fourtwentyoneControls.room;
       action.room = {
@@ -72,7 +73,7 @@ const controls = (store) => (next) => (action) => {
       action.roomId = state.fourtwentyoneChats.roomId;
       action.player = state.user.userToken.username;
       console.log('on toggleBlock, action : ', action);
-      socketCanal.emit('toggle_block', action.room, action.player);
+      socketCanal.emit('toggle_block', action.room, action.player, targetedDieId);
 
       
       

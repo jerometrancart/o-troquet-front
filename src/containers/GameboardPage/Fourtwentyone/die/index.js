@@ -10,9 +10,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   toggleBlock: (evt) => {
     dispatch(toggleBlock(evt));
   },
-  // toggleBlock: () => {
-  //   dispatch(toggleBlock(ownProps.blocked));
-  // },
 });
 
 export default connect(
