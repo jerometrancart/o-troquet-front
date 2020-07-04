@@ -9,7 +9,7 @@ import {
 } from 'src/actions/user';
 import { authenticationURI } from 'src/selectors';
 import axios from 'axios';
-
+import { authenticationURI, authenticationURIAdministration } from 'src/selectors';
 
 // const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/';
 // const authenticationURI = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/api/';

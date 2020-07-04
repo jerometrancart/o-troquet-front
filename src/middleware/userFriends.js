@@ -6,8 +6,7 @@ import {
 } from 'src/actions/user';
 import { authenticationURI } from 'src/selectors';
 import axios from 'axios';
-
-
+import { authenticationURI, authenticationURIAdministration } from 'src/selectors';
 
 
 // je veux récupérer l'id de l'user dans le localStorage, le concaténer dans l'URL comme ceci:

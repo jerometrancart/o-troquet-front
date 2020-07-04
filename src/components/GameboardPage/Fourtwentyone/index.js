@@ -53,6 +53,10 @@ const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webS
           </Dice>
         </Board>
       </div>
+      <Controls
+          rollDice={rollDice}
+          startGame={startGame}
+        />
       <div className="right-panel">
         <Scoreboard
           room={room}
@@ -60,10 +64,6 @@ const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webS
           <Infos />
           <Players />
         </Scoreboard>
-        <Controls
-          rollDice={rollDice}
-          startGame={startGame}
-        />
         <Chatrooms />
       </div>
     </div>
