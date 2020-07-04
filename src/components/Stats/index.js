@@ -7,6 +7,7 @@ import Achievement from './Achievement';
 // import './style.scss";
 
 const Stats = ({ achievements }) => {
+
   return (
     <div className="stats">
       <nav className="onglets">
@@ -52,8 +53,13 @@ const Stats = ({ achievements }) => {
           alt=""
         />
       </div>
+/*<<<<<<< gamelogic-new
+  );
+=======*/
     </div>
   )
+/*>>>>>>> master*/
 };
+// </Modali.Modal>
 
 export default Stats;

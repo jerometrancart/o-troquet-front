@@ -19,8 +19,7 @@ import jwt from 'jwt-decode';
 // const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/login_check';
 // http://ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/v1/users
 // POST
-const authenticationURI = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/login_check';
-const authenticationURIAdministration = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/login';
+
 let gameListenerAdded = false;
 
 const controls = (store) => (next) => (action) => {
@@ -28,23 +27,21 @@ const controls = (store) => (next) => (action) => {
   switch (action.type) {
 
     case ROLL_DICE: {
+      action.player = state.user.userToken.username;
+      action.room = state.fourtwentyoneControls.room;
+
       console.log(action);
       const toggleClasses = ((die) => {
         die.classList.toggle('odd-roll');
         die.classList.toggle('even-roll');
       });
 
-      const getRandomNumber = ((min, max) => {
-        const mini = Math.ceil(min);
-        const maxi = Math.floor(max);
-        return Math.floor(Math.random() * (maxi - mini + 1)) + mini;
-      });
-
       const dice = [...document.querySelectorAll('.die-list:not(.blocked)')];
+
       dice.forEach((die) => {
         toggleClasses(die);
-        die.dataset.roll = getRandomNumber(1, 6);
       });
+      socketCanal.emit('roll_dice', action.room, action.player);
 
       next(action);
 
@@ -52,14 +49,33 @@ const controls = (store) => (next) => (action) => {
     }
     case TOGGLE_BLOCK: {
       const targetedDie = action.evt.currentTarget;
-      console.log(targetedDie);
+      const targetedDieIdHtml = targetedDie.closest('.die');
+      const targetedDieId = targetedDieIdHtml.id;
+      console.log('targeted die id : ', targetedDieId);
+      // console.log('targetedDie : ', targetedDie);
       targetedDie.classList.toggle('blocked');
-      socketCanal.emit('die_blocked');
+      // socketCanal.emit('die_blocked');
+
+      action.room = state.fourtwentyoneControls.room;
+      action.room = {
+        ...action.room,
+        [targetedDieId]: {
+          data: action.room[targetedDieId].data,
+          blocked: !action.room[targetedDieId].blocked,
+        },
+      };
+      action.roomId = state.fourtwentyoneChats.roomId;
+      action.player = state.user.userToken.username;
+      console.log('on toggleBlock, action : ', action);
+      socketCanal.emit('toggle_block', action.room, action.player, targetedDieId);
+
+      
+      
       next(action);
 
       break;
     }
-    // GxPv4K7hcmRq
+
     case START_GAME:
       // console.log('START GAME');
       action.room = state.fourtwentyoneControls.room;

@@ -76,10 +76,12 @@
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: flex-end;
+
   &--line {
     height: 5vh;
     display: flex;
     justify-content: center;
+
   }
 }
 
@@ -87,9 +89,18 @@
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
   
-}
+}*/
 
-.roll-button {
+.start-button {
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
-} */
+
+
+  &--started {
+    background-color: $main-color;
+    color: white;
+  }
+  
+}
+
+

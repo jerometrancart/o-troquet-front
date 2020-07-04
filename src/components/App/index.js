@@ -48,9 +48,9 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
       <Header />
       <div className="app">
         {isLogged
-      && (
-      <Nav />
-      )}
+          && (
+            <Nav />
+          )}
         {hasError && (
           <p className="errorPage">404 fais gaffe dude</p>
         )}
@@ -137,12 +137,14 @@ App.propTypes = {
   roomId: PropTypes.string,
   webSocketDisconnect: PropTypes.func.isRequired,
   webSocketConnect: PropTypes.func.isRequired,
+  hasError: PropTypes.bool,
 };
 
 App.defaultProps = {
   isLogged: false,
   isAdmin: false,
   roomId: '',
+  hasError: false,
 };
 
 // == Export

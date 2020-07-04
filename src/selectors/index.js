@@ -44,7 +44,7 @@ export const getRandomBackgroundImage = () => {
     // 'https://images.unsplash.com/photo-1468056961052-15507578a50d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80',
     // 'https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80',
     'https://images.unsplash.com/photo-1503876466-1fc5143eda57?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80',
-    'https://images.unsplash.com/photo-1528219086320-73c3c9558a26?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=677&q=80',
+    // 'https://images.unsplash.com/photo-1528219086320-73c3c9558a26?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=677&q=80',
     // 'https://images.unsplash.com/photo-1506712465535-e301badbc49d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80',
   ];
   // création d'une variable tirée au hasard, entier entre 0 et la longueur du tableau
@@ -64,7 +64,8 @@ export const socketCanal = window.io(urlSocketIO);
 
 export const authenticationURI = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/api/';
 export const authenticationURIAdministration = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/login';
-
+// const authenticationURI = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/login_check';
+// const authenticationURIAdministration = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/login';
 
 /*
 if ((socketCanal === undefined)) {
@@ -75,3 +76,14 @@ if ((socketCanal === undefined)) {
 }
 
 */
+
+// http:ec2-100-26-57-91.compute-1.amazonaws.com/
+// damien vpn, where backend was coding
+// const authenticationURI = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/api/';
+// const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/';
+// export const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/';
+// http://ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/v1/users
+// POST
+
+
+// const authenticationURIAdministration = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/login';

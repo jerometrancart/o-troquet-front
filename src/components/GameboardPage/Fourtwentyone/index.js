@@ -47,9 +47,9 @@ const GameboardPage = ({ isLogged, rollDice, toggleBlock, webSocketConnect, webS
       <div className="gameBoard">
         <Board>
           <Dice>
-            <Die dieId="first-die" toggleBlock={toggleBlock} />
-            <Die dieId="second-die" toggleBlock={toggleBlock} />
-            <Die dieId="third-die" toggleBlock={toggleBlock} />
+            <Die dieId="firstDie" toggleBlock={toggleBlock} />
+            <Die dieId="secondDie" toggleBlock={toggleBlock} />
+            <Die dieId="thirdDie" toggleBlock={toggleBlock} />
           </Dice>
         </Board>
       </div>

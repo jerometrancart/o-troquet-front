@@ -5,6 +5,7 @@ import controls from 'src/components/GameboardPage/Fourtwentyone/controls';
 
 const mapStateToProps = (state) => ({
   players: state.fourtwentyoneControls.players,
+  started: state.fourtwentyoneControls.room.started,
 });
 
 const mapDispatchToProps = (dispatch) => ({
