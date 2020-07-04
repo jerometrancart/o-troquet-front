@@ -22,6 +22,7 @@ import jwt from 'jwt-decode';
 const authenticationURI = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/login_check';
 const authenticationURIAdministration = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/login';
 let gameListenerAdded = false;
+let blocked = false;
 
 const controls = (store) => (next) => (action) => {
   const state = store.getState();
@@ -58,22 +59,23 @@ const controls = (store) => (next) => (action) => {
       // console.log('targetedDie : ', targetedDie);
       targetedDie.classList.toggle('blocked');
       // socketCanal.emit('die_blocked');
+      
 
       action.room = state.fourtwentyoneControls.room;
       action.room = {
         ...action.room,
         [targetedDieId]: {
-          // data: {action.room[targetedDieId].data},
           data: action.room[targetedDieId].data,
-          blocked: true,
+          blocked: !action.room[targetedDieId].blocked,
         },
       };
-      // action.author = state.user.userToken.username;
       action.roomId = state.fourtwentyoneChats.roomId;
       action.player = state.user.userToken.username;
       console.log('on toggleBlock, action : ', action);
       socketCanal.emit('toggle_block', action.room, action.player);
 
+      
+      
       next(action);
 
       break;

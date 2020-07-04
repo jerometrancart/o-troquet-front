@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const Controls = ({ children, rollDice, nextPlayer, startGame, started }) => {
+const Controls = ({ children, rollDice, nextPlayer, startGame, started, }) => {
 /*
   const toggleClasses = ((die) => {
     die.classList.toggle('odd-roll');
