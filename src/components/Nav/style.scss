@@ -12,7 +12,8 @@
 
   border-right: 2px solid #ddd0bb;;
 
-/*   border: 3px, solid, color.adjust($brown, $lightness: 20%); */
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 
   display: flex;
   flex-direction: column;

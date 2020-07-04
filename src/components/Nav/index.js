@@ -23,22 +23,35 @@ const Nav = (friendList) => {
     centered: true,
   });
 
-
-// Composants
-/* const Nav = (friendList) => {
   return (
     <nav className="menu">
-      <a className="menu-link menu-link--current">Accueil</a>
-      <a className="menu-link menu-link--current" onClick={toggleProfilModal}>Profil</a>
+      <button type="button" className="menu-toggler"> <Plus color="#5C5874" size="100%" /></button>
+      <NavLink
+        to="/gameselect"
+        exact
+        className="menu-link"
+        activeclassname="menu-link--current"
+      >Accueil
+      </NavLink>
+      <a className="menu-link" onClick={toggleProfilModal}>Profil</a>
+      <Modali.Modal className="stats" {...ProfilModal}>
         <Profile />
-      <a className="menu-link menu-link--current" onClick={toggleStatsModal}>Statistiques / Récompenses</a>
+      </Modali.Modal>
+      <a className="menu-link" onClick={toggleStatsModal}>Statistiques / Récompenses</a>
+      <Modali.Modal className="stats" {...StatsModal}>
         <Stats />
-      <a className="menu-link menu-link--current">Amis</a>
-      <a className="menu-link menu-link--current">Retour au bar</a>
+      </Modali.Modal>
+      <NavLink
+        to="/gameselect"
+        exact
+        className="menu-link"
+        activeclassname="menu-link--current"
+      >Retour au bar
+      </NavLink>
       <Friendlist />
     </nav>
   );
-}; */
+};
 
 /* Nav.propTypes = {
   menuItems: PropTypes.arrayOf(

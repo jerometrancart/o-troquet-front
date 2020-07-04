@@ -30,13 +30,13 @@ const Controls = ({ children, rollDice, nextPlayer, startGame }) => {
 */
 // http://localhost:8080/gameboard/fourtwentyone/44O84FlK88lb
   return (
-    <div className="controls">
-      {/* Controls
-      {children} */}
-      <div className="buttonbar">
+    <div className="buttonbar">
+      <div className="buttonbar--line">
         <button className="start-button controls--button" type="button" id="start-button" onClick={startGame}>Start Game</button>
         <button className="roll-button controls--button" type="button" id="roll-button" onClick={rollDice}>Roll Dice</button>
         <button className="next-player-button controls--button" type="button" id="next-player-button" onClick={nextPlayer}>Next player</button>
+      </div>
+      <div className="buttonbar--line">
         <button className="rules controls--button" type="button" id="rules">Règles</button>
         <button className="combos controls--button" type="button" id="combos">Combinaisons</button>
       </div>
