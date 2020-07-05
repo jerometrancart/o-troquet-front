@@ -39,7 +39,7 @@ const Nav = (friendList) => {
       <a className="menu-link menu-link--current">Retour au bar</a>
       */
 
-const Nav = () => {
+const Nav = ({ clickHome }) => {
   const [StatsModal, toggleStatsModal] = useModali({
     animated: true,
     centered: true,
@@ -54,6 +54,7 @@ const Nav = () => {
       <button type="button" className="menu-toggler"> <Plus color="#5C5874" size="100%" /></button>
       <NavLink
         to="/gameselect"
+        onClick={clickHome}
         exact
         className="menu-link"
         activeclassname="menu-link--current"
@@ -63,12 +64,12 @@ const Nav = () => {
       <Modali.Modal className="stats" {...ProfilModal}>
         <Profile />
       </Modali.Modal>
-      <a className="menu-link" onClick={toggleStatsModal}>Statistiques / Récompenses</a>
       <Modali.Modal className="stats" {...StatsModal}>
         <Stats />
       </Modali.Modal>
       <NavLink
         to="/gameselect"
+        onClick={clickHome}
         exact
         className="menu-link"
         activeclassname="menu-link--current"
@@ -80,8 +81,6 @@ const Nav = () => {
   );
 };
 
-
-*/
 /* Je recupère au dessus le tableau depuis src/data 
 
 const Nav = ({ menuItems, username, isLogged, check } ) => (
@@ -123,4 +122,3 @@ Nav.propTypes = {
 };
 */
 export default Nav;
-

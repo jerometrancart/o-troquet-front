@@ -1,4 +1,4 @@
-import { RECEIVE_MESSAGE, SET_MESSAGE, SEND_MESSAGE, WEBSOCKET_JOIN_ROOM, WEBSOCKET_CREATE_ROOM, WEBSOCKET_CONNECT } from 'src/actions/chatrooms/fourtwentyone';
+import { RECEIVE_MESSAGE, SET_MESSAGE, SEND_MESSAGE, WEBSOCKET_JOIN_ROOM, WEBSOCKET_CREATE_ROOM, WEBSOCKET_CONNECT, CLICK_HOME } from 'src/actions/chatrooms/fourtwentyone';
 import { AUTH_SUCCESS } from 'src/actions/user';
 
 const initialState = {
@@ -73,6 +73,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         roomId: action.roomId,
         hasError: action.hasError,
+      };
+    case CLICK_HOME:
+      return {
+        ...state,
+        roomId: '',
       };
     default:
       return state;

@@ -10,6 +10,7 @@ export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 export const SCROLL_DOWN = 'SCROLL_DOWN';
 export const SET_MESSAGE = 'SET_MESSAGE';
+export const CLICK_HOME = 'CLICK_HOME';
 
 
 export const webSocketConnect = (roomId, hasError) => ({
@@ -68,4 +69,6 @@ export const checkRoom = () => ({
   type: CHECK_ROOM,
 });
 
-
+export const clickHome = () => ({
+  type: CLICK_HOME,
+});

@@ -13,6 +13,7 @@ import {
   WEBSOCKET_LEAVE_ROOMS,
   WEBSOCKET_LISTEN_ROOM,
   webSocketListenRoom,
+  checkRoom,
 } from 'src/actions/chatrooms/fourtwentyone';
 import { newPlayerJoins, updateParty} from 'src/actions/games/fourtwentyone/player';
 import { changeValue } from 'src/actions/user';
@@ -22,12 +23,12 @@ import {
   redirect,
   getNextId,
   socketCanal,
+  urlSocketIO,
 } from 'src/selectors';
 
 // je prépare une let qui sera accessible dans tout mon fichier qui contiendra mon canal
 // let socketCanal;
 
-const url = 'http://localhost:3001';
 
 // const url = '192.168.56.101:3001';
 // GxPv4K7hcmRq
@@ -41,10 +42,10 @@ const socket = (store) => (next) => (action) => {
       // open general canal, using .io lib (coming from script in index.html)
       // connect only if not already connected
       // if ((socketCanal === undefined)) {
-      //   socketCanal = window.io(url);
+      //   socketCanal = window.io(urlSocketIO);
       // }
       // else if ((socketCanal.connected === false)) {
-      //   socketCanal = window.io;
+      //   socketCanal = window.io(urlSocketIO);
       // }
       // socketCanal = window.io;
       const state = store.getState();
@@ -56,7 +57,9 @@ const socket = (store) => (next) => (action) => {
             console.log('check_room_server_to_client_ok');
             // window.io.emit('check_room_client_to_server', roomId);
             // window.io.on('check_room_server_to_client_ok', () => {
-            // store.dispatch(webSocketListenRoom());
+            action.roomId = state.fourtwentyoneChats.roomId;
+            store.dispatch(checkRoom());
+
             next(action);
           });
           socketCanal.on('check_room_server_to_client_not_ok', () => {
@@ -71,10 +74,11 @@ const socket = (store) => (next) => (action) => {
             //   history.back
             // });
             // window.location = ('/gameselect/404');
+            // store.dispatch(window.location = ('/gameselect/404'));
+            store.dispatch(window.history.replaceState('404', '/'));
             // window.history.replaceState({}, '404 fais gaffe dude', '/gameselect');
             // window.history.back();
             next(action);
-            // store.dispatch(window.history.replaceState('404', '/'));
           });
         }
       

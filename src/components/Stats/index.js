@@ -53,9 +53,9 @@ const Stats = ({ achievements }) => {
           alt=""
         />
       </div>
-/*<<<<<<< gamelogic-new
-  );
-=======*/
+      {/* <<<<<<< gamelogic-new
+        );
+      ======= */ }
     </div>
   )
 /*>>>>>>> master*/

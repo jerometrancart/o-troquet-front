@@ -4,7 +4,7 @@ import { NEW_PLAYER_JOINS, UPDATE_PARTY } from 'src/actions/games/fourtwentyone/
 const initialState = {
   players: [],
   room: {},
-  loading: true,
+  loadingRoom: true,
 };
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -13,7 +13,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         room: action.room,
-        loading: false,
+        loadingRoom: false,
       };
     default:
       return state;

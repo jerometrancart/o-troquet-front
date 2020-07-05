@@ -7,7 +7,6 @@ import {
   getFriends,
   toggleClose,
 } from 'src/actions/user';
-import { authenticationURI } from 'src/selectors';
 import axios from 'axios';
 import { authenticationURI, authenticationURIAdministration } from 'src/selectors';
 
