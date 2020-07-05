@@ -5,12 +5,28 @@ import { Button, Form, Grid, Message } from 'semantic-ui-react';
 import './style.scss';
 import PropTypes from 'prop-types';
 
-const Profile = ({ email, username, avatar, open, toggleOpen, toggleClose, updateUser,/* show, variant, textAlert */
+const Profile = ({ email, username, avatar, open, toggleOpen, toggleClose, updateUser, selectFile, uploadFile, /* show, variant, textAlert */
 }) => {
   const handleUpdateUser = (evt) => {
     evt.preventDefault();
     updateUser();
   };
+
+/*   const handleSelectedFile = (evt) => {
+    console.log(evt.target.files[0]);
+    this.setState({
+      selectedFile: evt.target.files[0]
+    })
+  };
+  const handleFileUpload = (evt) => {
+    const fd = new FormData();
+    fd.append('image', state.user.selectedFile, state.user.selectedFile.name);
+    axios.post('endpoint', fd)
+    }});
+      .then(res => {
+        console.log(res)
+      })
+  }; */
   if (!open) {
     return (
       <div className="profile">
@@ -38,6 +54,10 @@ const Profile = ({ email, username, avatar, open, toggleOpen, toggleClose, updat
             {/* <Message className={show} color={variant}>
               {textAlert}
             </Message> */}
+            <div className="profile--avatar--update">
+              <span className="avatar--span">Changer mon avatar :</span>
+              <input className="profile--avatar--input" type="file" onChange={selectFile} />
+            </div>
             <Field
               name="username"
               placeholder="Pseudo"

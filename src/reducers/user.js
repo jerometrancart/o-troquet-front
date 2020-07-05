@@ -3,7 +3,7 @@
 import BLACKJACK from 'src/assets/images/blackjack.png';
 import Heart from 'src/assets/images/heart.png';
 
-import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK, ALERT_SHOW, TOGGLE_OPEN, TOGGLE_CLOSE } from 'src/actions/user';
+import { CHANGE_VALUE, LOGIN, FINISH_LOADING, AUTH_SUCCESS, LOGOUT, CHECK, ALERT_SHOW, TOGGLE_OPEN, TOGGLE_CLOSE, SELECT_FILE } from 'src/actions/user';
 import { CHECK_ROOM } from 'src/actions/chatrooms/fourtwentyone';
 import { WEBSOCKET_CONNECT } from "../actions/chatrooms/fourtwentyone";
 
@@ -119,8 +119,8 @@ export const initialState = {
 
   ],
   roomId: '',
+  selectedFile: null,
 };
-
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -196,6 +196,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         open: false,
+      };
+    case SELECT_FILE:
+      return {
+        ...state,
+        selectedFile: action.evt.target.files[0],
       };
     default:
       return state;

@@ -64,6 +64,7 @@ const Nav = ({ clickHome }) => {
       <Modali.Modal className="stats" {...ProfilModal}>
         <Profile />
       </Modali.Modal>
+      <a className="menu-link" onClick={toggleStatsModal}>Statistiques / Récompenses</a>
       <Modali.Modal className="stats" {...StatsModal}>
         <Stats />
       </Modali.Modal>
