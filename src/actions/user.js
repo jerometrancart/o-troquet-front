@@ -13,6 +13,7 @@ export const TOGGLE_OPEN = 'TOGGLE_OPEN';
 export const TOGGLE_CLOSE = 'TOGGLE_CLOSE';
 export const UPDATE_USER = 'UPDATE_USER';
 
+
 export const changeValue = (name, value) => ({
   type: CHANGE_VALUE,
   name,

@@ -12,6 +12,7 @@ export const SCROLL_DOWN = 'SCROLL_DOWN';
 export const SET_MESSAGE = 'SET_MESSAGE';
 export const CLICK_HOME = 'CLICK_HOME';
 
+
 export const webSocketConnect = (roomId, hasError) => ({
   type: WEBSOCKET_CONNECT,
   roomId,
