@@ -11,6 +11,7 @@ export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 export const SCROLL_DOWN = 'SCROLL_DOWN';
 export const SET_MESSAGE = 'SET_MESSAGE';
 
+
 export const webSocketConnect = (roomId, hasError) => ({
   type: WEBSOCKET_CONNECT,
   roomId,
@@ -66,3 +67,5 @@ export const webSocketListenRoom = (room) => ({
 export const checkRoom = () => ({
   type: CHECK_ROOM,
 });
+
+
