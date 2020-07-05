@@ -68,14 +68,14 @@ const socket = (store) => (next) => (action) => {
             console.log('la room n\'existe pas, dsl');
             // store.dispatch(webSocketDisconnect());
             action.roomId = '';
-            action.hasError = true;
+            action.roomHasError = true;
             // window.onpopstate(() => {
             //   history.pushState('/gameselect/404');
             //   history.back
             // });
             // window.location = ('/gameselect/404');
             // store.dispatch(window.location = ('/gameselect/404'));
-            store.dispatch(window.history.replaceState('404', '/'));
+            // store.dispatch(window.history.replaceState('404', '/'));
             // window.history.replaceState({}, '404 fais gaffe dude', '/gameselect');
             // window.history.back();
             next(action);

@@ -84,20 +84,20 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
                 )}
           </Route>
           <Route exact path="/gameboard/fourtwentyone/:roomId">
-            {isLogged
+            {!isLogged
+              && (
+              <Redirect to="/" />
+              )}
+            {isLogged && roomHasError && !loadingRoom
+              && (
+              <Redirect to="/404" />
+              )}
+            {isLogged && !loadingRoom
               && !roomHasError && (
                 <GameboardPage
                   isLogged={isLogged}
                 />
             )}
-            {!isLogged
-              && (
-              <Redirect to="/" />
-              )}
-            {roomHasError
-              && (
-              <Redirect to="/404" />
-              )}
           </Route>
           <Route exact path="/legal">
             <Legal />

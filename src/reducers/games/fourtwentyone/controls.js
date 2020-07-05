@@ -1,6 +1,6 @@
 import { } from 'src/actions';
 import { NEW_PLAYER_JOINS, UPDATE_PARTY } from 'src/actions/games/fourtwentyone/player';
-
+import { WEBSOCKET_CONNECT } from 'src/actions/chatrooms/fourtwentyone';
 const initialState = {
   players: [],
   room: {},
@@ -13,6 +13,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         room: action.room,
+        loadingRoom: false,
+      };
+    case WEBSOCKET_CONNECT:
+      return {
+        ...state,
         loadingRoom: false,
       };
     default:
