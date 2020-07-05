@@ -125,6 +125,21 @@ const socket = (store) => (next) => (action) => {
           //   updateParty(room), 1000,
           //   );
           // });
+          if (message.content.includes('rolls the dice')) {
+            const toggleClasses = ((die) => {
+              die.classList.toggle('odd-roll');
+              die.classList.toggle('even-roll');
+            });
+      
+            const dice = [...document.querySelectorAll('.die-list:not(.blocked)')];
+      
+            dice.forEach((die) => {
+              toggleClasses(die);
+            });
+          }
+
+
+
 
 
           // store.dispatch(changeValue('loading', true));

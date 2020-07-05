@@ -31,16 +31,16 @@ const controls = (store) => (next) => (action) => {
       action.room = state.fourtwentyoneControls.room;
 
       console.log(action);
-      const toggleClasses = ((die) => {
-        die.classList.toggle('odd-roll');
-        die.classList.toggle('even-roll');
-      });
+      // const toggleClasses = ((die) => {
+      //   die.classList.toggle('odd-roll');
+      //   die.classList.toggle('even-roll');
+      // });
 
-      const dice = [...document.querySelectorAll('.die-list:not(.blocked)')];
+      // const dice = [...document.querySelectorAll('.die-list:not(.blocked)')];
 
-      dice.forEach((die) => {
-        toggleClasses(die);
-      });
+      // dice.forEach((die) => {
+      //   toggleClasses(die);
+      // });
       socketCanal.emit('roll_dice', action.room, action.player);
 
       next(action);
