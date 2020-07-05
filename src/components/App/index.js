@@ -24,7 +24,7 @@ https://codepen.io/omascaros/pen/CBapm
 */
 
 // == Composant
-const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocketDisconnect, webSocketConnect, loading, hasError }) => {
+const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocketDisconnect, webSocketConnect, loadingUser, loadingRoom, roomHasError }) => {
   // hook d'effet : s'applique après le chargement de l'application
 
   // const location = useLocation();
@@ -51,10 +51,10 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
           && (
             <Nav />
           )}
-        {hasError && (
+        {!loadingUser && roomHasError && (
           <p className="errorPage">404 fais gaffe dude</p>
         )}
-        {!loading && !hasError && (
+        {!loadingUser && !roomHasError && (
         <Switch>
           <Route exact path="/">
             {!isLogged
@@ -85,7 +85,7 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
           </Route>
           <Route exact path="/gameboard/fourtwentyone/:roomId">
             {isLogged
-              && !hasError && (
+              && !roomHasError && (
                 <GameboardPage
                   isLogged={isLogged}
                 />
@@ -93,6 +93,10 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
             {!isLogged
               && (
               <Redirect to="/" />
+              )}
+            {roomHasError
+              && (
+              <Redirect to="/404" />
               )}
           </Route>
           <Route exact path="/legal">
@@ -118,7 +122,7 @@ const App = ({ isLogged, isAdmin, checkIsLogged, path, sideBar, roomId, webSocke
           </Route>
         </Switch>
         )}
-        {loading && (
+        {loadingUser && (
           <p className="loadingPage">Veuillez patienter. Nous ouvrons la boutique ...</p>
         )}
       </div>
@@ -137,14 +141,16 @@ App.propTypes = {
   roomId: PropTypes.string,
   webSocketDisconnect: PropTypes.func.isRequired,
   webSocketConnect: PropTypes.func.isRequired,
-  hasError: PropTypes.bool,
+  roomHasError: PropTypes.bool,
+  loadingUser: PropTypes.bool.isRequired,
+  loadingRoom: PropTypes.bool.isRequired,
 };
 
 App.defaultProps = {
   isLogged: false,
   isAdmin: false,
   roomId: '',
-  hasError: false,
+  roomHasError: false,
 };
 
 // == Export

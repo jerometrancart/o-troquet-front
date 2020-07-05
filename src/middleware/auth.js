@@ -115,7 +115,7 @@ damien
       // Uniquement si le userId est défini, pour éviter les erreurs en console et les undefined
       if (localStorage.userId) {
         store.dispatch(getFriends());
-        store.dispatch(read());}
+        store.dispatch(read()); }
 
       next(action);
       break;

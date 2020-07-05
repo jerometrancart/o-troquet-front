@@ -18,7 +18,7 @@ export const initialState = {
   avatar: '',
   isLogged: false,
   isAdmin: false,
-  loading: true,
+  loadingUser: true,
   path: '/',
   userToken: '',
   achievements: [
@@ -134,19 +134,19 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         // loading: true,
-        loading: false,
+        loadingUser: false,
       };
     case FINISH_LOADING:
       return {
         ...state,
-        loading: false,
+        loadingUser: false,
       };
     case AUTH_SUCCESS:
       return {
         ...state,
         isLogged: true,
         userToken: action.user,
-        loading: false,
+        loadingUser: false,
       };
     case LOGOUT:
       return {
@@ -165,7 +165,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         // loading: true,
-        loading: false,
+        loadingUser: false,
         isLogged: false,
       };
     case ALERT_SHOW:
@@ -184,7 +184,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         roomId: state.fourtwentyoneChats.roomId,
-        loading: false,
+        loadingUser: false,
       };
     case TOGGLE_OPEN:
       console.log(state.open);

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { toggleClose, changeValue } from 'src/actions/user';
+import { clickHome } from 'src/actions/chatrooms/fourtwentyone';
 import Nav from 'src/components/Nav';
 
 // import { check } from 'src/actions/user';
@@ -10,6 +11,7 @@ const mapStateToProps = (state) => ({
   menuItems: state.user.menuItems,
   open: state.user.open,
 });
+
 const mapDispatchToProps = (dispatch) => ({
   toggleClose: () => {
     const action = toggleClose();
@@ -17,6 +19,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   changeValue: () => {
     const action = changeValue();
+    dispatch(action);
+  },
+  clickHome: () => {
+    const action = clickHome();
     dispatch(action);
   },
 });

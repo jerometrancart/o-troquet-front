@@ -6,7 +6,7 @@ import { updateParty } from 'src/actions/games/fourtwentyone/player';
 const mapStateToProps = (state) => ({
   
   roomId: state.fourtwentyoneChats.roomId,
-  loading: state.fourtwentyoneControls.loading,
+  loadingRoom: state.fourtwentyoneControls.loadingRoom,
   room: state.fourtwentyoneControls.room,
   players: state.fourtwentyoneControls.room.users,
 });
