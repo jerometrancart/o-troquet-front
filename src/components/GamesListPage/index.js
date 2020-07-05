@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 // import resources
 import Dice from 'src/assets/images/421 black.png';
 import Blackjack from 'src/assets/images/blackjack-wip.png';
-import Soon from 'src/assets/images/soon.png';
+import Soon from 'src/assets/images/soon-nurbey.png';
 
 import './style.scss';
 
