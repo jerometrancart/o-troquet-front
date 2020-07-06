@@ -8,7 +8,7 @@ import './style.scss';
 const Combos = () => (
 
   <div className="theCombos">
-    Valeurs en jetons
+    {/*Valeurs en jetons
     421
 
     10 jetons
@@ -43,7 +43,10 @@ const Combos = () => (
 
     Toutes les autres combinaisons (Du + au -)
     1 jeton
-    La combinaison 2,2,1 est appelée « nénette ». C’est la plus faible des combinaisons. Peu importe la meilleure combinaison qui a été réalisée, celui qui fait une « nénette » reçoit d’office 2 jetons.
+    La combinaison 2,2,1 est appelée « nénette ». C’est la plus faible des combinaisons. Peu importe la meilleure combinaison qui a été réalisée, celui qui fait une « nénette » reçoit d’office 2 jetons. */}
+
+    Arrête de faire la baboune tabaslack, a va fondre la slutch. Osti qui fa frette. Mâ t'en faire moé des patentes de même, tu vas m'entendre baptinse. Baptême de crisse de cibole de viande à chien, j'en ai plein mon casse d'être toute décalissé de la vie, avec le windshier de mon char toute déviargé par l'autre esti de cave. Les crottes de fromage, bien sqouick sqouick dans yeule, c'est ça le bonheur. Ça a fessé dans le dash en esti hier, j'étais paqueté en tabarnak, je suis crissement lendemain de veille.
+
   </div>
 
 );

@@ -7,7 +7,7 @@ import './style.scss';
 
 const Rules = () => (
   <div className="theRules">
-    
+  {/*   
     Le 421 est un jeu de dés très populaire en France. En effet, ses règles simples et sa convivialité en font un des classiques des jeux de bar.
 
 Mêlant rapidité et stratégie ce jeu de dés plaira à tous. Nous vous présenterons, ici, les règles de base du 421.
@@ -154,7 +154,8 @@ Une fois que le « pot » est vide on peut alors commencer la deuxième manche. 
 
 Comment gagner au 421 :
 Pour gagner une partie de 421, il faut être le premier joueur à ne plus avoir de jetons au terme des deux manches. Il faut savoir qu’il existe de nombreuses variantes à la règle de base. Ainsi, il est toujours possible d’ajouter des règles pour pimenter le jeu du 421.
-
+*/ }
+    Ben coudonc, t'es encore là toé ? Bon, câlisse, tu vas-tu me crisser patience ? J'ai ben d'la misère avec les colons en bedaine. T'es din patate mon gars, complètement dans le champ. Ferme-toé un peu le mâche-patate là, va prendre une marche ou quelque chose. Ça a fessé dans le dash en esti hier, j'étais paqueté en tabarnak, je suis crissement lendemain de veille.
   </div>
 );
 
