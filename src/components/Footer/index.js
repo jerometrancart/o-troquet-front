@@ -14,7 +14,7 @@ const Footer = ({ isAdmin }) => (
       Mentions légales
     </Link>
     <Link
-      className="team link"
+      className="team-page link"
       to="/theteam"
     >
       Qui sommes-nous?
