@@ -80,7 +80,7 @@ if ((socketCanal === undefined)) {
 // http:ec2-100-26-57-91.compute-1.amazonaws.com/
 // damien vpn, where backend was coding
 // const authenticationURI = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/api/';
-// const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/';
+// export const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/';
 // export const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/';
 // http://ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/v1/users
 // POST

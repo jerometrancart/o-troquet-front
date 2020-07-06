@@ -6,6 +6,8 @@ import {
   login,
   getFriends,
   toggleClose,
+  uploadAvatar,
+  UPLOAD_AVATAR,
 } from 'src/actions/user';
 import axios from 'axios';
 import { authenticationURI, authenticationURIAdministration } from 'src/selectors';
@@ -66,6 +68,7 @@ const userProfile = (store) => (next) => (action) => {
   const token = localStorage.tokenOTroquet;
   // debugger;
   const userURI = `http://${authenticationURI}v1/users/${localStorage.userId}`;
+  // const avatarURI = 'http://damien-belingheri.vpnuser.lan:8000/public/uploads/avatars/';
   const avatarURI = 'http://ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/uploads/avatars/';
   // Switch
   switch (action.type) {
@@ -135,9 +138,9 @@ const userProfile = (store) => (next) => (action) => {
         },
         )
           .then((response) => {
-            // la réponse contient une phrase 'La modification a bien été prise en compte'
-            // rangée dans response.data.success
-            window.alert(response.data.success);
+            store.dispatch(uploadAvatar());
+            store.dispatch
+            window.alert('Vos informations de profil ont bien été mises à jour.');
             // A ce stade, le token fourni au login n'est plus valide (car il correspond aux infos
             // de l'utilisateur), il faut donc le supprimer
             localStorage.removeItem('tokenOTroquet');
@@ -192,9 +195,8 @@ const userProfile = (store) => (next) => (action) => {
             },
             )
               .then((response) => {
-              // la réponse contient une phrase 'La modification a bien été prise en compte'
-              // rangée dans response.data.success
-                window.alert(response.data.success);
+                store.dispatch(uploadAvatar());
+                window.alert('Vos informations de profil ont bien été mises à jour.');
                 // A ce stade, le token fourni au login n'est plus valide (car il correspond aux infos
                 // de l'utilisateur), il faut donc le supprimer
                 localStorage.removeItem('tokenOTroquet');
@@ -224,6 +226,33 @@ const userProfile = (store) => (next) => (action) => {
           // store.dispatch(alertShow('visible', 'red', state.user.errorList[1]));
           window.alert('Votre nouveau mot de passe doit contenir au moins 6 caractères dont une lettre majuscule, une minuscule, un chiffre et un caractère spécial parmi les suivants : @$!%*#?& ')
         }
+      }
+      break;
+    }
+    case UPLOAD_AVATAR: {
+      if (state.user.selectedFile !== null) {
+        const fd = new FormData();
+        fd.append('avatar', state.user.selectedFile, state.user.selectedFile.name);
+        axios.post(`http://${authenticationURI}v1/users/${localStorage.userId}/updateAvatar`,
+          fd,
+          {
+            headers: {
+              // récupération du token défini avant le switch
+              Authorization: `Bearer ${token}`,
+              // withCredentials: true,
+            },
+          },
+        )
+          .then((response) => {
+            window.alert(response.data.success);
+          })
+          .catch((error) => {
+            console.error(error);
+            window.alert('Votre upload d\'image a échoué.');
+            // store.dispatch(alertShow('visible', 'red', state.user.errorList[2]
+          });
+        next(action);
+        break;
       }
       break;
     }

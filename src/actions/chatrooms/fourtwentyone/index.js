@@ -72,3 +72,4 @@ export const checkRoom = () => ({
 export const clickHome = () => ({
   type: CLICK_HOME,
 });
+

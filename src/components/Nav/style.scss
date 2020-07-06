@@ -124,7 +124,7 @@ margin: auto;
 
   &--title {
     text-align: center;
-    margin-bottom: 0;
+    margin-bottom: 1rem;
     font-size: 2rem;
     font-weight: bold;
     color: $main-color;
@@ -157,9 +157,24 @@ margin: auto;
     &--lorem {
     font-weight: bold;
       }
+  &--avatar--update {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: $grey;
+    padding-top: 1rem;
     }
+  &--avatar--input {
+    padding: 1rem 0;
+    position: relative;
   }
-  
+  }
+
+.avatar--span {
+  padding: 1rem 0;
+  margin: 1rem;
+}
 
 .profile--button {
     width: 20rem;
@@ -180,4 +195,4 @@ margin-bottom: 20px;
 
 }
 
-
+}

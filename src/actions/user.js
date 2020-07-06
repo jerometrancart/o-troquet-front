@@ -12,6 +12,8 @@ export const READ = 'READ';
 export const TOGGLE_OPEN = 'TOGGLE_OPEN';
 export const TOGGLE_CLOSE = 'TOGGLE_CLOSE';
 export const UPDATE_USER = 'UPDATE_USER';
+export const SELECT_FILE = 'SELECT_FILE';
+export const UPLOAD_AVATAR = 'UPLOAD_AVATAR';
 
 
 export const changeValue = (name, value) => ({
@@ -76,4 +78,13 @@ export const toggleClose = () => ({
 
 export const updateUser = () => ({
   type: UPDATE_USER,
+});
+
+export const selectFile = (evt) => ({
+  type: SELECT_FILE,
+  evt,
+});
+
+export const uploadAvatar = () => ({
+  type: UPLOAD_AVATAR,
 });
