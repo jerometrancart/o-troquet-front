@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Modali, { useModali } from 'modali';
 import Friendlist from 'src/containers/Friendlist';
@@ -110,7 +111,7 @@ const Nav = ({ menuItems, username, isLogged, check } ) => (
     <Friendlist />
   </nav>
 );
-
+*/
 Nav.propTypes = {
   menuItems: PropTypes.arrayOf(
     PropTypes.shape({
@@ -120,6 +121,7 @@ Nav.propTypes = {
   ).isRequired,
   username: PropTypes.string.isRequired,
   isLogged: PropTypes.bool.isRequired,
+  clickHome: PropTypes.func.isRequired,
 };
-*/
+
 export default Nav;

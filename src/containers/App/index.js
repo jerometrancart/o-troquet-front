@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
     loadingUser: state.user.loadingUser,
     loadingRoom: state.fourtwentyoneControls.loadingRoom,
     // hasError: state.user.hasError,
-    hasError: state.fourtwentyoneChats.hasError,
+    roomHasError: state.fourtwentyoneChats.roomHasError,
   };
 };
 

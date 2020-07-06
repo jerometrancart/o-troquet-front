@@ -13,10 +13,10 @@ export const SET_MESSAGE = 'SET_MESSAGE';
 export const CLICK_HOME = 'CLICK_HOME';
 
 
-export const webSocketConnect = (roomId, hasError) => ({
+export const webSocketConnect = (roomId, roomHasError) => ({
   type: WEBSOCKET_CONNECT,
   roomId,
-  hasError,
+  roomHasError,
 });
 
 export const webSocketDisconnect = () => ({

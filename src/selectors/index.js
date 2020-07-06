@@ -62,10 +62,9 @@ export const redirect = (adress) => {
 export const urlSocketIO = 'http://localhost:3001';
 export const socketCanal = window.io(urlSocketIO);
 
-export const authenticationURI = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/api/';
-export const authenticationURIAdministration = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/login';
-// const authenticationURI = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/login_check';
-// const authenticationURIAdministration = 'ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/login';
+const aws = 'ec2-100-26-57-91.compute-1.amazonaws.com/';
+export const authenticationURI = `${aws}O-troquet-Back/public/api/`;
+export const authenticationURIAdministration = `${aws}O-troquet-Back/public/login`;
 
 /*
 if ((socketCanal === undefined)) {
@@ -84,6 +83,7 @@ if ((socketCanal === undefined)) {
 // export const authenticationURI = 'damien-belingheri.vpnuser.lan:8000/api/';
 // http://ec2-35-153-19-27.compute-1.amazonaws.com/O-troquet-Back/public/api/v1/users
 // POST
-
+// damien
+// 729Cbk192!
 
 // const authenticationURIAdministration = 'ec2-100-26-57-91.compute-1.amazonaws.com/O-troquet-Back/public/login';

@@ -17,7 +17,7 @@ const initialState = {
   ],
   rooms: [],
   roomId: '',
-  hasError: false,
+  roomHasError: false,
 };
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -72,12 +72,16 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         roomId: action.roomId,
-        hasError: action.hasError,
+        roomHasError: action.roomHasError,
+        // roomHasError: true,
+        loadingRoom: false,
       };
     case CLICK_HOME:
       return {
         ...state,
         roomId: '',
+        roomHasError: false,
+        loadingRoom: false,
       };
     default:
       return state;

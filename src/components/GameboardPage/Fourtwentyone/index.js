@@ -5,9 +5,9 @@ import { Redirect, useHistory, useParams } from 'react-router-dom';
 import Controls from 'src/containers/GameboardPage/Fourtwentyone/controls';
 import Die from 'src/containers/GameboardPage/Fourtwentyone/die';
 import Chatrooms from 'src/containers/GameboardPage/Fourtwentyone/chatrooms';
+import Scoreboard from 'src/containers/GameboardPage/Fourtwentyone/scoreboard';
 import Board from './board';
 import Dice from './dice';
-import Scoreboard from 'src/containers/GameboardPage/Fourtwentyone/scoreboard';
 import Infos from './infos';
 import Players from './players';
 

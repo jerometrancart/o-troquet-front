@@ -18,3 +18,6 @@
     color: color.adjust($brown, $lightness: 15%);
   }
 }
+a>button.ui.button.brown.center.aligned {
+  margin-top: $gutter;
+}
