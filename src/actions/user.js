@@ -28,10 +28,11 @@ export const finishLoading = () => ({
   type: FINISH_LOADING,
 });
 
-export const authSuccess = (token, user, userId) => ({
+export const authSuccess = (token, user, userId, isAdmin) => ({
   type: AUTH_SUCCESS,
   token,
   user,
+  isAdmin,
 });
 
 export const logout = () => ({

@@ -3,6 +3,8 @@ import { Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import { authenticationURIAdministration } from 'src/selectors';
+
 import './style.scss';
 
 const Footer = ({ isAdmin }) => (
@@ -21,16 +23,18 @@ const Footer = ({ isAdmin }) => (
     </Link>
 
     {isAdmin && (
-      <Link
-        to="/admin"
+      <a
+        href={`http://${authenticationURIAdministration}`}
+        target="_blank"
+        rel="noreferrer"
       >
         <Button
-          color="blue"
+          color="brown"
           className="center aligned"
         >
           Administration
         </Button>
-      </Link>
+      </a>
     )}
 
   </footer>

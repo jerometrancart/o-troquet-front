@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Modali, { useModali } from 'modali';
 import Rules from './Rules';
 import Combos from './Combos';
-import Modali, { useModali } from 'modali';
 
 import './style.scss';
 

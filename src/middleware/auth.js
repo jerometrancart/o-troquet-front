@@ -141,7 +141,19 @@ damien
       break;
     }
     case AUTH_SUCCESS: {
-      // console.log('CHECK a trouvé un token et dispatché authSuccess dans le store ', action);
+      console.log('CHECK a trouvé un token et dispatché authSuccess dans le store ', action);
+      
+      if (action.user.roles !== undefined) {
+        console.log ('middleware auth AUTH_SUCCESS verifie si addmin');
+
+        action.isAdmin = (action.user.roles.includes('ROLE_SUPER_ADMIN') || action.user.roles.includes('ROLE_ADMIN'));
+        console.log('action.isAdmin : ', action.isAdmin); // true
+      }
+      console.log('action.isAdmin en dehors du if : ', action.isAdmin); // true
+
+        // includes('ROLE_SUPER_ADMIN') || state.user.userToken.roles.includes('ROLE_ADMIN')) {
+        // store.dispatch(changeValue('isAdmin', true));
+      
       // authSuccess doit vérifier si oui ou non nous avons une room en url
       const roomId = window.location.pathname.slice(25);
       if (roomId !== '') {

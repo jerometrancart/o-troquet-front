@@ -147,6 +147,7 @@ const reducer = (state = initialState, action = {}) => {
         isLogged: true,
         userToken: action.user,
         loadingUser: false,
+        isAdmin: action.isAdmin,
       };
     case LOGOUT:
       return {
