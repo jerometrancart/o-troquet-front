@@ -4,12 +4,12 @@
 
  .team{
   display: flex;
-  justify-content: center;
+ // justify-content: center;
   width: 100%;
   position: fixed;
   bottom: 10vh;
   top: 10vh;
-  margin-left: 7.5%;
+  margin-left: 15%;
   flex-wrap: wrap;
   overflow-y: scroll;
   &--member {
@@ -42,8 +42,9 @@
     margin-bottom: 2rem;
   }
   &--title {
+    display: flex;
+    margin-left: 32%;
     position: fixed;
-    margin: auto;
     top: 14vh;
     color : $text-color;
     text-shadow: 1px 1px 1px black, -1px -1px 1px black;
