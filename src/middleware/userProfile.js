@@ -244,7 +244,8 @@ const userProfile = (store) => (next) => (action) => {
           },
         )
           .then((response) => {
-            window.alert(response.data.success);
+            // window.alert(response.data.success);
+            console.error('Upload d\'avatar réussi');
           })
           .catch((error) => {
             console.error(error);

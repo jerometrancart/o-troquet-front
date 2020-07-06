@@ -217,6 +217,7 @@ damien
     }
     case LOGOUT: {
       localStorage.removeItem('tokenOTroquet');
+      localStorage.removeItem('userId');
       console.log('middleware auth je veux me déconnecter');
       store.dispatch(webSocketDisconnect());
 

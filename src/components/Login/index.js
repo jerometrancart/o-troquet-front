@@ -17,6 +17,7 @@ const Login = ({ isLogged, login, show, variant, textAlert, webSocketDisconnect,
   const history = useHistory();
   const [signinModal, toggleSigninModal] = useModali({
     animated: true,
+    centered: true,
   });
   if (isLogged) {
     history.push('/gameselect');

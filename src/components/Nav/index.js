@@ -59,7 +59,7 @@ const Nav = ({ clickHome }) => {
         exact
         className="menu-link"
         activeclassname="menu-link--current"
-      >Accueil
+      >Retour au comptoir
       </NavLink>
       <a className="menu-link" onClick={toggleProfilModal}>Profil</a>
       <Modali.Modal className="stats" {...ProfilModal}>
@@ -69,14 +69,14 @@ const Nav = ({ clickHome }) => {
       <Modali.Modal className="stats" {...StatsModal}>
         <Stats />
       </Modali.Modal>
-      <NavLink
+      {/* <NavLink
         to="/gameselect"
         onClick={clickHome}
         exact
         className="menu-link"
         activeclassname="menu-link--current"
       >Retour au bar
-      </NavLink>
+      </NavLink> */}
 
       <Friendlist />
     </nav>

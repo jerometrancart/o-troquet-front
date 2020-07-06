@@ -125,19 +125,34 @@ const socket = (store) => (next) => (action) => {
           //   updateParty(room), 1000,
           //   );
           // });
+
+
+          const toggleClasses = ((die) => {
+            die.classList.toggle('odd-roll');
+            die.classList.toggle('even-roll');
+          });
+    
+          const dice = [...document.querySelectorAll('.die-list:not(.blocked)')];
           if (message.content.includes('rolls the dice')) {
-            const toggleClasses = ((die) => {
-              die.classList.toggle('odd-roll');
-              die.classList.toggle('even-roll');
-            });
-      
-            const dice = [...document.querySelectorAll('.die-list:not(.blocked)')];
-      
             dice.forEach((die) => {
               toggleClasses(die);
             });
           }
-
+          
+          
+          // if ((message.content.includes('blocked')) || (message.content.includes('released'))) {
+          //   const toggleClasses = ((die) => {
+          //     die.classList.toggle('odd-roll');
+          //     die.classList.toggle('even-roll');
+          //   });
+      
+          //   const dice = [...document.querySelectorAll('.die-list.blocked)')];
+      
+          //   dice.forEach((die) => {
+          //     toggleClasses(die);
+          //     toggleClasses(die);
+          //   });
+          // }
 
 
 

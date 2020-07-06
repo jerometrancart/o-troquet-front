@@ -35,7 +35,7 @@ const Team = () => (
       img={Caribou1}
       name="Clément"
       post="Référent technique général"
-      text="Fournisseur de librairies et de technologies bien pratiques en tous genres, membre de la secte des adorateurs de Grafikart."
+      text="Dev front, fournisseur de librairies et de technologies bien pratiques en tous genres, membre de la secte des adorateurs de Grafikart."
     />
     <Member
       img={Caribou5}
