@@ -65,7 +65,7 @@ const Signin = ({ isLogged, register, show, variant, textAlert }) => {
   );
 };
 Signin.propTypes = {
-  isLogged: PropTypes.bool.isRequired,
+  isLogged: PropTypes.bool,
   register: PropTypes.func.isRequired,
   show: PropTypes.string.isRequired,
   variant: PropTypes.string.isRequired,

@@ -51,7 +51,7 @@ const Nav = ({ clickHome }) => {
   });
   return (
     <nav className="menu">
-      <button type="button" className="menu-toggler"> <Plus color="#5C5874" size="100%" /></button>
+      {/* <button type="button" className="menu-toggler"> <Plus color="#5C5874" size="100%" /></button> */}
       <NavLink
         to="/gameselect"
         onClick={clickHome}

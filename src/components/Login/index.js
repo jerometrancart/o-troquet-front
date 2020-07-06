@@ -44,10 +44,10 @@ const Login = ({ isLogged, login, show, variant, textAlert, webSocketDisconnect,
         <Message className={show} color={variant}>
           {textAlert}
         </Message>
-        <div className="oauth">
+{/*         <div className="oauth">
           <Button circular color="facebook" icon="facebook" />
           <Button circular color="google plus" icon="google plus g" />
-        </div>
+        </div> */}
         <Field
           name="username"
           placeholder="Pseudo"
@@ -66,7 +66,7 @@ const Login = ({ isLogged, login, show, variant, textAlert, webSocketDisconnect,
       </p>
       <p className="signup">Vous n'avez pas de compte ?
       </p>
-      <a className="signup-link" onClick={toggleSigninModal}>Inscrivez-vous ^^
+      <a className="signup-link" onClick={toggleSigninModal}>Inscrivez-vous
       </a>
       <Modali.Modal {...signinModal}>
         <Signin />

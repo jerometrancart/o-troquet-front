@@ -1,0 +1,25 @@
+@use 'sass:color';
+@import 'src/styles/vars';
+
+.legal {
+  display: flex;
+  flex-direction: column;
+ // justify-content: center;
+  width: 100%;
+  position: fixed;
+  bottom: 10vh;
+  top: 10vh;
+  background-color: rgba(247, 243, 227, 0.8);
+  overflow-y: scroll;
+  padding: 2rem 0;
+  &--main {
+    margin-left: 15%;
+    padding: 0 2rem;
+  }
+  &--title {
+    color: $main-color;
+    // text-shadow: 1px 1px 1px black, -1px -1px 1px black;
+    font-weight: bold;
+    font-size: 2.5rem;
+  }
+}
