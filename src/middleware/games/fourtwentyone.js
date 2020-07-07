@@ -53,7 +53,7 @@ const controls = (store) => (next) => (action) => {
       const targetedDieId = targetedDieIdHtml.id;
       console.log('targeted die id : ', targetedDieId);
       // console.log('targetedDie : ', targetedDie);
-      targetedDie.classList.toggle('blocked');
+      // targetedDie.classList.toggle('blocked');
       // socketCanal.emit('die_blocked');
 
       action.room = state.fourtwentyoneControls.room;
@@ -62,6 +62,7 @@ const controls = (store) => (next) => (action) => {
         [targetedDieId]: {
           data: action.room[targetedDieId].data,
           blocked: !action.room[targetedDieId].blocked,
+          roll: action.room[targetedDieId].roll,
         },
       };
       action.roomId = state.fourtwentyoneChats.roomId;
