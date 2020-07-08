@@ -127,17 +127,17 @@ const socket = (store) => (next) => (action) => {
           // });
 
 
-          const toggleClasses = ((die) => {
-            die.classList.toggle('odd-roll');
-            die.classList.toggle('even-roll');
-          });
+          // const toggleClasses = ((die) => {
+          //   die.classList.toggle('odd-roll');
+          //   die.classList.toggle('even-roll');
+          // });
     
-          const dice = [...document.querySelectorAll('.die-list:not(.blocked)')];
-          if (message.content.includes('rolls the dice')) {
-            dice.forEach((die) => {
-              toggleClasses(die);
-            });
-          }
+          // const dice = [...document.querySelectorAll('.die-list:not(.blocked)')];
+          // if (message.content.includes('rolls the dice')) {
+          //   dice.forEach((die) => {
+          //     toggleClasses(die);
+          //   });
+          // }
           
           
           // if ((message.content.includes('blocked')) || (message.content.includes('released'))) {
